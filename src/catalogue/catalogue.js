@@ -11,7 +11,7 @@ function Catalogue(props) {
             rating: 4.5,
             sp: 249,
             mrp: 300,
-            discount: 16,
+            discount: 17,
         },
         {
             id: 'p2',
