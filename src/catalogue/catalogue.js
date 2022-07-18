@@ -9,7 +9,7 @@ function Catalogue(props) {
             company: 'Adidas',
             product: 'Sneakers',
             rating: 4.5,
-            sp: 249,
+            sp: 248,
             mrp: 300,
             discount: 16,
         },
