@@ -17,7 +17,7 @@ function Catalogue(props) {
             id: 'p2',
             company: 'Nike',
             product: 'Boots',
-            rating: 4.6,
+            rating: 4.7,
             sp: 200,
             mrp: 400,
             discount: 50,
