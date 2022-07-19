@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import classes from './navbar.module.css';
 import SearchBox from './searchBox';
+import CartIcon from '../icons/cartIcon';
 
 function Navbar(props) {
   const [closeMenu, setMenuClose] = useState(true);
@@ -22,7 +23,9 @@ function Navbar(props) {
           <li className={classes.close} onClick={menuCloseHandler}>X</li>
           <li>Profile</li>
           <li>Wishlist</li>
-          <li className={classes.cartMenu}>Cart</li>
+          <li className={classes.cartMenu}>
+            <span><CartIcon /></span> cart
+          </li>
       </ul>
     </div>
   );

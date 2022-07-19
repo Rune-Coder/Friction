@@ -37,3 +37,23 @@
     font-family: 'Poppins', sans-serif;
     height: auto;
 }
+
+@media screen and (max-width: 1245px){
+    .offer{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .headTitle, .headImg{
+        width: 100%;
+    }
+    .headTitle{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+    .headImg{
+        padding-left: auto;
+        padding-right: auto;
+    }
+}

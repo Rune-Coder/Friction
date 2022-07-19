@@ -10,6 +10,9 @@ body{
 .burger, .cart, .close{
     display: none;
 }
+.cartMenu span{
+    font-size: 0.1rem;
+}
 .navbar{
     background-color: #CFD2CF;
     box-shadow: 0 1px #cfd2cfaf;
