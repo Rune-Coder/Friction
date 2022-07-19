@@ -1,4 +1,5 @@
 import React from 'react';
+import headerImage from '../image/sneakers_header.jpg';
 import classes from './offerHeader.module.css';
 
 function OfferHeader() {
@@ -11,7 +12,9 @@ function OfferHeader() {
           <p className = {classes.head3}>Save more with coupons upto 70% off</p>
           <button type= "button" className = {classes.headBtn}>Shop Now</button>
         </div>
-        <div className={classes.headImg}>djgj</div>
+        <div className={classes.headImg}>
+          <img src = {headerImage} alt = "Sneakers"></img>
+        </div>
       </div>
     );
   }

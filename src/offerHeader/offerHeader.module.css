@@ -21,6 +21,10 @@
     height: auto;
     width: 50%;
 }
+.headImg img{
+    height: 100%;
+    width: 100%;
+}
 .headTitle{
     height: auto;
     padding: 4rem 3rem 0 3rem;
@@ -29,7 +33,7 @@
 .offer{
     color: black;
     display: flex;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-family: 'Poppins', sans-serif;
     height: auto;
 }
