@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classes from './navbar.module.css';
+import BurgerIcon from '../icons/burgerIcon';
 import CloseIcon from '../icons/closeIcon';
 import CartIcon from '../icons/cartIcon';
 import HeartIcon from '../icons/heartIcon';
@@ -18,16 +19,16 @@ function Navbar(props) {
   }
   return (
     <div className= {classes.navbar}>
-      <p className={classes.burger} onClick={menuOpenHandler}>HB</p>
+      <p className={classes.burger} onClick={menuOpenHandler}><span className={classes.menuIcons}><BurgerIcon /></span></p>
       <div>Icon</div>
-      <div className={classes.cart}>Cart</div>
+      <div className={classes.cart}><span className={classes.navIcons}><CartIcon /></span></div>
       <SearchBox />
       <ul className = {`${classes.navlist} ${!closeMenu && classes.menubar}  ${closeMenu && ''}`}>
-          <li className={classes.close} onClick={menuCloseHandler}><span className={classes.cartInitial}><CloseIcon /></span></li>
-          <li><span className={classes.cartInitial}><ProfileIcon /></span>Profile</li>
-          <li><span className={classes.cartInitial}><HeartIcon /></span>Wishlist</li>
+          <li className={classes.close} onClick={menuCloseHandler}><span className={classes.menuIcons}><CloseIcon /></span></li>
+          <li><span className={classes.navIcons}><ProfileIcon /></span>Profile</li>
+          <li><span className={classes.navIcons}><HeartIcon /></span>Wishlist</li>
           <li className={classes.cartMenu}>
-            <span className={classes.cartInitial}><CartIcon /></span>Bag
+            <span className={classes.navIcons}><CartIcon /></span>Bag
           </li>
       </ul>
     </div>

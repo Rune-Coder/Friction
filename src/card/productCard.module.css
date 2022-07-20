@@ -46,3 +46,13 @@
     margin: 0;
     padding: 0;
 }
+.rating{
+    display: flex;
+    flex-direction: row;
+}
+.star{
+    fill: #446A46;
+    height: 1.2rem;
+    margin-right: 0.5rem;
+    width: 1.2rem;
+}
