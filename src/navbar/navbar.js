@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import classes from './navbar.module.css';
-import SearchBox from './searchBox';
+import CloseIcon from '../icons/closeIcon';
 import CartIcon from '../icons/cartIcon';
+import HeartIcon from '../icons/heartIcon';
+import ProfileIcon from '../icons/profileIcon';
+import SearchBox from './searchBox';
 
 function Navbar(props) {
   const [closeMenu, setMenuClose] = useState(true);
@@ -20,11 +23,11 @@ function Navbar(props) {
       <div className={classes.cart}>Cart</div>
       <SearchBox />
       <ul className = {`${classes.navlist} ${!closeMenu && classes.menubar}  ${closeMenu && ''}`}>
-          <li className={classes.close} onClick={menuCloseHandler}>X</li>
-          <li>Profile</li>
-          <li>Wishlist</li>
+          <li className={classes.close} onClick={menuCloseHandler}><span className={classes.cartInitial}><CloseIcon /></span></li>
+          <li><span className={classes.cartInitial}><ProfileIcon /></span>Profile</li>
+          <li><span className={classes.cartInitial}><HeartIcon /></span>Wishlist</li>
           <li className={classes.cartMenu}>
-            <span><CartIcon /></span> cart
+            <span className={classes.cartInitial}><CartIcon /></span>Bag
           </li>
       </ul>
     </div>
@@ -32,4 +35,9 @@ function Navbar(props) {
 }
   
 export default Navbar;
+
+
+
+
+
   

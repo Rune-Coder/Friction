@@ -7,11 +7,15 @@ body{
     font-size: 1rem;
     margin: 0;
 }
-.burger, .cart, .close{
+.burger, .cart{
     display: none;
 }
-.cartMenu span{
-    font-size: 0.1rem;
+.cartInitial{
+    height: 1.2rem;
+    width: 1.2rem;
+}
+.cartMenu{
+    align-items: center;
 }
 .navbar{
     background-color: #CFD2CF;
@@ -30,6 +34,9 @@ body{
     padding: 0;
 }
 .navlist > li{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
     margin-right: 5rem;
 }
 .navlist > li:hover{
