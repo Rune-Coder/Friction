@@ -1,4 +1,8 @@
 import React from 'react';
+import VisaIcon from '../icons/visaIcon';
+import RupeeIcon from '../icons/rupeeIcon';
+import AmazonPayIcon from '../icons/amazonpayIcon';
+import MastercardIcon from '../icons/mastercardIcon';
 import classes from './footer.module.css';
 
 function Footer(props) {
@@ -39,12 +43,13 @@ function Footer(props) {
             <div className={classes.payments}>
                 <p>Payment Methods</p>
                 <ul>
-                    <li>Net Banking</li>
-                    <li>Visa</li>
-                    <li>MasterCard</li>
-                    <li>CASH ON DELIVERY</li>
-                    <li>JIO Money</li>
+                    <li>Net<span className={classes.bank}>Banking</span></li>
+                    <li><span className={classes.payIcons}><VisaIcon /></span></li>
+                    <li><span className={classes.payIcons}><MastercardIcon /></span></li>
+                    <li><span className={classes.payIcons}><RupeeIcon /></span>CASH ON DELIVERY</li>
+                    <li><span className={classes.payIcons}><AmazonPayIcon /></span></li>
                 </ul>
+                <p className={classes.copyright}>Copyright © 2022-2022 Shoe Company. All rights reserved.</p>
             </div>
         </div>
     );

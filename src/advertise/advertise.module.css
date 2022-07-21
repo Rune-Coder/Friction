@@ -1,0 +1,24 @@
+.app{
+    background-color: #cfd2cfaf;
+    width: 50%;
+}
+.app p{
+    margin: 2rem 0 0 2rem;
+}
+.advertise{
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    width: 100%;
+}
+.characteristics{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    justify-content: space-evenly;
+    width: 50%;
+}
+.characteristics div{
+    margin: 5rem 0 5rem 0;
+}

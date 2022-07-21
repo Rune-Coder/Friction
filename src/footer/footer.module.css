@@ -1,3 +1,12 @@
+.bank{
+    background-color: white;
+    color: #446A46;
+    height: 1rem;
+}
+.copyright{
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
 .footr{
     background-color: #446A46;
     color: white;
@@ -45,6 +54,16 @@
     flex-direction: row;
     justify-content:space-around;
     list-style: none;
+}
+.payments ul li{
+    display: flex;
+    flex-direction: row;
+}
+.payIcons{
+    display: flex;
+    fill: white;
+    height: 2rem;
+    width: 3rem;
 }
 
 @media screen and (max-width: 700px) {
