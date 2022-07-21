@@ -1,5 +1,6 @@
 import React from 'react';
-import StarIcon from '../icons/starIcon';
+import StarRating from './starRating';
+import HeartIcon from '../icons/heartIcon';
 import classes from './productCard.module.css';
 
 function ProductCard(props) {
@@ -12,24 +13,13 @@ function ProductCard(props) {
             {props.company}
             <p className={classes.pName}>{props.product}</p>
             <p className={classes.rating}>
-                <span className={classes.star}>
-                    <StarIcon />
-                </span>
-                <span className={classes.star}>
-                    <StarIcon />
-                </span>
-                <span className={classes.star}>
-                    <StarIcon />
-                </span>
-                <span className={classes.star}>
-                    <StarIcon />
-                </span>
-                <span className={classes.star}>
-                    <StarIcon />
-                </span>{props.rating}</p>
+                <StarRating />{props.rating}
+            </p>
             <ul className={classes.priceCart}>
-                <li className={classes.price}>&#8377;{props.sp} <span className={classes.mrp}>&#8377;{props.mrp}</span> <span className={classes.discount}>({props.discount}% off)</span></li>
-                <li>cart</li>
+                <li className={classes.price}>&#8377;{props.sp} <span className={classes.mrp}>
+                    &#8377;{props.mrp}</span> <span className={classes.discount}>({props.discount}% off)</span>
+                </li>
+                <li><span className={classes.wishList}><HeartIcon /></span></li>
             </ul>
            </div>
         </div>
