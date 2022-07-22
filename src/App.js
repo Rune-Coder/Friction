@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './navbar/navbar';
+import ShoeMenu from './shoeMenu/shoeMenu';
 import OfferHeader from './offerHeader/offerHeader';
 import Catalogue from './catalogue/catalogue';
 import Advertise from './advertise/advertise';
@@ -10,6 +11,7 @@ function App() {
   return (
     <div>
       <Navbar />
+      <ShoeMenu />
       <OfferHeader />
       <Catalogue />
       <Advertise />
