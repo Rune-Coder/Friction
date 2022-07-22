@@ -26,7 +26,7 @@ body{
 .navIcons{
     fill: none;
     height: 1.2rem;
-    stroke: #446A46;
+    stroke: black;
     stroke-width: 30;
     width: 1.2rem;
 }
