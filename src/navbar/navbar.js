@@ -23,6 +23,7 @@ function Navbar(props) {
       <div>Icon</div>
       <div className={classes.cart}><span className={classes.navIcons}><CartIcon /></span></div>
       <SearchBox />
+      <div className = {`${!closeMenu && classes.backdrop}  ${closeMenu && ''}`} onClick={menuCloseHandler}/>
       <ul className = {`${classes.navlist} ${!closeMenu && classes.menubar}  ${closeMenu && ''}`}>
           <li className={classes.close} onClick={menuCloseHandler}><span className={classes.menuIcons}><CloseIcon /></span></li>
           <li><span className={classes.navIcons}><ProfileIcon /></span>Profile</li>

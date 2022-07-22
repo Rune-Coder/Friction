@@ -23,7 +23,7 @@
     display: flex;
     flex-direction: row;
     font-size: 1rem;
-    height: 3rem;
+    height: 4rem;
     justify-content: space-around;
     margin-left: 1rem;
     width: 16rem;
@@ -52,8 +52,8 @@
 }
 .play{
     fill: white;
-    height: 1.2rem;
-    width: 1.2rem;
+    height: 2rem;
+    width: 2rem;
 }
 .services{
     fill: #446A46;
@@ -71,6 +71,7 @@
         width: 100%;
     }
     .appBtn{
+        height: 3rem;
         width: 10rem;
     }
 }

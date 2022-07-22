@@ -10,7 +10,7 @@ function Advertise(props) {
     return(
         <div className={classes.advertise}>
             <div className={classes.characteristics}>
-                <div><span className={classes.services}><TruckIcon /></span>Fast Delivery</div>
+                <div><span className={classes.services}><TruckIcon /></span>Super Fast Delivery</div>
                 <div><span className={classes.services}><HandLoveIcon /></span>100% Handpicked</div>
                 <div><span className={classes.services}><BadgeCheckIcon /></span>Assured Quality</div>
             </div>

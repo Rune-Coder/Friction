@@ -1,9 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import StarRating from './starRating';
 import HeartIcon from '../icons/heartIcon';
 import classes from './productCard.module.css';
 
 function ProductCard(props) {
+    const [addWish, setAddWish] = useState(false);
+    function wishHandler(event){
+        if(addWish === true)
+            setAddWish(false);
+        else
+            setAddWish(true);
+        return;
+    }
     return(
         <div className={classes.card}>
            <div className={classes.image}>
@@ -19,7 +27,7 @@ function ProductCard(props) {
                 <li className={classes.price}>&#8377;{props.sp} <span className={classes.mrp}>
                     &#8377;{props.mrp}</span> <span className={classes.discount}>({props.discount}% off)</span>
                 </li>
-                <li><span className={classes.wishList}><HeartIcon /></span></li>
+                <li><span className = {`${classes.wishList} ${addWish && classes.activeWish}  ${!addWish && ''}`} onClick={wishHandler}><HeartIcon /></span></li>
             </ul>
            </div>
         </div>
