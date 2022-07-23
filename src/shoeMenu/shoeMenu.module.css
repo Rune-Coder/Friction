@@ -1,8 +1,7 @@
 .menu{
-    background-color: red;
     color: black;
     font-size: 1rem;
-    height: 100%;
+    height: 3rem;
     margin: 0;
     padding-top: 0.5rem;
     width: 100%;
@@ -18,11 +17,15 @@
 }
 .menu ul li{
     display: inline-block;
+    height: 3rem;
     position: relative;
 }
 .menu ul li:hover{
     color: #446A46;
     cursor: pointer;
+}
+.menu ul li:hover > .types{
+    display: inherit;
 }
 .menu ul li:after {
     background-color: #446A46;
@@ -40,7 +43,22 @@
     transform: scaleX(1);
     transform-origin: bottom left;
 }
-.shoeAccordian{
-    height: 3rem;
-    width: 100%;
+.types{
+    background-color: #cfd2cfaf;
+    display: none;
+    height: auto;
+    left: 5rem;
+    margin-top: 1.1rem;
+    position: fixed;
+    width: 80%;
+}
+.types:hover{
+    display: inherit;
+}
+.types ul{
+    display: flex;
+    flex-direction: column;
+}
+.types ul li{
+    color: black;
 }
