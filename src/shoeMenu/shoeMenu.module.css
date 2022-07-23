@@ -1,8 +1,10 @@
 .menu{
+    background-color: red;
     color: black;
     font-size: 1rem;
-    height: 3rem;
+    height: 100%;
     margin: 0;
+    padding-top: 0.5rem;
     width: 100%;
 }
 .menu ul{
@@ -10,7 +12,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin: 0;
     list-style: none;
+    padding: 0;
 }
 .menu ul li{
     display: inline-block;
@@ -35,4 +39,8 @@
 .menu ul li:hover:after {
     transform: scaleX(1);
     transform-origin: bottom left;
+}
+.shoeAccordian{
+    height: 3rem;
+    width: 100%;
 }
