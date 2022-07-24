@@ -1,10 +1,12 @@
 import React from 'react';
 import classes from './catalogue.module.css';
+import productImage from '../image/product_p1.png';
 import ProductCard from '../card/productCard';
 
 const productDetails = [
     {
         id: 'p1',
+        image: productImage,
         company: 'Adidas',
         product: 'Sneakers',
         rating: 4.5,
@@ -14,6 +16,7 @@ const productDetails = [
     },
     {
         id: 'p2',
+        image: productImage,
         company: 'Nike',
         product: 'Boots',
         rating: 4.7,
@@ -26,6 +29,7 @@ function Catalogue(props) {
     const productList = productDetails.map((shoe) => (
         <ProductCard 
             key = {shoe.id} 
+            image = {shoe.image}
             company = {shoe.company} 
             product = {shoe.product} 
             rating = {shoe.rating} 

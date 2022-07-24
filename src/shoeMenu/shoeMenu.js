@@ -7,19 +7,14 @@ function ShoeMenu(props) {
             <ul>
                 <li>Men<div className={classes.types}>
                     <ul>hello
-                        <li>hi</li>
-                        <li>hi</li>
+                        {props.shoe1}
                     </ul>
                     <ul>hello
                         <li>hi</li>
                     </ul>
                 </div></li>
-                <li>Women<div className={classes.types}>
-                    hello
-                </div></li>
-                <li>Kids<div className={classes.types}>
-                    hello
-                </div></li>
+                <li>Women</li>
+                <li>Kids</li>
             </ul>
         </div>
     );

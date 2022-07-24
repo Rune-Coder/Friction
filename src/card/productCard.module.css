@@ -26,6 +26,10 @@
     height: 60%;
     width: 100%;
 }
+.image img{
+    height: 100%;
+    width: 100%;
+}
 .mrp{
     color: #576F72;
     font-size: 0.9rem;
