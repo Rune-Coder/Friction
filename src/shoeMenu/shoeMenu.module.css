@@ -1,7 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Raleway:wght@200&display=swap');
 .menu{
     color: black;
-    font-size: 1rem;
-    height: 3rem;
+    height: 100%;
     margin: 0;
     padding-top: 0.5rem;
     width: 100%;
@@ -43,22 +43,24 @@
     transform: scaleX(1);
     transform-origin: bottom left;
 }
+.shoeAccordian{
+    color: black;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    height: 3rem;
+    width: 100%;
+}
 .types{
     background-color: #cfd2cfaf;
     display: none;
     height: auto;
     left: 5rem;
-    margin-top: 1.1rem;
     position: fixed;
     width: 80%;
 }
-.types:hover{
+.types.activeTypes{
     display: inherit;
 }
-.types ul{
-    display: flex;
-    flex-direction: column;
-}
-.types ul li{
-    color: black;
+.types:hover{
+    display: inherit;
 }

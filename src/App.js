@@ -4,6 +4,7 @@ import Navbar from './navbar/navbar';
 import ShoeMenu from './shoeMenu/shoeMenu';
 import OfferHeader from './offerHeader/offerHeader';
 import Catalogue from './catalogue/catalogue';
+import ProductView from './productView/productView';
 import Advertise from './advertise/advertise';
 import Footer from './footer/footer';
 
@@ -14,6 +15,7 @@ function App() {
       <ShoeMenu />
       <OfferHeader />
       <Catalogue />
+      <ProductView />
       <Advertise />
       <Footer />
     </div>

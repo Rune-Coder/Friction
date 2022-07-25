@@ -1,0 +1,16 @@
+.details{
+    height: 100%;
+    width: 50%;
+}
+.image{
+    height: 100%;
+    width: 50%;
+}
+.view{
+    color: black;
+    display: flex;
+    flex-direction: row;
+    font-family: sans-serif;
+    height: auto;
+    width: 100%;
+}

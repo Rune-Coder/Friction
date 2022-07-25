@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classes from './shoeMenu.module.css';
 
 function ShoeMenu(props) {
+    const [addTypes, setAddTypes] = useState(false);
+    function typesHandler(event){
+        if(addTypes === true)
+            setAddTypes(false);
+        else
+            setAddTypes(true);
+        return;
+    }
+
     return(
-        <div className={classes.menu}>
-            <ul>
-                <li>Men<div className={classes.types}>
-                    <ul>hello
-                        {props.shoe1}
-                    </ul>
-                    <ul>hello
-                        <li>hi</li>
-                    </ul>
-                </div></li>
-                <li>Women</li>
-                <li>Kids</li>
-            </ul>
+        <div className={classes.shoeAccordian}>
+            <div className={classes.menu}>
+                <ul>
+                    <li onMouseOver = {typesHandler} onMouseOut = {typesHandler}>Men</li>
+                    <li onMouseOver = {typesHandler} onMouseOut = {typesHandler}>Women</li>
+                    <li onMouseOver = {typesHandler} onMouseOut = {typesHandler}>Kids</li>
+                </ul>
+            </div>
+            <div className = {`${classes.types} ${addTypes && classes.activeTypes}  ${!addTypes && ''}`}>hello</div>
         </div>
     );
 }
