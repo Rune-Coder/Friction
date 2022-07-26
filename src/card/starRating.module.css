@@ -4,6 +4,9 @@
     margin-right: 0.5rem;
     width: 1.2rem;
 }
+.starFill{
+    fill: #446A46;
+}
 .rating{
     display: flex;
     flex-direction: row;

@@ -21,7 +21,7 @@ function ProductCard(props) {
             {props.company}
             <p className={classes.pName}>{props.product}</p>
             <p className={classes.rating}>
-                <StarRating />{props.rating}
+                <StarRating stars={props.rating}/>{props.rating}
             </p>
             <ul className={classes.priceCart}>
                 <li className={classes.price}>&#8377;{props.sp} <span className={classes.mrp}>
