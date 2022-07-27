@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import CartIcon from '../icons/cartIcon';
-import HeartIcon from '../icons/heartIcon';
-import productImage from '../image/product_p1.png';
+import CartIcon from '../../icons/cartIcon';
+import HeartIcon from '../../icons/heartIcon';
+import productImage from '../../image/product_p1.png';
 import classes from './productView.module.css';
 
 function ProductView(props) {
