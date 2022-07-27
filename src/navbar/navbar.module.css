@@ -66,9 +66,6 @@ body{
         display: flex;
         flex-direction: column;
     }
-    .cartMenu{
-        display:none !important;
-    }
     .close{
         display: flex;
     }
@@ -95,13 +92,16 @@ body{
     .navlist.menubar{
         left: 0;
     }
-    .navlist > li{
+    .navlist.menubar .cartMenu{
+        display:none;
+    }
+    .navlist.menubar > li:not(.cartMenu){
         margin: 0;
         padding-top: 1.5rem;
         padding-left: 1rem;
         width: 40%;
     }
-    .navlist > li:not(.close){
+    .navlist.menubar > li:not(.close):not(.cartMenu){
         display: flex;
         flex-direction:row;
         justify-content: space-between;

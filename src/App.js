@@ -1,24 +1,19 @@
 import React from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
-import Navbar from './navbar/navbar';
-import ShoeMenu from './shoeMenu/shoeMenu';
-import OfferHeader from './offerHeader/offerHeader';
-import Catalogue from './catalogue/catalogue';
+import Layout from './layout/layout';
+import Home from './pages/home';
 import ProductView from './productView/productView';
-import Advertise from './advertise/advertise';
-import Footer from './footer/footer';
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <ShoeMenu />
-      <OfferHeader />
-      <Catalogue />
-      <ProductView />
-      <Advertise />
-      <Footer />
-    </div>
+    <Layout>
+      <Routes>
+        <Route path = "/" exact element={<Navigate replace to="/home" />}/>
+        <Route path = "/home" element = {<Home />} />
+        <Route path = "/shoes" element = {<ProductView />} />
+      </Routes>
+    </Layout>
   );
 }
 
