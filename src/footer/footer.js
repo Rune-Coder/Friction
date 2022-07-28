@@ -49,7 +49,7 @@ function Footer(props) {
                     <li><span className={classes.payIcons}><RupeeIcon /></span>CASH ON DELIVERY</li>
                     <li><span className={classes.payIcons}><AmazonPayIcon /></span></li>
                 </ul>
-                <p className={classes.copyright}>Copyright © 2022-2022 Shoe Company. All rights reserved.</p>
+                <p className={classes.copyright}>Copyright © 2022 Souhardya Dutta. All rights reserved.</p>
             </div>
         </div>
     );

@@ -9,7 +9,7 @@ function ProductBillCard(props){
                 <p className={classes.company}>Company Name</p>
                 <p className={classes.product}>Product Name</p>
                 <p>Rating</p>
-                <p>Size&nbsp;&nbsp;&nbsp;Qty</p>
+                <p className={classes.sizeQty}>Size: s&nbsp;&nbsp;&nbsp;Qty: q</p>
                 <p className={classes.price}>&#8377;x&nbsp;&nbsp;
                     <span className={classes.mrp}>&#8377;y</span>
                     <span className={classes.discount}>&nbsp;&nbsp;(z% off)</span>
