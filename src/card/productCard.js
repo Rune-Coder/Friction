@@ -5,10 +5,19 @@ import HeartIcon from '../icons/heartIcon';
 import classes from './productCard.module.css';
 
 function ProductCard(props) {
-    let navigate = useNavigate(); 
+    let navigate = useNavigate();
     function routeChange(){ 
       let path = `/shoes`; 
-      navigate(path);
+      navigate(path, {state:{
+            key : props.key, 
+            image : props.image,
+            company : props.company, 
+            product : props.product, 
+            rating : props.rating, 
+            sp : props.sp, 
+            mrp : props.mrp, 
+            discount : props.discount
+      }});
     }
 
     const [addWish, setAddWish] = useState(false);

@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import StarRating from '../../card/starRating';
 import CartIcon from '../../icons/cartIcon';
 import HeartIcon from '../../icons/heartIcon';
-import productImage from '../../image/product_p1.png';
 import classes from './productView.module.css';
 
 function ProductView(props) {
     const [size, setSize] = useState("0");
+    const location = useLocation();
     function sizeHandler(event){
         setSize(event.target.innerText);
         return;
     }
     return(
         <div className={classes.view}>
-            <div className={classes.image}><img src = {productImage} alt = "Sneakers"></img></div>
+            <div className={classes.image}><img src = {location.state.image} alt = "Sneakers"></img></div>
             <div className={classes.details}>
-                <p className={classes.company}>Company Name</p>
-                <p className={classes.product}>Product Name</p>
-                <p>Rating</p>
-                <p className={classes.price}>&#8377;x&nbsp;&nbsp;
-                    <span className={classes.mrp}>&#8377;y</span>
-                    <span className={classes.discount}>&nbsp;&nbsp;(z% off)</span>
+                <p className={classes.company}>{location.state.company}</p>
+                <p className={classes.product}>{location.state.product}</p>
+                <p className={classes.rating}><StarRating stars={location.state.rating}/>{location.state.rating}</p>
+                <p className={classes.price}>&#8377;{location.state.sp}&nbsp;&nbsp;
+                    <span className={classes.mrp}>&#8377;{location.state.mrp}</span>
+                    <span className={classes.discount}>&nbsp;&nbsp;({location.state.discount}% off)</span>
                 </p>
                 <p className={classes.tax}>Inclusive of all taxes</p>
                 <p>SELECT SIZE (UK)</p>
