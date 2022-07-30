@@ -1,46 +1,37 @@
-.card{
+.cartBill{
     border: 0.063rem solid #CFD2CF;
     border-radius: 0.5rem;
     color: black;
     cursor: context-menu;
-    display: flex;
-    flex-direction: row;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-family: sans-serif;
-    height: 12rem;
-    width: 40rem;
+    height: 18rem;
+    padding: 0 1rem 0 1rem;
+    width: 20rem;
     user-select: none;
 }
-.company{
+.cartBill hr{
+    background-color: #CFD2CF;
+}
+.cartBill p{
     font-weight: bold;
 }
-.image{
-    background-color: #cfd2cfaf;
-    height: 100%;
-    width: 10rem;
+.cartBill ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
 }
-.details{
-    height: 100%;
-    padding-left: 1rem;
-    width: 30rem;
-}
-.discount{
-    color: #446A46;
-    font-size: 1rem;
-}
-.mrp{
-    color: #576F72;
-    font-size: 0.9rem;
-    text-decoration: line-through;
-}
-.price{
-    font-weight: bold;
-    font-size: 1rem;
-}
-.product{
-    color: #576F72;
-}
-.sizeQty{
-    font-weight: bold;
+.proceed{
+    background-color: #446A46;
+    border: none;
+    color: white;
     cursor: pointer;
+    font-weight: bold;
+    height: 3rem;
+    width: 100%;
+}
+.total{
+    font-weight: bold;
 }

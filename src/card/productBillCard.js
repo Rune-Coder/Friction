@@ -2,19 +2,27 @@ import React from 'react';
 import classes from './productBillCard.module.css';
 
 function ProductBillCard(props){
-    return (
-        <div className={classes.card}>
-            <div className={classes.image}>image</div>
-            <div className={classes.details}>
-                <p className={classes.company}>Company Name</p>
-                <p className={classes.product}>Product Name</p>
-                <p>Rating</p>
-                <p className={classes.sizeQty}>Size: s&nbsp;&nbsp;&nbsp;Qty: q</p>
-                <p className={classes.price}>&#8377;x&nbsp;&nbsp;
-                    <span className={classes.mrp}>&#8377;y</span>
-                    <span className={classes.discount}>&nbsp;&nbsp;(z% off)</span>
-                </p>
-            </div>
+    return(
+        <div className={classes.cartBill}>
+           <p>PRICE DETAILS(n items)</p>
+           <ul>
+                <li>Total MRP</li>
+                <li>&#8377;x</li>
+           </ul>
+           <ul>
+                <li>Discount on MRP</li>
+                <li>-&#8377;y</li>
+           </ul>
+           <ul>
+                <li>Delivery Fee</li>
+                <li>&#8377;d</li>
+           </ul>
+           <hr />
+           <ul className={classes.total}>
+                <li>Total Amount</li>
+                <li>&#8377;z</li>
+           </ul>
+           <button type='button' className={classes.proceed}>PROCEED TO BUY</button>
         </div>
     );
 }

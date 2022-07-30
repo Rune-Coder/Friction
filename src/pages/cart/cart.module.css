@@ -1,4 +1,19 @@
 .cart{
+    align-items: center;
+    display: flex;
+    flex-direction: row;
     height: auto;
+    justify-content: center;
     width: 100%;
+}
+.cartItems{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 40rem;
+}
+.cartBill{
+    height: auto;
+    padding-left: 5rem;
+    width: auto;
 }
