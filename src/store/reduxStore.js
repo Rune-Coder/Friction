@@ -1,17 +1,8 @@
-import { createStore } from redux;
-import { createSlice } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
+import cartReducer from './cartStore';
 
-const initialCart = {addItems: false};
-
-function cartReducer(state = initialCart, action){
-    if(action.type === 'add'){
-        return{
-            addItems: !state.addItems
-        };
-    }
-    return state;
-}
-
-const store = createStore(cartReducer);
+const store = configureStore({
+    reducer: cartReducer
+});
 
 export default store;

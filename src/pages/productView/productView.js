@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+
 import { useLocation } from 'react-router-dom';
+
 import { useSelector, useDispatch } from 'react-redux';
+import { cartActions } from '../../store/cartStore';
+
 import StarRating from '../../card/starRating';
 import CartIcon from '../../icons/cartIcon';
 import HeartIcon from '../../icons/heartIcon';
@@ -9,28 +13,30 @@ import classes from './productView.module.css';
 function ProductView(props) {
     const [size, setSize] = useState("0");
     const [showPara, setShowPara] = useState(false);
-    const location = useLocation();
+    const location = useLocation();//send to other page
 
     const dispatch = useDispatch();
-    const addItems = useSelector(state => state.addItems);
+    const showItem = useSelector((state) => state.showItems);//subscribe to redux store
 
     function sizeHandler(event){
         setSize(event.target.innerText);
         return;
     }
+
     function addItem(event){
         if(size === "0"){
             setShowPara(true);
             return;
         }
         setShowPara(false);
-        
-            dispatch({type: 'add'});
-        if(addItems === true)
+
+        dispatch(cartActions.addItem());//dispatching value to functions
+        if(showItem === true)
             alert('item added');
 
         return;
     }
+    
     return(
         <div className={classes.view}>
             <div className={classes.image}><img src = {location.state.image} alt = "Sneakers"></img></div>
