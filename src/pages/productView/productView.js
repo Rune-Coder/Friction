@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import StarRating from '../../card/starRating';
 import CartIcon from '../../icons/cartIcon';
 import HeartIcon from '../../icons/heartIcon';
@@ -7,9 +8,27 @@ import classes from './productView.module.css';
 
 function ProductView(props) {
     const [size, setSize] = useState("0");
+    const [showPara, setShowPara] = useState(false);
     const location = useLocation();
+
+    const dispatch = useDispatch();
+    const addItems = useSelector(state => state.addItems);
+
     function sizeHandler(event){
         setSize(event.target.innerText);
+        return;
+    }
+    function addItem(event){
+        if(size === "0"){
+            setShowPara(true);
+            return;
+        }
+        setShowPara(false);
+        
+            dispatch({type: 'add'});
+        if(addItems === true)
+            alert('item added');
+
         return;
     }
     return(
@@ -32,7 +51,8 @@ function ProductView(props) {
                     <li><button className={size === "9" ? classes.sizeActive : ''} onClick={sizeHandler}>9</button></li>
                     <li><button className={size === "10" ? classes.sizeActive : ''} onClick={sizeHandler}>10</button></li>
                 </ul>
-                <button className={classes.bag}><span className={classes.cartIcon}><CartIcon /></span>&nbsp;&nbsp;&nbsp;ADD TO BAG</button>&nbsp;
+                {showPara && <p className={classes.sizeWarning}>Please select a size</p>}
+                <button className={classes.bag} onClick={addItem}><span className={classes.cartIcon}><CartIcon /></span>&nbsp;&nbsp;&nbsp;ADD TO BAG</button>&nbsp;
                 <button className={classes.wish}><span className={classes.heartIcon}><HeartIcon /></span>&nbsp;&nbsp;&nbsp;WISHLIST</button>
             </div>
         </div>
