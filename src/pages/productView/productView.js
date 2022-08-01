@@ -40,6 +40,7 @@ function ProductView(props) {
             discount: location.state.discount,
             quantity: 1,
             sz: size,
+            delfee: 0,
         }));//dispatching value to functions
 
         return;

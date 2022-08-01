@@ -7,20 +7,20 @@ function ProductBillCard(props){
            <p>PRICE DETAILS(n items)</p>
            <ul>
                 <li>Total MRP</li>
-                <li>&#8377;x</li>
+                <li>&#8377;{props.tmrp}</li>
            </ul>
            <ul>
                 <li>Discount on MRP</li>
-                <li>-&#8377;y</li>
+                <li>-&#8377;{props.tdis}</li>
            </ul>
            <ul>
                 <li>Delivery Fee</li>
-                <li>&#8377;d</li>
+                <li>&#8377;{props.tdelfee}</li>
            </ul>
            <hr />
            <ul className={classes.total}>
                 <li>Total Amount</li>
-                <li>&#8377;z</li>
+                <li>&#8377;{props.amount}</li>
            </ul>
            <button type='button' className={classes.proceed}>PROCEED TO BUY</button>
         </div>

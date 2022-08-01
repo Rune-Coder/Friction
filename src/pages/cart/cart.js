@@ -23,12 +23,23 @@ function Cart(props){
             size = {shoe.sz}
         />
     ));
+
+    const billUpdate = useSelector((state) => state.bill);
+    const billItems = billUpdate.map((shoe) => (
+        <ProductBillCard 
+            tmrp = {shoe.tmrp} 
+            tdis = {shoe.tdis} 
+            tdelfee = {shoe.tdelfee} 
+            amount = {shoe.amount} 
+        />
+    ));
+
     return (
         <div className={classes.cart}>
             <div className={classes.cartItems}>
                 {items}
             </div>
-            <div className={classes.cartBill}><ProductBillCard /></div>
+            <div className={classes.cartBill}>{billItems}</div>
         </div>
     );
 }
