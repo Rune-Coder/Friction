@@ -11,6 +11,7 @@ function Cart(props){
     const items = itemList.map((shoe) => (
         <ProductItemCard 
             key = {shoe.id} 
+            id = {shoe.id} 
             image = {shoe.image} 
             company = {shoe.company} 
             product = {shoe.product} 
@@ -19,6 +20,7 @@ function Cart(props){
             mrp = {shoe.mrp} 
             discount = {shoe.discount}
             quantity = {shoe.quantity}
+            size = {shoe.sz}
         />
     ));
     return (

@@ -30,7 +30,7 @@ function ProductView(props) {
         setShowPara(false);
 
         dispatch(cartActions.addItem({
-            id: location.state.key,
+            id: location.state.id,
             image: location.state.image,
             company: location.state.company,
             product: location.state.product,
@@ -39,6 +39,7 @@ function ProductView(props) {
             mrp: location.state.mrp,
             discount: location.state.discount,
             quantity: 1,
+            sz: size,
         }));//dispatching value to functions
 
         return;

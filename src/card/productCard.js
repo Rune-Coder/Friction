@@ -9,7 +9,8 @@ function ProductCard(props) {
     function routeChange(){ 
       let path = `/shoes`; 
       navigate(path, {state:{
-            key : props.key, 
+            key: props.id,
+            id : props.id, 
             image : props.image,
             company : props.company, 
             product : props.product, 

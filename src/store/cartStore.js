@@ -8,7 +8,10 @@ const cartSlice = createSlice({
     reducers: {
         addItem(state, action){
             const newItem = action.payload;
-            const existItem = state.items.find(item => item.id === newItem.id);
+            const existItem = state.items.find(item => item.id === newItem.id && item.sz === newItem.sz);
+            if(existItem && existItem.quantity === 10){
+                return;
+            }
             if(!existItem){
                 state.items.push({
                     id: newItem.id,
@@ -20,6 +23,7 @@ const cartSlice = createSlice({
                     mrp: newItem.mrp,
                     discount: newItem.discount,
                     quantity: 1,
+                    sz: newItem.sz,
                 });
             }
             else{

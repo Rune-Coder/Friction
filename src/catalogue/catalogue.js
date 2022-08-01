@@ -29,6 +29,7 @@ function Catalogue(props) {
     const productList = productDetails.map((shoe) => (
         <ProductCard 
             key = {shoe.id} 
+            id = {shoe.id}
             image = {shoe.image}
             company = {shoe.company} 
             product = {shoe.product} 
