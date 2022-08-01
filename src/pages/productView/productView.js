@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cartStore';
 
 import StarRating from '../../card/starRating';
@@ -16,7 +16,6 @@ function ProductView(props) {
     const location = useLocation();//send to other page
 
     const dispatch = useDispatch();
-    const showItem = useSelector((state) => state.showItems);//subscribe to redux store
 
     function sizeHandler(event){
         setSize(event.target.innerText);
@@ -30,9 +29,17 @@ function ProductView(props) {
         }
         setShowPara(false);
 
-        dispatch(cartActions.addItem());//dispatching value to functions
-        if(showItem === true)
-            alert('item added');
+        dispatch(cartActions.addItem({
+            id: location.state.key,
+            image: location.state.image,
+            company: location.state.company,
+            product: location.state.product,
+            rating: location.state.rating,
+            sp: location.state.sp,
+            mrp: location.state.mrp,
+            discount: location.state.discount,
+            quantity: 1,
+        }));//dispatching value to functions
 
         return;
     }

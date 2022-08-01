@@ -19,6 +19,10 @@
     height: 100%;
     width: 10rem;
 }
+.image img{
+    height: 100%;
+    width: 100%;
+}
 .details{
     height: 100%;
     padding-left: 1rem;
