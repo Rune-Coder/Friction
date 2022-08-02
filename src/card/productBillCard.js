@@ -4,7 +4,7 @@ import classes from './productBillCard.module.css';
 function ProductBillCard(props){
     return(
         <div className={classes.cartBill}>
-           <p>PRICE DETAILS(n items)</p>
+           <p>PRICE DETAILS({props.itemQty} items)</p>
            <ul>
                 <li>Total MRP</li>
                 <li>&#8377;{props.tmrp}</li>

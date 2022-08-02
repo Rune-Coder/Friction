@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialCartState = {items: [], bill: [{ tmrp: 0, tdis: 0, tdelfee: 0, amount: 0}]};
+const initialCartState = {items: [], bill: [{ tmrp: 0, tdis: 0, tdelfee: 0, amount: 0, len: 0}]};
 
 const cartSlice = createSlice({
     name: 'cartItems',
@@ -27,6 +27,7 @@ const cartSlice = createSlice({
                     sz: newItem.sz,
                     delfee: newItem.delfee,
                 });
+                state.bill[0].len++;
             }
             else{
                 existItem.quantity++;
@@ -46,7 +47,8 @@ const cartSlice = createSlice({
             state.bill[0].tmrp = state.bill[0].tmrp - existItem.mrp;
             state.bill[0].tdis = state.bill[0].tdis - existItem.mrp + existItem.sp;
             state.bill[0].tdelfee = state.bill[0].tdelfee - existItem.delfee;
-            state.bill[0].amount = state.bill[0].tmrp - state.bill[0].tdis + state.bill[0].tdelfee;;
+            state.bill[0].amount = state.bill[0].tmrp - state.bill[0].tdis + state.bill[0].tdelfee;
+            --state.bill[0].len;
 
 
             state.items = state.items.filter(item => item.id !== delItem.id || item.sz !== delItem.sz);

@@ -1,3 +1,6 @@
+.alert{
+    position: fixed;
+}
 .cart{
     display: flex;
     flex-direction: row;
