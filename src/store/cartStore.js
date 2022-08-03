@@ -1,6 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialCartState = {items: [], bill: [{ tmrp: 0, tdis: 0, tdelfee: 0, amount: 0, len: 0}]};
+const initialCartState = {
+    items: [], 
+    bill: [{ tmrp: 0, tdis: 0, tdelfee: 0, amount: 0, len: 0 }],
+    openAlert: false,
+    alertDetails: []
+};
 
 const cartSlice = createSlice({
     name: 'cartItems',
@@ -52,6 +57,15 @@ const cartSlice = createSlice({
 
 
             state.items = state.items.filter(item => item.id !== delItem.id || item.sz !== delItem.sz);
+        },
+        open(state, action){
+            const alertItems = action.payload;
+            state.openAlert = !state.openAlert;
+            state.alertDetails.push({
+                id: alertItems.id,
+                topic: alertItems.topic,
+                value: alertItems.value,
+            });
         }
     }
 });

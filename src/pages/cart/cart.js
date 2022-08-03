@@ -36,13 +36,16 @@ function Cart(props){
         />
     ));
 
+    const alertBox = useSelector((state) => state.openAlert);
+
+
     return (
         <div className={classes.cart}>
             <div className={classes.cartItems}>
                 {items}
             </div>
             <div className={classes.cartBill}>{billItems}</div>
-            <div className={classes.alert}><AlertCard /></div>
+            {alertBox && <div className={classes.alert}><AlertCard /></div>}
         </div>
     );
 }
