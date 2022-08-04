@@ -14,7 +14,7 @@ function AlertCard(props){
 
     function closeHandler(event){
         dispatch(cartActions.open({
-            id: props.id,
+            id: alertItems[0].id,
             topic: alertItems[0].topic,
             sz: alertItems[0].sz,
             qty: alertItems[0].qty,
@@ -26,7 +26,7 @@ function AlertCard(props){
     }
     function finalValue(event){
         dispatch(cartActions.done({
-            id: props.id,
+            id: alertItems[0].id,
             topic: alertItems[0].topic,
             sz: alertItems[0].sz,
             qty: value,

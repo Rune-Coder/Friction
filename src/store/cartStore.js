@@ -65,7 +65,7 @@ const cartSlice = createSlice({
             state.alertDetails.push({
                 id: alertItems.id,
                 topic: alertItems.topic,
-                sz: alertItems.size,
+                sz: alertItems.sz,
                 qty: alertItems.qty
             });
         },
@@ -74,9 +74,18 @@ const cartSlice = createSlice({
             const existItem = state.items.find(item => item.id === newItem.id && item.sz === newItem.sz);
             state.openAlert = !state.openAlert;
 
+            state.bill[0].tmrp = state.bill[0].tmrp - existItem.mrp;
+            state.bill[0].tdis = state.bill[0].tdis - existItem.mrp + existItem.sp;
+            state.bill[0].tdelfee = state.bill[0].tdelfee - existItem.delfee;
 
-            existItem.quantity =  newItem.qty;
-
+            existItem.mrp = (existItem.mrp / existItem.quantity) * newItem.qty;
+            existItem.sp = (existItem.sp / existItem.quantity) * newItem.qty;
+            existItem.quantity =  newItem.qty; 
+            
+            state.bill[0].tmrp = state.bill[0].tmrp + existItem.mrp;
+            state.bill[0].tdis = state.bill[0].tdis + existItem.mrp - existItem.sp;
+            state.bill[0].tdelfee = state.bill[0].tdelfee + existItem.delfee;
+            state.bill[0].amount = state.bill[0].tmrp - state.bill[0].tdis + state.bill[0].tdelfee;
         }
     }
 });

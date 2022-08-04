@@ -1,7 +1,7 @@
 import React from 'react';
 import TrashIcon from '../icons/trashIcon';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { cartActions } from '../store/cartStore';
 
 import classes from './productItemCard.module.css';
