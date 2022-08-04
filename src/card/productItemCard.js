@@ -1,7 +1,7 @@
 import React from 'react';
 import TrashIcon from '../icons/trashIcon';
 
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { cartActions } from '../store/cartStore';
 
 import classes from './productItemCard.module.css';
@@ -19,8 +19,8 @@ function ProductItemCard(props){
         dispatch(cartActions.open({
             id: props.id,
             topic: "q",
-            value: props.quantity,
-            openAlert: true,
+            sz: props.size,
+            qty: props.quantity,
         }));
     }
 

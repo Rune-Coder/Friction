@@ -4,7 +4,7 @@ const initialCartState = {
     items: [], 
     bill: [{ tmrp: 0, tdis: 0, tdelfee: 0, amount: 0, len: 0 }],
     openAlert: false,
-    alertDetails: []
+    alertDetails: [{id: "", topic: "", sz: 0, qty: 0}]
 };
 
 const cartSlice = createSlice({
@@ -60,12 +60,23 @@ const cartSlice = createSlice({
         },
         open(state, action){
             const alertItems = action.payload;
+            state.alertDetails = [];
             state.openAlert = !state.openAlert;
             state.alertDetails.push({
                 id: alertItems.id,
                 topic: alertItems.topic,
-                value: alertItems.value,
+                sz: alertItems.size,
+                qty: alertItems.qty
             });
+        },
+        done(state, action){
+            const newItem = action.payload;
+            const existItem = state.items.find(item => item.id === newItem.id && item.sz === newItem.sz);
+            state.openAlert = !state.openAlert;
+
+
+            existItem.quantity =  newItem.qty;
+
         }
     }
 });

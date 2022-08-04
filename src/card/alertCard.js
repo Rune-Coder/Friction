@@ -1,21 +1,41 @@
 import { React, useState } from 'react';
-import { useSelector } from 'react-redux';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { cartActions } from '../store/cartStore';
+
 import CloseIcon from '../icons/closeIcon';
 import classes from './alertCard.module.css';
 
 function AlertCard(props){
+    const dispatch = useDispatch();
     const alertItems = useSelector((state) => state.alertDetails);
-    const [value, setValue] = useState(alertItems[0].value);
-    setValue(alertItems[0].value.toString());
 
+    const [value, setValue] = useState(alertItems[0].qty.toString());
+
+    function closeHandler(event){
+        dispatch(cartActions.open({
+            id: props.id,
+            topic: alertItems[0].topic,
+            sz: alertItems[0].sz,
+            qty: alertItems[0].qty,
+        }));
+    }
     function valueHandler(event){
         setValue(event.target.innerText);
         return;
     }
+    function finalValue(event){
+        dispatch(cartActions.done({
+            id: props.id,
+            topic: alertItems[0].topic,
+            sz: alertItems[0].sz,
+            qty: value,
+        }));
+    }
 
     return(
         <div className={classes.cardLayout}>
-            <p className={classes.close}><span className={classes.closeIcon}><CloseIcon /></span></p>
+            <p className={classes.close}><span className={classes.closeIcon} onClick={closeHandler}><CloseIcon /></span></p>
             <p>Select Size</p>
             <div className={classes.value}>
                 <button type = "button" className={value === "1" ? classes.active : ''} onClick={valueHandler}>1</button>
@@ -29,7 +49,7 @@ function AlertCard(props){
                 <button type = "button" className={value === "9" ? classes.active : ''} onClick={valueHandler}>9</button>
                 <button type = "button" className={value === "10" ? classes.active : ''} onClick={valueHandler}>10</button>
             </div>
-            <button type = "button" className={classes.done}>DONE</button>
+            <button type = "button" className={classes.done} onClick={finalValue}>DONE</button>
         </div>
     );
 }
