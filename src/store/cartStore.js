@@ -4,7 +4,7 @@ const initialCartState = {
     items: [], 
     bill: [{ tmrp: 0, tdis: 0, tdelfee: 0, amount: 0, len: 0 }],
     openAlert: false,
-    alertDetails: [{id: "", topic: "", sz: 0, qty: 0}]
+    alertDetails: [{id: "", topic: "", sz: 0, value: 0}]
 };
 
 const cartSlice = createSlice({
@@ -57,6 +57,7 @@ const cartSlice = createSlice({
 
 
             state.items = state.items.filter(item => item.id !== delItem.id || item.sz !== delItem.sz);
+            // || given to allow items of same size diff id & same id diff size
         },
         open(state, action){
             const alertItems = action.payload;
@@ -66,7 +67,7 @@ const cartSlice = createSlice({
                 id: alertItems.id,
                 topic: alertItems.topic,
                 sz: alertItems.sz,
-                qty: alertItems.qty
+                value: alertItems.value,
             });
         },
         done(state, action){
@@ -74,18 +75,36 @@ const cartSlice = createSlice({
             const existItem = state.items.find(item => item.id === newItem.id && item.sz === newItem.sz);
             state.openAlert = !state.openAlert;
 
-            state.bill[0].tmrp = state.bill[0].tmrp - existItem.mrp;
-            state.bill[0].tdis = state.bill[0].tdis - existItem.mrp + existItem.sp;
-            state.bill[0].tdelfee = state.bill[0].tdelfee - existItem.delfee;
+            if(newItem.topic === "Quantity"){
+                state.bill[0].tmrp = state.bill[0].tmrp - existItem.mrp;
+                state.bill[0].tdis = state.bill[0].tdis - existItem.mrp + existItem.sp;
+                state.bill[0].tdelfee = state.bill[0].tdelfee - existItem.delfee;
 
-            existItem.mrp = (existItem.mrp / existItem.quantity) * newItem.qty;
-            existItem.sp = (existItem.sp / existItem.quantity) * newItem.qty;
-            existItem.quantity =  newItem.qty; 
-            
-            state.bill[0].tmrp = state.bill[0].tmrp + existItem.mrp;
-            state.bill[0].tdis = state.bill[0].tdis + existItem.mrp - existItem.sp;
-            state.bill[0].tdelfee = state.bill[0].tdelfee + existItem.delfee;
-            state.bill[0].amount = state.bill[0].tmrp - state.bill[0].tdis + state.bill[0].tdelfee;
+                existItem.mrp = (existItem.mrp / existItem.quantity) * newItem.value;
+                existItem.sp = (existItem.sp / existItem.quantity) * newItem.value;
+                existItem.quantity =  newItem.value; 
+                
+                state.bill[0].tmrp = state.bill[0].tmrp + existItem.mrp;
+                state.bill[0].tdis = state.bill[0].tdis + existItem.mrp - existItem.sp;
+                state.bill[0].tdelfee = state.bill[0].tdelfee + existItem.delfee;
+                state.bill[0].amount = state.bill[0].tmrp - state.bill[0].tdis + state.bill[0].tdelfee;
+            }
+            else{
+                const existItemSize = state.items.find(item => item.id === newItem.id && item.sz === newItem.value);
+
+                if(existItemSize){
+                    state.bill[0].tmrp = state.bill[0].tmrp - existItem.mrp;
+                    state.bill[0].tdis = state.bill[0].tdis - existItem.mrp + existItem.sp;
+                    state.bill[0].tdelfee = state.bill[0].tdelfee - existItem.delfee;
+                    state.bill[0].amount = state.bill[0].tmrp - state.bill[0].tdis + state.bill[0].tdelfee;
+                    --state.bill[0].len;
+
+
+                    state.items = state.items.filter(item => item.id !== existItem.id || item.sz !== existItem.sz);
+                }
+                else
+                    existItem.sz = newItem.value;
+            }
         }
     }
 });

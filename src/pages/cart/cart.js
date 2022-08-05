@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import ProductItemCard from '../../card/productItemCard';
 import ProductBillCard from '../../card/productBillCard';
 import AlertCard from '../../card/alertCard';
+import CheckoutMenu from './checkoutMenu';
 import classes from './cart.module.css';
 
 function Cart(props){
@@ -40,12 +41,17 @@ function Cart(props){
 
 
     return (
-        <div className={classes.cart}>
-            <div className={classes.cartItems}>
-                {items}
+        <div>
+            <div>
+                <CheckoutMenu />
             </div>
-            <div className={classes.cartBill}>{billItems}</div>
-            {alertBox && <div className={classes.alert}><AlertCard /></div>}
+            <div className={classes.cart}>
+                <div className={classes.cartItems}>
+                    {items}
+                </div>
+                <div className={classes.cartBill}>{billItems}</div>
+                {alertBox && <div className={classes.alert}><AlertCard /></div>}
+            </div>
         </div>
     );
 }

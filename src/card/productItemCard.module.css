@@ -8,6 +8,7 @@
     font-size: 0.8rem;
     font-family: sans-serif;
     height: 12rem;
+    margin-top: 1rem;
     width: 40rem;
     user-select: none;
 }
@@ -61,4 +62,13 @@
 .sizeQty{
     font-weight: bold;
     cursor: pointer;
+}
+@media screen and (max-width: 1000px){
+    .card{
+        height: auto;
+        width: 100%;
+    }
+    .details{
+        width: 100%;
+    }
 }

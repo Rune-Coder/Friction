@@ -18,9 +18,17 @@ function ProductItemCard(props){
     function qtyHandler(event){
         dispatch(cartActions.open({
             id: props.id,
-            topic: "q",
+            topic: "Quantity",
             sz: props.size,
-            qty: props.quantity,
+            value: props.quantity,
+        }));
+    }
+    function sizeHandler(event){
+        dispatch(cartActions.open({
+            id: props.id,
+            topic: "Size",
+            sz: props.size,
+            value: props.size,
         }));
     }
 
@@ -34,7 +42,7 @@ function ProductItemCard(props){
                 </ul>
                 <p className={classes.product}>{props.product}</p>
                 <p>{props.rating}</p>
-                <p className={classes.sizeQty}>Size: {props.size}&nbsp;&nbsp;&nbsp;<span onClick={qtyHandler}>Qty: {props.quantity}</span></p>
+                <p className={classes.sizeQty}><span onClick={sizeHandler}>Size: {props.size}</span>&nbsp;&nbsp;&nbsp;<span onClick={qtyHandler}>Qty: {props.quantity}</span></p>
                 <p className={classes.price}>&#8377;{props.sp}&nbsp;&nbsp;
                     <span className={classes.mrp}>&#8377;{props.mrp}</span>
                     <span className={classes.discount}>&nbsp;&nbsp;({props.discount}% off)</span>
