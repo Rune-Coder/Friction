@@ -50,6 +50,7 @@ function Cart(props){
                     {items}
                 </div>
                 <div className={classes.cartBill}>{billItems}</div>
+                {alertBox && <div className= {classes.backdrop}/>}
                 {alertBox && <div className={classes.alert}><AlertCard /></div>}
             </div>
         </div>

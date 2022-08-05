@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
+
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 import classes from './navbar.module.css';
 import BurgerIcon from '../icons/burgerIcon';
 import CloseIcon from '../icons/closeIcon';
@@ -10,6 +13,8 @@ import SearchBox from './searchBox';
 
 function Navbar(props) {
   let navigate = useNavigate(); 
+  const itemFreq = useSelector((state) => state.bill);
+  
   function toHome(){ 
     let path = `/home`; 
     navigate(path);
@@ -32,7 +37,10 @@ function Navbar(props) {
     <div className= {classes.navbar}>
       <p className={classes.burger} onClick={menuOpenHandler}><span className={classes.menuIcons}><BurgerIcon /></span></p>
       <div onClick={toHome}>Icon</div>
-      <div className={classes.cart} onClick={toCart}><span className={classes.navIcons}><CartIcon /></span></div>
+      <div className={classes.cart} onClick={toCart}>
+        <span className={classes.navIcons}><CartIcon /></span>
+        {itemFreq[0].len !== 0 && <span className={classes.notify}>{itemFreq[0].len}</span>}
+      </div>
       <SearchBox />
       <div className = {`${!closeMenu && classes.backdrop}  ${closeMenu && ''}`} onClick={menuCloseHandler}/>
       <ul className = {`${classes.navlist} ${!closeMenu && classes.menubar}  ${closeMenu && ''}`}>
@@ -40,7 +48,9 @@ function Navbar(props) {
           <li><span className={classes.navIcons}><ProfileIcon /></span>Profile</li>
           <li><span className={classes.navIcons}><HeartIcon /></span>Wishlist</li>
           <li className={classes.cartMenu} onClick={toCart}>
-            <span className={classes.navIcons}><CartIcon /></span>Bag
+            <span className={classes.navIcons}><CartIcon /></span>
+            {itemFreq[0].len !== 0 && <span className={classes.notify}>{itemFreq[0].len}</span>}
+            Bag
           </li>
       </ul>
     </div>

@@ -5,20 +5,11 @@ function CheckoutMenu(props){
     return(
         <div className={classes.menu}>
             <ul className={classes.menuList}>
-                <li className={classes.menuItems}>
-                    <div className={classes.menuSeq}>1</div>
-                    <div>BAG</div>
-                </li>
+                <li className={classes.active}>B A G</li>
                 <li><hr /></li>
-                <li className={classes.menuItems}>
-                    <div className={classes.menuSeq}>2</div>
-                    <div>ADDRESS</div>
-                </li>
+                <li>A D D R E S S</li>
                 <li><hr /></li>
-                <li className={classes.menuItems}>
-                    <div className={classes.menuSeq}>3</div>
-                    <div>PAYMENT</div>
-                </li>
+                <li>P A Y M E N T</li>
             </ul>
         </div>
     );

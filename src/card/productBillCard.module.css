@@ -35,3 +35,8 @@
 .total{
     font-weight: bold;
 }
+@media screen and (max-width: 1000px){
+    .cartBill{
+        width: 100%;
+    }
+}
