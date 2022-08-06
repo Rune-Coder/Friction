@@ -10,6 +10,7 @@ import classes from './cart.module.css';
 
 function Cart(props){
     const itemList = useSelector((state) => state.items);
+    alert(itemList);
     const items = itemList.map((shoe) => (
         <ProductItemCard 
             key = {shoe.id} 

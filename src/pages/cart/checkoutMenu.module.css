@@ -33,3 +33,11 @@ hr{
     list-style: none;
     padding: 0;
 }
+@media screen and (max-width: 1000px){
+    hr{
+        width: 4rem;
+    }
+    .menu{
+        font-size: 0.7rem;
+    }
+}

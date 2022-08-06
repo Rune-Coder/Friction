@@ -55,8 +55,9 @@ const cartSlice = createSlice({
             state.bill[0].amount = state.bill[0].tmrp - state.bill[0].tdis + state.bill[0].tdelfee;
             --state.bill[0].len;
 
-
             state.items = state.items.filter(item => item.id !== delItem.id || item.sz !== delItem.sz);
+
+            
             // || given to allow items of same size diff id & same id diff size
         },
         open(state, action){
