@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
+import bagImage from '../../image/bag.webp';
 import ProductItemCard from '../../card/productItemCard';
 import ProductBillCard from '../../card/productBillCard';
 import AlertCard from '../../card/alertCard';
@@ -10,10 +11,9 @@ import classes from './cart.module.css';
 
 function Cart(props){
     const itemList = useSelector((state) => state.items);
-    alert(itemList);
     const items = itemList.map((shoe) => (
         <ProductItemCard 
-            key = {shoe.id} 
+            key = {shoe.id+"s"+shoe.sz} 
             id = {shoe.id} 
             image = {shoe.image} 
             company = {shoe.company} 
@@ -45,6 +45,10 @@ function Cart(props){
         <div>
             <div>
                 <CheckoutMenu />
+            </div>
+            <div className={classes.emptyBag}>
+                <img src = {bagImage} alt = "Bag"></img>
+                <p>Your bag is empty</p>
             </div>
             <div className={classes.cart}>
                 <div className={classes.cartItems}>
