@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
-import bagImage from '../../image/bag.webp';
+import CartEmpty from './cartEmpty';
 import ProductItemCard from '../../card/productItemCard';
 import ProductBillCard from '../../card/productBillCard';
 import AlertCard from '../../card/alertCard';
@@ -46,18 +46,14 @@ function Cart(props){
             <div>
                 <CheckoutMenu />
             </div>
-            <div className={classes.emptyBag}>
-                <img src = {bagImage} alt = "Bag"></img>
-                <p>Your bag is empty</p>
-            </div>
+            {billUpdate[0].len === 0 && <CartEmpty />}
+            {billUpdate[0].len !== 0 && 
             <div className={classes.cart}>
-                <div className={classes.cartItems}>
-                    {items}
-                </div>
+                <div className={classes.cartItems}>{items}</div>
                 <div className={classes.cartBill}>{billItems}</div>
                 {alertBox && <div className= {classes.backdrop}/>}
                 {alertBox && <div className={classes.alert}><AlertCard /></div>}
-            </div>
+            </div>}
         </div>
     );
 }

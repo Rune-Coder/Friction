@@ -11,12 +11,11 @@
     top: 1.3rem;
     width: 100%;
 }
-hr{
+.line{
     border: 0.05rem dashed #cfd2cfaf;
     margin: 0.4rem 1rem 0 1rem;
     width: 5.5rem;
 }
-
 .menu{
     text-align: center;
     color: #576F72;
