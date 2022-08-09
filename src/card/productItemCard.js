@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TrashIcon from '../icons/trashIcon';
 
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../store/cartStore';
 
 import classes from './productItemCard.module.css';
+import AlertCard from './alertCard';
 
 function ProductItemCard(props){
     const dispatch = useDispatch();
+    const [rem, setRem] = useState(false);
+    function remHandler(event){
+        if(rem === true)
+            setRem(false);
+        else
+            setRem(true);
+        return;
+    }
+    function remConfirm(con){
+        if(rem === true)
+            setRem(false);
+        else
+            setRem(true);
+        if(con === 1)
+            remItem();
+        return;
+    }
 
     function remItem(event){
         dispatch(cartActions.removeItem({
@@ -38,7 +56,7 @@ function ProductItemCard(props){
             <div className={classes.details}>
                 <ul className={classes.header}>
                     <li className={classes.company}>{props.company}</li>
-                    <li><span className={classes.close} onClick={remItem}><TrashIcon /></span></li>
+                    <li><span className={classes.close} onClick={remHandler}><TrashIcon /></span></li>
                 </ul>
                 <p className={classes.product}>{props.product}</p>
                 <p>{props.rating}</p>
@@ -48,6 +66,9 @@ function ProductItemCard(props){
                     <span className={classes.discount}>&nbsp;&nbsp;({props.discount}% off)</span>
                 </p>
             </div>
+            {rem && <div className= {classes.backdrop}/>}
+            {rem && <div className={classes.alert}><AlertCard value = {1} confirm = {remConfirm} /></div>}
+            
         </div>
     );
 }
