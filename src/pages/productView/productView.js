@@ -25,6 +25,8 @@ function ProductView(props) {
     }
 
     function addItem(event){
+        if(showToast)
+            return;
         if(size === "0"){
             setShowPara(true);
             return;
@@ -45,13 +47,18 @@ function ProductView(props) {
             delfee: 0,
         }));//dispatching value to functions
         setShowToast(true);
+        setTimeout(function(){ setShowToast(false); }, 3000);
 
         return;
     }
+    function remToast(rem){
+        setShowToast(false);
+        return;
+    } 
     
     return(
         <div className={classes.view}>
-            {showToast && <div className={classes.toast}> <ToastCard /> </div>}
+            {showToast && <div className={classes.toast}> <ToastCard close = {remToast} /> </div>}
             <div className={classes.image}><img src = {location.state.image} alt = "Sneakers"></img></div>
             <div className={classes.details}>
                 <p className={classes.company}>{location.state.company}</p>

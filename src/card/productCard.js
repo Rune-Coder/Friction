@@ -7,8 +7,8 @@ import classes from './productCard.module.css';
 function ProductCard(props) {
     let navigate = useNavigate();
     function routeChange(){ 
-      let path = `/shoes`; 
-      navigate(path, {state:{
+        let path = `/shoes`; 
+        navigate(path, {state:{
             key: props.id,
             id : props.id, 
             image : props.image,
@@ -18,7 +18,7 @@ function ProductCard(props) {
             sp : props.sp, 
             mrp : props.mrp, 
             discount : props.discount
-      }});
+        }});
     }
 
     const [addWish, setAddWish] = useState(false);
