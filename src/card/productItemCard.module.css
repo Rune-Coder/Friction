@@ -1,7 +1,13 @@
 .alert{
+    align-items: center;
+    display: inherit;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
     margin: 0;
     position: fixed;
-    left: 40rem;
+    top: 0;
+    width: 100%;
     z-index: 100;
 }
 .backdrop{

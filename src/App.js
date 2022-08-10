@@ -4,6 +4,7 @@ import './App.css';
 import Layout from './layout/layout';
 import Home from './pages/home';
 import Cart from './pages/cart/cart';
+import Address from './pages/address/address';
 import ProductView from './pages/productView/productView';
 import NotFound from './pages/notFound/notFound';
 
@@ -15,6 +16,7 @@ function App() {
         <Route path = "/home" element = {<Home />} />
         <Route path = "/shoes" element = {<ProductView />} />
         <Route path = "/cart" element = {<Cart />} />
+        <Route path = "/address" element = {<Address />} />
         <Route path = "*" element = {<NotFound />} />
       </Routes>
     </Layout>

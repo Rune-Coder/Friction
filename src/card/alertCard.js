@@ -60,7 +60,9 @@ function AlertCard(props){
             </Fragment>}
             {props.value && <div>
                 <p className={classes.close}><span className={classes.closeIcon} onClick={closeRem}><CloseIcon /></span></p>
-                <p>hello</p>
+                <p className={classes.head}>Remove from Bag</p>
+                <p>Are you sure you want to remove this item from bag?</p>
+                <p className={classes.msg}>You can save items to your wishlist to use this product later</p>
                 <div className={classes.confirmBtn}>
                     <button type = "button" className={classes.rem} onClick={remItem}>REMOVE</button>
                     <button type = "button" className={classes.cancel} onClick={closeRem}>CANCEL</button>

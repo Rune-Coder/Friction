@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Raleway:wght@200&display=swap');
+.layout{
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 0.313rem 0.625rem rgba(0, 0, 0, 0.1);
+    color: black;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    padding: 1.25rem 2.188rem 1.25rem 1.563rem;
+}

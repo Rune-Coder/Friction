@@ -1,7 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import classes from './productBillCard.module.css';
 
 function ProductBillCard(props){
+     let navigate = useNavigate();
+    function routeChange(){
+          let path = `/address`; 
+          navigate(path);
+    }
     return(
         <div className={classes.cartBill}>
            <p>PRICE DETAILS({props.itemQty} items)</p>
@@ -22,7 +29,7 @@ function ProductBillCard(props){
                 <li>Total Amount</li>
                 <li>&#8377;{props.amount}</li>
            </ul>
-           <button type='button' className={classes.proceed}>PROCEED TO BUY</button>
+           <button type='button' className={classes.proceed} onClick={routeChange}>PROCEED TO BUY</button>
         </div>
     );
 }

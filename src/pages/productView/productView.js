@@ -8,11 +8,13 @@ import { cartActions } from '../../store/cartStore';
 import StarRating from '../../card/starRating';
 import CartIcon from '../../icons/cartIcon';
 import HeartIcon from '../../icons/heartIcon';
+import ToastCard from '../../card/toastCard';
 import classes from './productView.module.css';
 
 function ProductView(props) {
     const [size, setSize] = useState("0");
     const [showPara, setShowPara] = useState(false);
+    const [showToast, setShowToast] = useState(false);
     const location = useLocation();//send to other page
 
     const dispatch = useDispatch();
@@ -42,12 +44,14 @@ function ProductView(props) {
             sz: size,
             delfee: 0,
         }));//dispatching value to functions
+        setShowToast(true);
 
         return;
     }
     
     return(
         <div className={classes.view}>
+            {showToast && <div className={classes.toast}> <ToastCard /> </div>}
             <div className={classes.image}><img src = {location.state.image} alt = "Sneakers"></img></div>
             <div className={classes.details}>
                 <p className={classes.company}>{location.state.company}</p>

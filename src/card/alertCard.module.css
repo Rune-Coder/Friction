@@ -43,6 +43,12 @@
     height: 3rem;
     width: 100%;
 }
+.head{
+    font-weight: bold;
+}
+.msg{
+    color: #576F72;
+}
 .rem{
     background-color: white;
     border: 0.063rem solid #cfd2cfaf;

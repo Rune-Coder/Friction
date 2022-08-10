@@ -76,8 +76,8 @@
     padding: 0;
 }
 .size li button{
-    background-color: white;
-    border: 0.063rem solid #CFD2CF;
+    background-color: #cfd2cfaf;
+    border: 0.063rem solid #576F72;
     border-radius: 100%;
     color: black;
     cursor: pointer;
@@ -99,6 +99,11 @@
     font-size: 0.9rem;
     font-weight: bold;
     color: #446A46;
+}
+.toast{
+    position: absolute;
+    right: 1.875rem;
+    top: 1.563rem;
 }
 .wish{
     background-color: white;
