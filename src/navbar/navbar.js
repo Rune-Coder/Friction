@@ -19,6 +19,10 @@ function Navbar(props) {
     let path = `/home`; 
     navigate(path);
   }
+  function toWishList(){ 
+    let path = `/wishlist`; 
+    navigate(path);
+  }
   function toCart(){ 
     let path = `/cart`; 
     navigate(path);
@@ -36,7 +40,7 @@ function Navbar(props) {
   return (
     <div className= {classes.navbar}>
       <p className={classes.burger} onClick={menuOpenHandler}><span className={classes.menuIcons}><BurgerIcon /></span></p>
-      <div onClick={toHome}>Icon</div>
+      <div onClick={toHome}>Friction</div>
       <div className={classes.cart} onClick={toCart}>
         <span className={classes.navIcons}><CartIcon /></span>
         {itemFreq[0].len !== 0 && <span className={classes.notify}>{itemFreq[0].len}</span>}
@@ -46,7 +50,10 @@ function Navbar(props) {
       <ul className = {`${classes.navlist} ${!closeMenu && classes.menubar}  ${closeMenu && ''}`}>
           <li className={classes.close} onClick={menuCloseHandler}><span className={classes.menuIcons}><CloseIcon /></span></li>
           <li><span className={classes.navIcons}><ProfileIcon /></span>Profile</li>
-          <li><span className={classes.navIcons}><HeartIcon /></span>Wishlist</li>
+          <li onClick={toWishList}>
+            <span className={classes.navIcons}><HeartIcon /></span>
+            Wishlist
+          </li>
           <li className={classes.cartMenu} onClick={toCart}>
             <span className={classes.navIcons}><CartIcon /></span>
             {itemFreq[0].len !== 0 && <span className={classes.notify}>{itemFreq[0].len}</span>}

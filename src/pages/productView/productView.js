@@ -14,7 +14,7 @@ import classes from './productView.module.css';
 function ProductView(props) {
     const [size, setSize] = useState("0");
     const [showPara, setShowPara] = useState(false);
-    const [showToast, setShowToast] = useState(false);
+    const [showToast, setShowToast] = useState("false");
     const location = useLocation();//send to other page
 
     const dispatch = useDispatch();
@@ -24,8 +24,18 @@ function ProductView(props) {
         return;
     }
 
+    function addWish(event){
+        if(showToast !== "false")
+            return;
+
+        setShowToast("wishlist");
+        setTimeout(function(){ setShowToast("false"); }, 3000);
+
+        return;
+    }
+
     function addItem(event){
-        if(showToast)
+        if(showToast !== "false")
             return;
         if(size === "0"){
             setShowPara(true);
@@ -46,30 +56,35 @@ function ProductView(props) {
             sz: size,
             delfee: 0,
         }));//dispatching value to functions
-        setShowToast(true);
-        setTimeout(function(){ setShowToast(false); }, 3000);
+        setShowToast("bag");
+        setTimeout(function(){ setShowToast("false"); }, 3000);
 
         return;
     }
     function remToast(rem){
-        setShowToast(false);
+        setShowToast("false");
         return;
     } 
     
     return(
         <div className={classes.view}>
-            {showToast && <div className={classes.toast}> <ToastCard close = {remToast} /> </div>}
+            {showToast !== "false" && <div className={classes.toast}> <ToastCard close = {remToast} value = {showToast} /> </div>}
+
             <div className={classes.image}><img src = {location.state.image} alt = "Sneakers"></img></div>
+
             <div className={classes.details}>
                 <p className={classes.company}>{location.state.company}</p>
                 <p className={classes.product}>{location.state.product}</p>
                 <p className={classes.rating}><StarRating stars={location.state.rating}/>{location.state.rating}</p>
                 <p className={classes.price}>&#8377;{location.state.sp}&nbsp;&nbsp;
+                    
                     <span className={classes.mrp}>&#8377;{location.state.mrp}</span>
                     <span className={classes.discount}>&nbsp;&nbsp;({location.state.discount}% off)</span>
+                
                 </p>
                 <p className={classes.tax}>Inclusive of all taxes</p>
                 <p>SELECT SIZE (UK)</p>
+
                 <ul className={classes.size}>
                     <li><button className={size === "6" ? classes.sizeActive : ''} onClick={sizeHandler}>6</button></li>
                     <li><button className={size === "7" ? classes.sizeActive : ''} onClick={sizeHandler}>7</button></li>
@@ -77,9 +92,20 @@ function ProductView(props) {
                     <li><button className={size === "9" ? classes.sizeActive : ''} onClick={sizeHandler}>9</button></li>
                     <li><button className={size === "10" ? classes.sizeActive : ''} onClick={sizeHandler}>10</button></li>
                 </ul>
+
                 {showPara && <p className={classes.sizeWarning}>Please select a size</p>}
-                <button className={classes.bag} onClick={addItem}><span className={classes.cartIcon}><CartIcon /></span>&nbsp;&nbsp;&nbsp;ADD TO BAG</button>&nbsp;
-                <button className={classes.wish}><span className={classes.heartIcon}><HeartIcon /></span>&nbsp;&nbsp;&nbsp;WISHLIST</button>
+                
+                <button className={classes.bag} onClick={addItem}>
+                    <span className={classes.cartIcon}><CartIcon /></span>
+                    &nbsp;&nbsp;&nbsp;
+                    ADD TO BAG
+                </button>&nbsp;
+                <button className={classes.wish} onClick={addWish}>
+                    <span className={classes.heartIcon}><HeartIcon /></span>
+                    &nbsp;&nbsp;&nbsp;
+                    WISHLIST
+                </button>
+            
             </div>
         </div>
     );
