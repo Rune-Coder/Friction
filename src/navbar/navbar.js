@@ -20,6 +20,9 @@ function Navbar(props) {
     navigate(path);
   }
   function toWishList(){ 
+    if(!closeMenu)
+      setMenuClose(true);
+    
     let path = `/wishlist`; 
     navigate(path);
   }
@@ -40,14 +43,20 @@ function Navbar(props) {
   return (
     <div className= {classes.navbar}>
       <p className={classes.burger} onClick={menuOpenHandler}><span className={classes.menuIcons}><BurgerIcon /></span></p>
+      
       <div onClick={toHome}>Friction</div>
+
       <div className={classes.cart} onClick={toCart}>
         <span className={classes.navIcons}><CartIcon /></span>
         {itemFreq[0].len !== 0 && <span className={classes.notify}>{itemFreq[0].len}</span>}
       </div>
+
       <SearchBox />
+      
       <div className = {`${!closeMenu && classes.backdrop}  ${closeMenu && ''}`} onClick={menuCloseHandler}/>
+      
       <ul className = {`${classes.navlist} ${!closeMenu && classes.menubar}  ${closeMenu && ''}`}>
+          
           <li className={classes.close} onClick={menuCloseHandler}><span className={classes.menuIcons}><CloseIcon /></span></li>
           <li><span className={classes.navIcons}><ProfileIcon /></span>Profile</li>
           <li onClick={toWishList}>
@@ -59,7 +68,9 @@ function Navbar(props) {
             {itemFreq[0].len !== 0 && <span className={classes.notify}>{itemFreq[0].len}</span>}
             Bag
           </li>
+          
       </ul>
+
     </div>
   );
 }

@@ -23,15 +23,15 @@ function ProductCard(props) {
 
     const [addWish, setAddWish] = useState(false);
     function wishHandler(event){
-        if(addWish === true)
+        if(addWish)
             setAddWish(false);
         else
             setAddWish(true);
         return;
     }
     return(
-        <div className={classes.card} onClick = {routeChange}>
-           <div className={classes.image}>
+        <div className={classes.card}>
+           <div className={classes.image} onClick = {routeChange}>
                 <img src = {props.image} alt = "Sneakers"></img>
            </div>
            <div className={classes.desc}>
@@ -44,7 +44,7 @@ function ProductCard(props) {
                     <li className={classes.price}>&#8377;{props.sp} <span className={classes.mrp}>
                         &#8377;{props.mrp}</span> <span className={classes.discount}>({props.discount}% off)</span>
                     </li>
-                    <li><span className = {`${classes.wishList} ${addWish && classes.activeWish}  ${!addWish && ''}`} onClick={wishHandler}><HeartIcon /></span></li>
+                    <li onClick={wishHandler}><span className = {`${classes.wishList} ${addWish && classes.activeWish} ${!addWish && ''}`}><HeartIcon /></span></li>
                 </ul>
            </div>
         </div>

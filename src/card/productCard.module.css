@@ -6,6 +6,7 @@
     font-family: sans-serif;
     cursor: pointer;
     height: 30rem;
+    user-select: none;
     width: 20rem;
 }
 .card:hover{
