@@ -9,10 +9,11 @@ function ToastCard(props){
         props.close(1);
     }
 
+    var update;
     if(props.change === "+")
-        var update = "added to";
+        update = "added to";
     else
-        var update = "removed from";
+        update = "removed from";
     return(
         <div className={classes.layout}>
             <span className={classes.close} onClick={closeHandler}><CloseIcon /></span>

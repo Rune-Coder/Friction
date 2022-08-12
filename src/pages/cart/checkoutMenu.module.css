@@ -17,11 +17,11 @@
     width: 5.5rem;
 }
 .menu{
-    text-align: center;
     color: #576F72;
     font-size: 0.9rem;
     font-family: sans-serif;
     height: auto;
+    text-align: center;
     user-select: none;
     width: 100%;
 }

@@ -44,7 +44,7 @@ function Cart(props){
     return (
         <div>
             <div>
-                <CheckoutMenu />
+                <CheckoutMenu value = "bag" />
             </div>
             {billUpdate[0].len === 0 && <CartEmpty />}
             {billUpdate[0].len !== 0 && 

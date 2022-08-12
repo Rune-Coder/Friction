@@ -1,3 +1,24 @@
+.alert{
+    align-items: center;
+    display: inherit;
+    height: 100vh;
+    justify-content: center;
+    left: 0;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+.backdrop{
+    background-color: rgb(0, 0, 0, 0.7);
+    position: fixed;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
 .bag{
     width: 100%;
 }
