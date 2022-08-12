@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cartStore';
+import { wishActions } from '../../store/wishStore';
 
 import StarRating from '../../card/starRating';
 import CartIcon from '../../icons/cartIcon';
@@ -27,6 +28,17 @@ function ProductView(props) {
     function addWish(event){
         if(showToast !== "false")
             return;
+
+        dispatch(wishActions.addItem({
+            id: location.state.id,
+            image: location.state.image,
+            company: location.state.company,
+            product: location.state.product,
+            rating: location.state.rating,
+            sp: location.state.sp,
+            mrp: location.state.mrp,
+            discount: location.state.discount,
+        }));
 
         setShowToast("wishlist");
         setTimeout(function(){ setShowToast("false"); }, 3000);
@@ -68,7 +80,7 @@ function ProductView(props) {
     
     return(
         <div className={classes.view}>
-            {showToast !== "false" && <div className={classes.toast}> <ToastCard close = {remToast} value = {showToast} /> </div>}
+            {showToast !== "false" && <div className={classes.toast}> <ToastCard change={"+"} close = {remToast} value = {showToast} /> </div>}
 
             <div className={classes.image}><img src = {location.state.image} alt = "Sneakers"></img></div>
 

@@ -8,7 +8,7 @@ import classes from './alertCard.module.css';
 
 function AlertCard(props){
     const dispatch = useDispatch();
-    const alertItems = useSelector((state) => state.alertDetails);
+    const alertItems = useSelector((state) => state.cart.alertDetails);
 
     const [value, setValue] = useState(alertItems[0].value.toString());
 

@@ -10,7 +10,7 @@ import CheckoutMenu from './checkoutMenu';
 import classes from './cart.module.css';
 
 function Cart(props){
-    const itemList = useSelector((state) => state.items);
+    const itemList = useSelector((state) => state.cart.items);
     const items = itemList.map((shoe) => (
         <ProductItemCard 
             key = {shoe.id+"s"+shoe.sz} 
@@ -27,7 +27,7 @@ function Cart(props){
         />
     ));
 
-    const billUpdate = useSelector((state) => state.bill);
+    const billUpdate = useSelector((state) => state.cart.bill);
     const billItems = billUpdate.map((shoe) => (
         <ProductBillCard 
             tmrp = {shoe.tmrp} 
@@ -38,7 +38,7 @@ function Cart(props){
         />
     ));
 
-    const alertBox = useSelector((state) => state.openAlert);
+    const alertBox = useSelector((state) => state.cart.openAlert);
 
 
     return (

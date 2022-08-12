@@ -13,7 +13,7 @@ import SearchBox from './searchBox';
 
 function Navbar(props) {
   let navigate = useNavigate(); 
-  const itemFreq = useSelector((state) => state.bill);
+  const itemFreq = useSelector((state) => state.cart.bill);
   
   function toHome(){ 
     let path = `/home`; 
