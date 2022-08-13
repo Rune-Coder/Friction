@@ -35,6 +35,7 @@ function Cart(props){
             tdelfee = {shoe.tdelfee} 
             amount = {shoe.amount} 
             itemQty = {shoe.len}
+            value = {"bill"}
         />
     ));
 

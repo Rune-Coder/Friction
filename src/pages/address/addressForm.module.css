@@ -1,0 +1,29 @@
+.details{
+    padding-bottom: 1rem;
+    height: auto;
+    width: auto;
+}
+.head{
+    color: black;
+    font-size: 1rem;
+}
+.save{
+    width: 25rem;
+}
+.textBox{
+    border: 0.063rem solid #cfd2cfaf;
+    border-radius: 0.2rem;
+    color: rgba(0, 0, 0, 0.815);;
+    height: 3rem;
+    padding: 0 1rem 0 1rem;
+    outline: none;
+    width: 25rem;
+}
+.textBox:focus{
+    outline-color: rgba(0, 0, 0, 0.815);
+    outline-style: solid;
+    outline-width: thin; 
+}
+@media screen and (max-width: 1000px){
+    
+}

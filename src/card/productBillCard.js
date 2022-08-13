@@ -7,7 +7,13 @@ function ProductBillCard(props){
      let navigate = useNavigate();
     function routeChange(){
           let path = `/address`; 
-          navigate(path);
+          navigate(path, {state:{
+               itemQty : props.itemQty,
+               tmrp : props.tmrp, 
+               tdis : props.tdis,
+               tdelfee: props.tdelfee,
+               amount : props.amount
+           }});
     }
     return(
         <div className={classes.cartBill}>
@@ -29,7 +35,7 @@ function ProductBillCard(props){
                 <li>Total Amount</li>
                 <li>&#8377;{props.amount}</li>
            </ul>
-           <button type='button' className={classes.proceed} onClick={routeChange}>PROCEED TO BUY</button>
+           {props.value === "bill" && <button type='button' className={classes.proceed} onClick={routeChange}>PROCEED TO BUY</button>}
         </div>
     );
 }
