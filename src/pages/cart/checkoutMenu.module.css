@@ -32,11 +32,19 @@
     list-style: none;
     padding: 0;
 }
-@media screen and (max-width: 1000px){
-    hr{
+@media screen and (min-width: 400px) and (max-width: 1000px){
+    .line{
         width: 4rem;
     }
     .menu{
         font-size: 0.7rem;
+    }
+}
+@media screen and (max-width: 400px){
+    .line{
+        width: 3rem;
+    }
+    .menu{
+        font-size: 0.6rem;
     }
 }

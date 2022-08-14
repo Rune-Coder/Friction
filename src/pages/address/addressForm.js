@@ -3,26 +3,36 @@ import React from 'react';
 import classes from './addressForm.module.css';
 
 function AddressForm(props){
+    function addressSave(event){  
+        event.preventDefault();
+    }
+
     return(
-        <form>
+        <form onSubmit={addressSave}>
             <div className={classes.con}>
                 <p className={classes.head}>CONTACT DETAILS</p>
                 <div className={classes.details}>
                     <input 
                         type= "text" 
-                        placeholder='Name*' 
+                        placeholder=' ' 
                         required 
                         className={classes.textBox}>
                     </input>
+                    <label className={classes.formLabel}>
+                        Name*
+                    </label>
                 </div>
                 <div className={classes.details}>
                     <input 
                         type= "text" 
-                        placeholder='Mobile No*' 
+                        placeholder=' ' 
                         maxlength="10" 
                         required 
                         className={classes.textBox}>
                     </input>
+                    <label className={classes.formLabel}>
+                        Mobile No*
+                    </label>
                 </div>
             </div>
             <div className={classes.add}>
@@ -30,26 +40,35 @@ function AddressForm(props){
                 <div className={classes.details}>
                     <input 
                         type= "text" 
-                        placeholder='Pin Code*' 
+                        placeholder=' ' 
                         required 
                         className={classes.textBox}>
                     </input>
+                    <label className={classes.formLabel}>
+                        Pin Code*
+                    </label>
                 </div>
                 <div className={classes.details}>
                     <input 
                         type= "text" 
-                        placeholder='Address(House No, Building, Street, Area)*'  
+                        placeholder=' '  
                         required 
                         className={classes.textBox}>
                     </input>
+                    <label className={classes.formLabel}>
+                        Address(House No, Building, Street, Area)*
+                    </label>
                 </div>
                 <div className={classes.details}>
                     <input 
                         type= "text" 
-                        placeholder='Locality/Town*'  
+                        placeholder=' '  
                         required 
                         className={classes.textBox}>
                     </input>
+                    <label className={classes.formLabel}>
+                        Locality/Town*
+                    </label>
                 </div>
             </div>
             <button type= "submit" value="Submit" className={classes.save}>ADD ADDRESS</button>
