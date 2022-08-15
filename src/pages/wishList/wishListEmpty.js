@@ -14,7 +14,7 @@ function WishListEmpty(props){
     }
     return(
         <div className={classes.emptyWish}>
-            <img src = {wishImage} alt = "List"></img>
+            <img src = {wishImage} alt = "List" className={classes.wishImg}></img>
             <p>YOUR WISHLIST IS EMPTY</p>
             <p className={classes.subHead}>Add items that you like to your wishlist.</p>
             <button type='button' onClick={toHome}>CONTINUE SHOPPING</button>

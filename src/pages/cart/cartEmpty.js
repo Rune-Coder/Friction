@@ -14,7 +14,7 @@ function CartEmpty(props){
     }
     return(
         <div className={classes.emptyBag}>
-            <img src = {bagImage} alt = "Bag"></img>
+            <img src = {bagImage} alt = "Bag"  className={classes.cartImg}></img>
             <p>Your bag is empty</p>
             <p className={classes.subHead}>Let's add some items</p>
             <button type='button' onClick={toHome}>SHOP NOW</button>

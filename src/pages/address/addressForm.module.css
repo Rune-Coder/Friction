@@ -4,6 +4,10 @@
     position: relative;
     width: auto;
 }
+.errmsg{
+    color: #EB1D36;
+    font-size: 0.8rem;
+}
 .formLabel{
     color: #576F72;
     cursor: text;

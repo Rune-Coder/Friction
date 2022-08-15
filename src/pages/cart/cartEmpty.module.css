@@ -9,6 +9,10 @@ button{
     height: 3rem;
     width: 10rem;
 }
+.cartImg{
+    height: 10rem;
+    width: 10.5rem;
+}
 .emptyBag{
     color: rgba(0, 0, 0, 0.848);
     font-family: 'Poppins', sans-serif;

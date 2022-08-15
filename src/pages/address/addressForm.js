@@ -3,8 +3,11 @@ import React, { useState } from 'react';
 import classes from './addressForm.module.css';
 
 function AddressForm(props){
+    const msg = {mobNo: "ok", pinCode: "ok"};
+
     const [mob, setMob] = useState(" ");
     const [pin, setPin] = useState(" ");
+    const [errMsg, setErrMsg] = useState(msg);
 
     function addressSave(event){  
         event.preventDefault();
@@ -13,24 +16,29 @@ function AddressForm(props){
         //Mobile no validation
 
         if(mob.length < 10)
-            alert("Minimum length is 10");
+            setErrMsg({ ...errMsg, mobNo: "Minimum length is 10"});
         else if(/^\d+$/.test(mob) === false)
-            alert("Please enter a valid 10 digit mobile number");
+            setErrMsg({ ...errMsg, mobNo: "Please enter a valid 10 digit mobile number"});
         else if(mob.charAt(0) < 6)
-            alert("Please enter a valid 10 digit mobile number");
-        else
+            setErrMsg({ ...errMsg, mobNo: "Please enter a valid 10 digit mobile number"});
+        else{
             ok = 1;
+            setErrMsg({ ...errMsg, mobNo: "ok"});
+        }
         if(ok === 0)
             return;
 
         //Pin code validation
 
+        ok = 0;
         if(pin.length < 6)
-            alert("Minimum length is 6");
+            setErrMsg({ ...errMsg, pinCode: "Minimum length is 6"});
         else if(/^\d+$/.test(pin) === false)
-            alert("Only numbers are allowed");
-        else
+            setErrMsg({ ...errMsg, pinCode: "Only numbers are allowed"});
+        else{
             ok = 1;
+            setErrMsg({ ...errMsg, pinCode: "ok"});
+        }
     }
     function mobHandler(event){
         const no = event.target.value;
@@ -41,9 +49,11 @@ function AddressForm(props){
         setPin(code); 
         
         if(code.length < 6)
-            alert("Minimum length is 6");
+            setErrMsg({ ...errMsg, pinCode: "Minimum length is 6"});
         else if(/^\d+$/.test(code) === false)
-            alert("Only numbers are allowed");
+            setErrMsg({ ...errMsg, pinCode: "Only numbers are allowed"});
+        else
+            setErrMsg({ ...errMsg, pinCode: "ok"});
     }
 
 
@@ -74,6 +84,7 @@ function AddressForm(props){
                     <label className={classes.formLabel}>
                         Mobile No*
                     </label>
+                    {errMsg.mobNo !== "ok" && <p className={classes.errmsg}>{errMsg.mobNo}</p>}
                 </div>
             </div>
             <div className={classes.add}>
@@ -90,6 +101,7 @@ function AddressForm(props){
                     <label className={classes.formLabel}>
                         Pin Code*
                     </label>
+                    {errMsg.pinCode !== "ok" && <p className={classes.errmsg}>{errMsg.pinCode}</p>}
                 </div>
                 <div className={classes.details}>
                     <input 
