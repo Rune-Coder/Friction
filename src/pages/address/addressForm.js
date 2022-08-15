@@ -12,7 +12,7 @@ function AddressForm(props){
     function addressSave(event){  
         event.preventDefault();
 
-        var ok = 0;
+        var valid = 0;
         //Mobile no validation
 
         if(mob.length < 10)
@@ -22,21 +22,20 @@ function AddressForm(props){
         else if(mob.charAt(0) < 6)
             setErrMsg({ ...errMsg, mobNo: "Please enter a valid 10 digit mobile number"});
         else{
-            ok = 1;
             setErrMsg({ ...errMsg, mobNo: "ok"});
         }
-        if(ok === 0)
+        if(valid === 0)
             return;
 
         //Pin code validation
 
-        ok = 0;
+        valid = 0;
         if(pin.length < 6)
             setErrMsg({ ...errMsg, pinCode: "Minimum length is 6"});
         else if(/^\d+$/.test(pin) === false)
             setErrMsg({ ...errMsg, pinCode: "Only numbers are allowed"});
         else{
-            ok = 1;
+            valid = 1;
             setErrMsg({ ...errMsg, pinCode: "ok"});
         }
     }
@@ -123,6 +122,16 @@ function AddressForm(props){
                     </input>
                     <label className={classes.formLabel}>
                         Locality/Town*
+                    </label>
+                </div>
+                <div className={classes.details}>
+                    <input 
+                        type= "text" 
+                        placeholder=' '  
+                        className={classes.textBox}>
+                    </input>
+                    <label className={classes.formLabel}>
+                        Landmark (optional)
                     </label>
                 </div>
             </div>

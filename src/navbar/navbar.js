@@ -30,6 +30,10 @@ function Navbar(props) {
     let path = `/cart`; 
     navigate(path);
   }
+  function toSignIn(event){
+    let path = `/signIn`; 
+    navigate(path);
+  }
 
   const [closeMenu, setMenuClose] = useState(true);
   function menuOpenHandler(event){
@@ -40,6 +44,7 @@ function Navbar(props) {
     setMenuClose(true);
     return;
   }
+  
   return (
     <div className= {classes.navbar}>
       <p className={classes.burger} onClick={menuOpenHandler}><span className={classes.menuIcons}><BurgerIcon /></span></p>
@@ -58,7 +63,9 @@ function Navbar(props) {
       <ul className = {`${classes.navlist} ${!closeMenu && classes.menubar}  ${closeMenu && ''}`}>
           
           <li className={classes.close} onClick={menuCloseHandler}><span className={classes.menuIcons}><CloseIcon /></span></li>
-          <li><span className={classes.navIcons}><ProfileIcon /></span>Profile</li>
+          <li onClick={toSignIn}><span className={classes.navIcons}><ProfileIcon /></span>
+            Profile
+          </li>
           <li onClick={toWishList}>
             <span className={classes.navIcons}><HeartIcon /></span>
             Wishlist

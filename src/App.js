@@ -5,6 +5,7 @@ import Layout from './layout/layout';
 import PreLoader from './preLoader/preLoader';
 
 const Home = React.lazy(() => import('./pages/home'));
+const SignIn = React.lazy(() => import('./pages/signIn/signIn'));
 const WishList = React.lazy(() => import('./pages/wishList/wishList'));
 const Cart = React.lazy(() => import('./pages/cart/cart'));
 const Address = React.lazy(() => import('./pages/address/address'));
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path = "/" exact element={<Navigate replace to="/home" />}/>
           <Route path = "/home" element = {<Home />} />
+          <Route path = "/signIn" element = {<SignIn />} />
           <Route path = "/shoes" element = {<ProductView />} />
           <Route path = "/wishlist" element = {<WishList />} />
           <Route path = "/cart" element = {<Cart />} />
