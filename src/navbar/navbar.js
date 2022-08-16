@@ -31,6 +31,9 @@ function Navbar(props) {
     navigate(path);
   }
   function toSignIn(event){
+    if(!closeMenu)
+      setMenuClose(true);
+      
     let path = `/login`; 
     navigate(path);
   }
