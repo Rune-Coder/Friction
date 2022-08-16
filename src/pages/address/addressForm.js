@@ -12,7 +12,6 @@ function AddressForm(props){
     function addressSave(event){  
         event.preventDefault();
 
-        var valid = 0;
         //Mobile no validation
 
         if(mob.length < 10)
@@ -21,23 +20,9 @@ function AddressForm(props){
             setErrMsg({ ...errMsg, mobNo: "Please enter a valid 10 digit mobile number"});
         else if(mob.charAt(0) < 6)
             setErrMsg({ ...errMsg, mobNo: "Please enter a valid 10 digit mobile number"});
-        else{
+        else
             setErrMsg({ ...errMsg, mobNo: "ok"});
-        }
-        if(valid === 0)
-            return;
-
-        //Pin code validation
-
-        valid = 0;
-        if(pin.length < 6)
-            setErrMsg({ ...errMsg, pinCode: "Minimum length is 6"});
-        else if(/^\d+$/.test(pin) === false)
-            setErrMsg({ ...errMsg, pinCode: "Only numbers are allowed"});
-        else{
-            valid = 1;
-            setErrMsg({ ...errMsg, pinCode: "ok"});
-        }
+        
     }
     function mobHandler(event){
         const no = event.target.value;

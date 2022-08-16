@@ -31,7 +31,7 @@ function Navbar(props) {
     navigate(path);
   }
   function toSignIn(event){
-    let path = `/signIn`; 
+    let path = `/login`; 
     navigate(path);
   }
 
