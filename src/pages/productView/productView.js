@@ -20,6 +20,27 @@ function ProductView(props) {
 
     const dispatch = useDispatch();
 
+    if(localStorage.getItem("products") !== null){
+        const itemList = JSON.parse(localStorage.getItem("products"));
+
+        for (var i = 0; i < itemList.length; i++) {
+            const item = JSON.parse(localStorage.getItem("products"));
+            dispatch(cartActions.addItem({
+                id: item[i].id,
+                image: item[i].image,
+                company: item[i].company,
+                product: item[i].product,
+                rating: item[i].rating,
+                sp: item[i].sp,
+                mrp: item[i].mrp,
+                discount: item[i].discount,
+                quantity: item[i].quantity,
+                sz: item[i].sz,
+                delfee: item[i].delfee,
+            }));
+        }
+    }
+
     function sizeHandler(event){
         setSize(event.target.innerText);
         return;
