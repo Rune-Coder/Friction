@@ -40,7 +40,7 @@ function Cart(props){
             value = {"bill"}
         />
     ));
-    localStorage.setItem("products", JSON.stringify(itemList));
+    
 
     const alertBox = useSelector((state) => state.cart.openAlert);
 
