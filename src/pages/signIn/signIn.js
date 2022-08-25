@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import Otp from './otp';
 import classes from './signIn.module.css';
 
 function SignIn(props){
@@ -11,9 +12,7 @@ function SignIn(props){
 
         if(mob.length < 10)
             setErrMsg("Minimum length is 10");
-        else if(/^\d+$/.test(mob) === false)
-            setErrMsg("Please enter a valid 10 digit mobile number");
-        else if(mob.charAt(0) < 6)
+        else if((/^\d+$/.test(mob) === false) || (mob.charAt(0) < 6))
             setErrMsg("Please enter a valid 10 digit mobile number");
         else
             setErrMsg("ok");
@@ -48,6 +47,7 @@ function SignIn(props){
                 <p className={classes.agree}> By continuing, I agree to the <span className={classes.bond}>Terms of Use</span> and&nbsp;
                 <span className={classes.bond}>Privacy Policy</span></p>
             </form>
+            <Otp />
         </div>
     );
 }
