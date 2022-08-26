@@ -36,6 +36,18 @@
     outline: none;
     width: 3.5rem;
 }
+.toast{
+    animation-fill-mode: forwards;
+    animation-name: confirmToast;
+    animation-duration: 1s;
+    position: fixed;
+    right: -20rem;
+    top: 1.563rem;
+}
+@keyframes confirmToast {
+    from {right: -15rem;}
+    to {right: 1.875rem;}
+}
 @media screen and (max-width: 700px){
     .textBox{
         margin-right: 0.8rem;
