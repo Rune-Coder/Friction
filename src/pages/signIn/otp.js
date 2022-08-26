@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import classes from './otp.module.css';
 
 function Otp(props){
+
+    const [sec, setSec] = useState(60);
 
     function autoFocus(seq, final){
         const initial = document.getElementById(seq);
         if(initial.value.length)
             document.getElementById(final).focus();
     }
+
+    function timer(){
+        setSec(sec-1);
+    }
+
+    if(sec > 0)
+        setTimeout(timer, 1000);
+
     return(
         <div>
             <form>
                 <p className={classes.head}>Verify with OTP</p>
-                <p className={classes.subHead}>Sent to xxxxxxxxxx</p>
+                <p className={classes.subHead}>Sent to {props.num}</p>
                 <div className={classes.otpDetails}>
                     <input 
                         type= "text" 
@@ -69,7 +79,8 @@ function Otp(props){
                         >
                     </input>
                 </div>
-                <p className={classes.resend}>RESEND OTP</p>
+                {sec > 0 && <p className={classes.resendTimer}>Resend OTP in 00:{("0" + sec).slice(-2)}</p>}
+                {!sec && <p className={classes.resend}>RESEND OTP</p>}
             </form>
         </div>
     );

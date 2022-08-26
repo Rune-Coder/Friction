@@ -45,7 +45,7 @@ function WishList(props) {
 
     return(
         <Fragment>
-            {showToast !== "false" && <div className={classes.toast}> <ToastCard change={"-"} close = {remToast} value = {showToast} /> </div>}
+            {showToast !== "false" && <div className={classes.toast}> <ToastCard close = {remToast} value = "Item is removed from wishlist" /> </div>}
             
             {itemLen === 0 && <WishListEmpty />}
             {itemLen !== 0 && <div> 

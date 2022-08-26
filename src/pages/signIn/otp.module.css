@@ -14,6 +14,11 @@
     font-weight: bold;
     user-select: none;
 }
+.resendTimer{
+    color: #576F72;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
 .subHead{
     color: #576F72;
     font-size: 0.9rem;

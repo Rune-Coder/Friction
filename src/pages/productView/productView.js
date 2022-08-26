@@ -81,7 +81,7 @@ function ProductView(props) {
     
     return(
         <div className={classes.view}>
-            {showToast !== "false" && <div className={classes.toast}> <ToastCard change={"+"} close = {remToast} value = {showToast} /> </div>}
+            {showToast !== "false" && <div className={classes.toast}> <ToastCard close = {remToast} value = {"Item is added to "+ showToast} /> </div>}
 
             <div className={classes.image}><img src = {location.state.image} alt = "Sneakers"></img></div>
 

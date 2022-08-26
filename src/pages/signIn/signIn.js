@@ -6,6 +6,7 @@ import classes from './signIn.module.css';
 function SignIn(props){
     const [mob, setMob] = useState(" ");
     const [errMsg, setErrMsg] = useState("ok");
+    const [otpBox, setOtpBox] = useState(false);
 
     function loginHandler(event){
         event.preventDefault();
@@ -14,8 +15,10 @@ function SignIn(props){
             setErrMsg("Minimum length is 10");
         else if((/^\d+$/.test(mob) === false) || (mob.charAt(0) < 6))
             setErrMsg("Please enter a valid 10 digit mobile number");
-        else
+        else{
             setErrMsg("ok");
+            setOtpBox(true);
+        }
     }
     function mobHandler(event){
         const no = event.target.value;
@@ -24,7 +27,7 @@ function SignIn(props){
 
     return(
         <div className={classes.login}>
-            <form className={classes.loginForm} onSubmit = {loginHandler}>
+            {!otpBox && <form className={classes.loginForm} onSubmit = {loginHandler}>
                 <p className={classes.head}><span  className={classes.headSpan}>Login</span> or <span  className={classes.headSpan}>Signup</span></p>
                 <div className={classes.details}>
                     <input 
@@ -46,8 +49,8 @@ function SignIn(props){
                 <button type = "submit" value="Submit" className={classes.contd}>CONTINUE</button>
                 <p className={classes.agree}> By continuing, I agree to the <span className={classes.bond}>Terms of Use</span> and&nbsp;
                 <span className={classes.bond}>Privacy Policy</span></p>
-            </form>
-            <Otp />
+            </form>}
+            {otpBox && <Otp num = {mob}/>}
         </div>
     );
 }
