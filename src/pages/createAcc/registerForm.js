@@ -4,6 +4,20 @@ import classes from './registerForm.module.css';
 
 function RegisterForm(props){
 
+    const [showPw, setShowPw] = useState("Show");
+
+    function showPass(event){
+        const pasShow = document.getElementById("password");
+        if(showPw === "Show"){
+            setShowPw("Hide");
+            pasShow.type = "text";
+        }
+        else{
+            setShowPw("Show");
+            pasShow.type = "password";
+        }
+    }
+
     function accSave(event){  
         event.preventDefault();
     }
@@ -12,11 +26,16 @@ function RegisterForm(props){
         <form onSubmit={accSave}>
             <div className={classes.details}>
                 <input 
-                    type= "text" 
-                    placeholder=' ' 
+                    type= "password" 
+                    placeholder=' '
+                    maxlength="16"  
+                    id= "password"
                     required 
                     className={classes.textBox}>
                 </input>
+                <div className={classes.show} onClick={showPass}>
+                    {showPw}
+                </div>
                 <label className={classes.formLabel}>
                     Create Password*
                 </label>
@@ -51,6 +70,7 @@ function RegisterForm(props){
                 </input>
                 <label for="gen2">Male</label>
             </div>
+
             <button type= "submit" value="Submit" className={classes.save}>CREATE ACCOUNT</button>
         </form>
     );
