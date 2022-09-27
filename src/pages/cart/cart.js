@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
 
@@ -10,6 +10,11 @@ import CheckoutMenu from './checkoutMenu';
 import classes from './cart.module.css';
 
 function Cart(props){
+
+    useEffect(() => {
+        document.title = 'Shopping Bag';
+    });
+
     var itemList = useSelector((state) => state.cart.items);
 
     const items = itemList.map((shoe) => (

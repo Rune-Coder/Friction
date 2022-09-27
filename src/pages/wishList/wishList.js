@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -10,6 +10,11 @@ import ToastCard from '../../card/toastCard';
 import classes from './wishList.module.css';
 
 function WishList(props) {
+
+    useEffect(() => {
+        document.title = 'Wishlist';
+    });
+
     const [showToast, setShowToast] = useState("false");
     const dispatch = useDispatch();
 

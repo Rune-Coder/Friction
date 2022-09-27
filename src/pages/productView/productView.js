@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
@@ -13,6 +13,11 @@ import ToastCard from '../../card/toastCard';
 import classes from './productView.module.css';
 
 function ProductView(props) {
+
+    useEffect(() => {
+        document.title = 'Buy '+location.state.company+' '+location.state.product;
+    });
+
     const [size, setSize] = useState("0");
     const [showPara, setShowPara] = useState(false);
     const [showToast, setShowToast] = useState("false");
