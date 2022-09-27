@@ -5,6 +5,10 @@
     user-select: none;
     width: auto;
 }
+.errmsg{
+    color: #EB1D36;
+    font-size: 0.8rem;
+}
 .formLabel{
     color: #576F72;
     cursor: text;
@@ -69,13 +73,9 @@
     cursor: pointer;
     font-size: 0.85rem;
     right: 1rem;
-    pointer-events: none; 
     position: absolute;
     top: 0.9rem;
     user-select: none;
-}
-.show:hover{
-    cursor: pointer;
 }
 .textBox{
     border: 0.063rem solid #cfd2cfaf;

@@ -4,7 +4,12 @@ import classes from './registerForm.module.css';
 
 function RegisterForm(props){
 
+    const msg = {passWord: "ok", email: "ok"};
+
     const [showPw, setShowPw] = useState("Show");
+    const [usePw, setUsePw] = useState(" ");
+    const [useEmail, setUseEmail] = useState(" ");
+    const [errMsg, setErrMsg] = useState(msg);
 
     function showPass(event){
         const pasShow = document.getElementById("password");
@@ -16,6 +21,34 @@ function RegisterForm(props){
             setShowPw("Show");
             pasShow.type = "password";
         }
+    }
+
+    function passwordHandler(event){
+        const pw = event.target.value;
+        setUsePw(pw);
+
+        if(pw.length < 8)
+            setErrMsg({ ...errMsg, passWord: "Minimum length must be 8"});
+        else if(/[A-Z]/.test(pw) === false)
+            setErrMsg({ ...errMsg, passWord: "Password must have atleast 1 uppercase character"});
+        else if(/\d/.test(pw) === false)
+            setErrMsg({ ...errMsg, passWord: "Password must have atleast 1 numeric character"});
+        else if(/[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(pw) === false)
+            setErrMsg({ ...errMsg, passWord: "Password must have atleast 1 special character"});
+        else
+            setErrMsg({ ...errMsg, passWord: "ok"});
+    }
+
+    function emailHandler(event){
+        const eml = event.target.value;
+        if(eml.length === 0)
+            return;
+        setUseEmail(eml);
+
+        if(eml.indexOf('@') === -1 || !(/[a-zA-Z]/).test(eml.charAt(0)))
+            setErrMsg({ ...errMsg, email: "Enter a valid email"});
+        else
+            setErrMsg({ ...errMsg, email: "ok"});
     }
 
     function accSave(event){  
@@ -31,14 +64,16 @@ function RegisterForm(props){
                     maxlength="16"  
                     id= "password"
                     required 
-                    className={classes.textBox}>
+                    className={classes.textBox}
+                    onBlur = {passwordHandler}>
                 </input>
-                <div className={classes.show} onClick={showPass}>
+                <span className={classes.show} onClick={showPass}>
                     {showPw}
-                </div>
+                </span>
                 <label className={classes.formLabel}>
                     Create Password*
                 </label>
+                {errMsg.passWord !== "ok" && <p className={classes.errmsg}>{errMsg.passWord}</p>}
             </div>
             <div className={classes.details}>
                 <input 
@@ -55,11 +90,13 @@ function RegisterForm(props){
                 <input 
                     type= "text" 
                     placeholder=' '  
-                    className={classes.textBox}>
+                    className={classes.textBox}
+                    onBlur = {emailHandler}>
                 </input>
                 <label className={classes.formLabel}>
                     Email (optional)
                 </label>
+                {errMsg.email !== "ok" && <p className={classes.errmsg}>{errMsg.email}</p>}
             </div>
             <div className={classes.gen}>
                 <p>Select Gender:&nbsp;</p>
