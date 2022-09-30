@@ -53,7 +53,7 @@ function WishList(props) {
             {showToast !== "false" && <div className={classes.toast}> <ToastCard close = {remToast} value = "Item is removed from wishlist" /> </div>}
             
             {itemLen === 0 && <WishListEmpty />}
-            {itemLen !== 0 && <div> 
+            {itemLen !== 0 && <div className={classes.wish}> 
                 <p className={classes.head}><span>My Wishlist</span>: {itemLen} items</p>
                 <div className={classes.wishCatalogue}>  
                     {items}

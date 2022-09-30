@@ -2,12 +2,29 @@ import React, { useState } from 'react';
 import classes from './shoeMenu.module.css';
 
 function ShoeMenu(props) {
-    const [addTypes, setAddTypes] = useState(false);
-    function typesHandler(event){
-        if(addTypes === true)
-            setAddTypes(false);
+    const [addTypesMen, setAddTypesMen] = useState(false);
+    const [addTypesWomen, setAddTypesWomen] = useState(false);
+    const [addTypesKids, setAddTypesKids] = useState(false);
+
+    function typesHandlerMen(event){
+        if(addTypesMen === true)
+            setAddTypesMen(false);
         else
-            setAddTypes(true);
+            setAddTypesMen(true);
+        return;
+    }
+    function typesHandlerWomen(event){
+        if(addTypesWomen === true)
+            setAddTypesWomen(false);
+        else
+            setAddTypesWomen(true);
+        return;
+    }
+    function typesHandlerKids(event){
+        if(addTypesKids === true)
+            setAddTypesKids(false);
+        else
+            setAddTypesKids(true);
         return;
     }
 
@@ -15,12 +32,14 @@ function ShoeMenu(props) {
         <div className={classes.shoeAccordian}>
             <div className={classes.menu}>
                 <ul>
-                    <li onMouseOver = {typesHandler} onMouseOut = {typesHandler}>Men</li>
-                    <li onMouseOver = {typesHandler} onMouseOut = {typesHandler}>Women</li>
-                    <li onMouseOver = {typesHandler} onMouseOut = {typesHandler}>Kids</li>
+                    <li onMouseOver = {typesHandlerMen} onMouseOut = {typesHandlerMen}>Men</li>
+                    <li onMouseOver = {typesHandlerWomen} onMouseOut = {typesHandlerWomen}>Women</li>
+                    <li onMouseOver = {typesHandlerKids} onMouseOut = {typesHandlerKids}>Kids</li>
                 </ul>
             </div>
-            <div className = {`${classes.types} ${addTypes && classes.activeTypes}  ${!addTypes && ''}`}>hello</div>
+            <div className = {`${classes.types} ${addTypesMen && classes.activeTypes}  ${!addTypesMen && ''}`}>hello1</div>
+            <div className = {`${classes.types} ${addTypesWomen && classes.activeTypes}  ${!addTypesWomen && ''}`}>hello2</div>
+            <div className = {`${classes.types} ${addTypesKids && classes.activeTypes}  ${!addTypesKids && ''}`}>hello3</div>
         </div>
     );
 }

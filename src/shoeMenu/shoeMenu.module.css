@@ -48,10 +48,13 @@
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     height: 3rem;
+    position: fixed;
+    top: 5rem;
     width: 100%;
+    z-index: 100;
 }
 .types{
-    background-color: #cfd2cfaf;
+    background-color: rgba(207, 210, 207, 1);
     display: none;
     height: auto;
     left: 5rem;

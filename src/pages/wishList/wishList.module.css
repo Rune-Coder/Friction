@@ -16,6 +16,9 @@
     right: -20rem;
     top: 1.563rem;
 }
+.wish{
+    margin-top: 7.4rem;
+}
 @keyframes confirmToast {
     from {right: -15rem;}
     to {right: 1.875rem;}
