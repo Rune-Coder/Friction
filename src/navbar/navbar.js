@@ -10,6 +10,8 @@ import CartIcon from '../icons/cartIcon';
 import HeartIcon from '../icons/heartIcon';
 import ProfileIcon from '../icons/profileIcon';
 import SearchBox from './searchBox';
+import ShoeMenu from '../shoeMenu/shoeMenu';
+import ShoeMenuSmall from './shoeMenuSmall';
 
 function Navbar(props) {
   let navigate = useNavigate(); 
@@ -79,8 +81,12 @@ function Navbar(props) {
             Bag
           </li>
           
+          <span className={classes.showMenu}><ShoeMenuSmall /></span>
+          
       </ul>
 
+      <span className={classes.hideMenu}><ShoeMenu /></span>
+      
     </div>
   );
 }
