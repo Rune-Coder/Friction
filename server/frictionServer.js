@@ -1,20 +1,15 @@
 import express from "express";
-import products from './frictionData/products.js';
 import dotenv from "dotenv";
+import connectDatabase from "./config/MongoDb.js";
+import importData from "./dataImport.js";
 
 dotenv.config();
+connectDatabase();
+
 const app = express();
 
-//load products from server
-app.get("/api/products", (req, res)=> {
-    res.json(products);
-});
-
-//single product from server
-app.get("/api/products/:id", (req, res)=> {
-    const product = products.find((p) => p.id === req.params.id);
-    res.json(product);
-});
+//api
+app.use("/api/import", importData)
 
 app.get("/", (req, res)=> {
     res.send("API is running...");

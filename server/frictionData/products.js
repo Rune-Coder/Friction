@@ -1,6 +1,6 @@
 const products = [
     {
-        id: 'p1',
+        
         image: '../../src/image/product_p1.png',
         company: 'Adidas',
         product: 'Sneakers',
@@ -10,7 +10,7 @@ const products = [
         discount: 17,
     },
     {
-        id: 'p2',
+        
         image: '../../src/image/product_p1.png',
         company: 'Nike',
         product: 'Boots',
