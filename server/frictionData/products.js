@@ -1,7 +1,6 @@
 const products = [
     {
-        
-        image: '../../src/image/product_p1.png',
+        image: '/static/media/product_p1.883df50e.png',
         company: 'Adidas',
         product: 'Sneakers',
         rating: 4.5,
@@ -10,8 +9,7 @@ const products = [
         discount: 17,
     },
     {
-        
-        image: '../../src/image/product_p1.png',
+        image: '/static/media/product_p1.883df50e.png',
         company: 'Nike',
         product: 'Boots',
         rating: 4.7,

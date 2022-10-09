@@ -11,18 +11,24 @@ import CartIcon from '../../icons/cartIcon';
 import HeartIcon from '../../icons/heartIcon';
 import ToastCard from '../../card/toastCard';
 import classes from './productView.module.css';
+import axios from 'axios';
 
 function ProductView(props) {
-
-    useEffect(() => {
-        document.title = 'Buy '+location.state.company.toLowerCase()+' '+location.state.product.toLowerCase();
-    });
-
+    
 
     const [size, setSize] = useState("0");
     const [showPara, setShowPara] = useState(false);
     const [showToast, setShowToast] = useState("false");
     const location = useLocation();//send to other page
+
+    
+
+    
+    
+
+    useEffect(() => {
+        document.title = 'Buy '+location.state.company.toLowerCase()+' '+location.state.product.toLowerCase();
+    });
 
     const subPath = location.state.company+"-"+location.state.product;
 
@@ -38,7 +44,7 @@ function ProductView(props) {
             return;
 
         dispatch(wishActions.addItem({
-            id: location.state.id,
+            id: location.state._id,
             image: location.state.image,
             company: location.state.company,
             product: location.state.product,
@@ -64,7 +70,7 @@ function ProductView(props) {
         setShowPara(false);
 
         dispatch(cartActions.addItem({
-            id: location.state.id,
+            id: location.state._id,
             image: location.state.image,
             company: location.state.company,
             product: location.state.product,
