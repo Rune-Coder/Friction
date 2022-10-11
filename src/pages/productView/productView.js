@@ -11,7 +11,6 @@ import CartIcon from '../../icons/cartIcon';
 import HeartIcon from '../../icons/heartIcon';
 import ToastCard from '../../card/toastCard';
 import classes from './productView.module.css';
-import axios from 'axios';
 
 function ProductView(props) {
     
@@ -20,10 +19,6 @@ function ProductView(props) {
     const [showPara, setShowPara] = useState(false);
     const [showToast, setShowToast] = useState("false");
     const location = useLocation();//send to other page
-
-    
-
-    
     
 
     useEffect(() => {

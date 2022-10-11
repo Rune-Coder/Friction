@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import classes from './catalogue.module.css';
 import ProductCard from '../card/productCard';
 import axios from 'axios';
+//import image from '../image/product_p1.png';
 
 function Catalogue(props) {
 

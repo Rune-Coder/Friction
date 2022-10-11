@@ -9,9 +9,11 @@ import CloseIcon from '../icons/closeIcon';
 import CartIcon from '../icons/cartIcon';
 import HeartIcon from '../icons/heartIcon';
 import ProfileIcon from '../icons/profileIcon';
+import ProfileAccordian from './profileAccordian';
 import SearchBox from './searchBox';
 import ShoeMenu from '../shoeMenu/shoeMenu';
 import ShoeMenuSmall from './shoeMenuSmall';
+
 
 function Navbar(props) {
   let navigate = useNavigate(); 
@@ -32,21 +34,22 @@ function Navbar(props) {
     let path = `/cart`; 
     navigate(path);
   }
-  function toSignIn(event){
-    if(!closeMenu)
-      setMenuClose(true);
-      
-    let path = `/login`; 
-    navigate(path);
-  }
 
   const [closeMenu, setMenuClose] = useState(true);
+  const [addProfOps, setAddProfOps] = useState(false);
   function menuOpenHandler(event){
     setMenuClose(false);
     return;
   }
   function menuCloseHandler(event){
     setMenuClose(true);
+    return;
+  }
+  function profileHandler(event){
+    if(addProfOps === true)
+      setAddProfOps(false);
+    else
+      setAddProfOps(true);
     return;
   }
   
@@ -68,8 +71,11 @@ function Navbar(props) {
       <ul className = {`${classes.navlist} ${!closeMenu && classes.menubar}  ${closeMenu && ''}`}>
           
           <li className={classes.close} onClick={menuCloseHandler}><span className={classes.menuIcons}><CloseIcon /></span></li>
-          <li onClick={toSignIn}><span className={classes.navIcons}><ProfileIcon /></span>
+          <li onMouseOver = {profileHandler} onMouseOut = {profileHandler}><span className={classes.navIcons}><ProfileIcon /></span>
             Profile
+            <div className = {`${classes.profileOps} ${addProfOps && classes.activeTypes}  ${!addProfOps && ''}`}>
+              <ProfileAccordian />
+            </div>
           </li>
           <li onClick={toWishList}>
             <span className={classes.navIcons}><HeartIcon /></span>
@@ -86,6 +92,7 @@ function Navbar(props) {
       </ul>
 
       <span className={classes.hideMenu}><ShoeMenu /></span>
+      
       
     </div>
   );
