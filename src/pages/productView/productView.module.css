@@ -49,6 +49,18 @@
     height: 100%;
     width: 100%;
 }
+.loading{
+    align-items: center;
+    display: flex;
+    height: auto;
+    justify-content: center;
+    padding-top: 7.5rem;
+    width: 100%;
+}
+.loaderImg{
+    height: 15rem;
+    width: 20rem;
+}
 .mrp{
     color: #576F72;
     font-size: 1.3rem;

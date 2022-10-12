@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 
 import { useLocation, Route, Routes } from 'react-router-dom';
 
@@ -11,6 +11,8 @@ import CartIcon from '../../icons/cartIcon';
 import HeartIcon from '../../icons/heartIcon';
 import ToastCard from '../../card/toastCard';
 import classes from './productView.module.css';
+import loader from '../../image/sectionLoader.gif';
+import PreLoader from '../../preLoader/preLoader';
 
 function ProductView(props) {
     
@@ -19,15 +21,31 @@ function ProductView(props) {
     const [showPara, setShowPara] = useState(false);
     const [showToast, setShowToast] = useState("false");
     const location = useLocation();//send to other page
-    
 
     useEffect(() => {
         document.title = 'Buy '+location.state.company.toLowerCase()+' '+location.state.product.toLowerCase();
     });
-
-    const subPath = location.state.company+"-"+location.state.product;
-
+    
+    const [products, setProducts] = useState({});
+    
     const dispatch = useDispatch();
+
+    function getData(){
+        fetch(`/api/products/${location.state.id}`, {mode: 'cors'})
+        .then((response) => {
+            return response.json();
+        }).then((data) => {
+            setProducts(data);
+        });
+    }
+
+    useEffect(() =>{
+        getData();
+    }, []);
+
+    if(products){
+
+    const subPath = products.company+"-"+products.product;
 
     function sizeHandler(event){
         setSize(event.target.innerText);
@@ -39,14 +57,14 @@ function ProductView(props) {
             return;
 
         dispatch(wishActions.addItem({
-            id: location.state._id,
-            image: location.state.image,
-            company: location.state.company,
-            product: location.state.product,
-            rating: location.state.rating,
-            sp: location.state.sp,
-            mrp: location.state.mrp,
-            discount: location.state.discount,
+            id: products._id,
+            image: products.image,
+            company: products.company,
+            product: products.product,
+            rating: products.rating,
+            sp: products.sp,
+            mrp: products.mrp,
+            discount: products.discount,
         }));
 
         setShowToast("wishlist");
@@ -65,14 +83,14 @@ function ProductView(props) {
         setShowPara(false);
 
         dispatch(cartActions.addItem({
-            id: location.state._id,
-            image: location.state.image,
-            company: location.state.company,
-            product: location.state.product,
-            rating: location.state.rating,
-            sp: location.state.sp,
-            mrp: location.state.mrp,
-            discount: location.state.discount,
+            id: products._id,
+            image: products.image,
+            company: products.company,
+            product: products.product,
+            rating: products.rating,
+            sp: products.sp,
+            mrp: products.mrp,
+            discount: products.discount,
             quantity: 1,
             sz: size,
             delfee: 0,
@@ -89,21 +107,22 @@ function ProductView(props) {
     } 
     
     return(
+        <Suspense fallback= {<PreLoader />}>
         <Routes>
         <Route path= {subPath} element = {
             <div className={classes.view}>
                 {showToast !== "false" && <div className={classes.toast}> <ToastCard close = {remToast} value = {"Item is added to "+ showToast} /> </div>}
 
-                <div className={classes.image}><img src = {location.state.image} alt = "Sneakers"></img></div>
+                <div className={classes.image}><img src = {products.image} alt = "Sneakers"></img></div>
 
                 <div className={classes.details}>
-                    <p className={classes.company}>{location.state.company}</p>
-                    <p className={classes.product}>{location.state.product}</p>
-                    <p className={classes.rating}><StarRating stars={location.state.rating}/>{location.state.rating}</p>
-                    <p className={classes.price}>&#8377;{location.state.sp}&nbsp;&nbsp;
+                    <p className={classes.company}>{products.company}</p>
+                    <p className={classes.product}>{products.product}</p>
+                    <p className={classes.rating}><StarRating stars={products.rating}/>{products.rating}</p>
+                    <p className={classes.price}>&#8377;{products.sp}&nbsp;&nbsp;
                         
-                        <span className={classes.mrp}>&#8377;{location.state.mrp}</span>
-                        <span className={classes.discount}>&nbsp;&nbsp;({location.state.discount}% off)</span>
+                        <span className={classes.mrp}>&#8377;{products.mrp}</span>
+                        <span className={classes.discount}>&nbsp;&nbsp;({products.discount}% off)</span>
                     
                     </p>
                     <p className={classes.tax}>Inclusive of all taxes</p>
@@ -134,6 +153,13 @@ function ProductView(props) {
             </div>
         }/>
         </Routes>
+        </Suspense>
+    );
+    }
+    return(
+        <div className={classes.loading}>
+             <img src = {loader} alt = "Loading..." className={classes.loaderImg}></img>
+        </div>
     );
 }
 

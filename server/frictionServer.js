@@ -10,6 +10,11 @@ connectDatabase();
 
 const app = express();
 
+app.get('/cors', (req, res) => {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.send({ "msg": "This has CORS enabled" })
+    });
+
 //api
 app.use("/api/import", importData);
 app.use("/api/products", productRoute);
