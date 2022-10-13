@@ -1,6 +1,6 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { useLocation, Route, Routes } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cartStore';
@@ -12,18 +12,19 @@ import HeartIcon from '../../icons/heartIcon';
 import ToastCard from '../../card/toastCard';
 import classes from './productView.module.css';
 import loader from '../../image/sectionLoader.gif';
-import PreLoader from '../../preLoader/preLoader';
 
 function ProductView(props) {
     
+    const {prdct, pid} = useParams();
+
+    const [com, pname] = prdct.split("-");
 
     const [size, setSize] = useState("0");
     const [showPara, setShowPara] = useState(false);
     const [showToast, setShowToast] = useState("false");
-    const location = useLocation();//send to other page
 
     useEffect(() => {
-        document.title = 'Buy '+location.state.company.toLowerCase()+' '+location.state.product.toLowerCase();
+        document.title = 'Buy '+ com +' '+ pname;
     });
     
     const [products, setProducts] = useState({});
@@ -31,7 +32,7 @@ function ProductView(props) {
     const dispatch = useDispatch();
 
     function getData(){
-        fetch(`/api/products/${location.state.id}`, {mode: 'cors'})
+        fetch(`/api/products/${pid}`, {mode: 'cors'})
         .then((response) => {
             return response.json();
         }).then((data) => {
@@ -45,7 +46,7 @@ function ProductView(props) {
 
     if(products){
 
-    const subPath = products.company+"-"+products.product;
+    console.log(products);
 
     function sizeHandler(event){
         setSize(event.target.innerText);
@@ -107,9 +108,6 @@ function ProductView(props) {
     } 
     
     return(
-        <Suspense fallback= {<PreLoader />}>
-        <Routes>
-        <Route path= {subPath} element = {
             <div className={classes.view}>
                 {showToast !== "false" && <div className={classes.toast}> <ToastCard close = {remToast} value = {"Item is added to "+ showToast} /> </div>}
 
@@ -151,9 +149,6 @@ function ProductView(props) {
                 
                 </div>
             </div>
-        }/>
-        </Routes>
-        </Suspense>
     );
     }
     return(

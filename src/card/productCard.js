@@ -12,18 +12,8 @@ import classes from './productCard.module.css';
 function ProductCard(props) {
     let navigate = useNavigate();
     function routeChange(){ 
-        let path = `/shoes/`+props.company.toLowerCase()+'-'+props.product.toLowerCase(); 
-        navigate(path, {state:{
-            key: props.id,
-            id : props.id, 
-            image : props.image,
-            company : props.company, 
-            product : props.product, 
-            rating : props.rating, 
-            sp : props.sp, 
-            mrp : props.mrp, 
-            discount : props.discount
-        }});
+        let path = `/shoes/`+props.company.toLowerCase()+'-'+props.product.toLowerCase()+'/'+props.id; 
+        navigate(path);
     }
 
     const dispatch = useDispatch();
