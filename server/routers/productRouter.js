@@ -25,4 +25,21 @@ productRoute.get("/:id",
     })
 );
 
+//get single product by type field
+productRoute.get("/type/:key", 
+    asyncHandler(async (req, res)=>{
+        const product = await Product.find(
+            {
+                "$or":[{ "type": {$regex: req.params.key} }]
+            }
+        );
+        if (product) {
+            res.send(product);
+        } else {
+            res.status(404);
+            throw new Error("Product not found");
+        }
+    })
+);
+
 export default productRoute;

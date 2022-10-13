@@ -15,7 +15,7 @@ function WishCard(props) {
 
     let navigate = useNavigate();
     function routeChange(){ 
-        let path = `/shoes`; 
+        let path = `/shoes/`+props.company.toLowerCase()+'-'+props.product.toLowerCase(); 
         navigate(path, {state:{
             key: props.id,
             id : props.id, 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classes from './shoeMenu.module.css';
+import {CasualsData, SportsData} from './shoeMenuData';
 
 function ShoeMenu(props) {
     const [addTypesMen, setAddTypesMen] = useState(false);
@@ -37,7 +38,19 @@ function ShoeMenu(props) {
                     <li onMouseOver = {typesHandlerKids} onMouseOut = {typesHandlerKids}>Kids</li>
                 </ul>
             </div>
-            <div className = {`${classes.types} ${addTypesMen && classes.activeTypes}  ${!addTypesMen && ''}`}>hello1</div>
+            <div className = {`${classes.types} ${addTypesMen && classes.activeTypes}  ${!addTypesMen && ''}`}>
+                <div>
+                    <span className={classes.typeHead}>Casual Wear</span>
+                    <CasualsData />
+                </div>
+                <div>
+                    <span className={classes.typeHead}>Sports Wear</span>
+                    <SportsData />
+                </div>
+                <div>
+                    <span className={classes.typeHead}>Formal Wear</span>
+                </div>
+            </div>
             <div className = {`${classes.types} ${addTypesWomen && classes.activeTypes}  ${!addTypesWomen && ''}`}>hello2</div>
             <div className = {`${classes.types} ${addTypesKids && classes.activeTypes}  ${!addTypesKids && ''}`}>hello3</div>
         </div>

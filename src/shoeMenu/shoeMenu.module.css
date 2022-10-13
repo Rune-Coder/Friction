@@ -62,9 +62,14 @@
     width: 80%;
     z-index: 100;
 }
-.types.activeTypes{
-    display: inherit;
+.types.activeTypes, .types:hover{
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 2rem 0 2rem;
 }
-.types:hover{
-    display: inherit;
+.typeHead{
+    color: #446A46;
+    font-weight: bold;
 }

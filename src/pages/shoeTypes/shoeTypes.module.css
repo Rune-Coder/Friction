@@ -1,0 +1,12 @@
+.catalogue{
+    align-items: center;
+    color: black;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    height: auto;
+    justify-content: center;
+    padding-top: 7.5rem;
+    width: 100%;
+}
