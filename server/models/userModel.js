@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import jwt from "jsonwebtoken";
 
 const userSchema = mongoose.Schema({
 
@@ -8,7 +9,6 @@ const userSchema = mongoose.Schema({
     },
     mobile:{
         type: String,
-        required: true,
         unique: true
     },
     email:{
@@ -32,6 +32,18 @@ const userSchema = mongoose.Schema({
     }
 
 });
+
+userSchema.methods.generateJWT = function(){
+    const token = jwt.sign({
+        _id: this.id,
+        name: this.name,
+        mobile: this.mobile,
+        email: this.email,
+        password: this.password,
+        gender: this.gender,
+        isAdmin: this.isAdmin
+    }, process.env.JWT_SECRET_KEY)
+}
 
 const User = mongoose.model("User", userSchema);
 

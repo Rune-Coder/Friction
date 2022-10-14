@@ -4,6 +4,7 @@ import connectDatabase from "./config/MongoDb.js";
 import importData from "./dataImport.js";
 import productRoute from "./routers/productRouter.js";
 import { errorHandler, notFound } from "./middleware/error.js";
+import userRoute from "./routers/userRouter.js";
 
 dotenv.config();
 connectDatabase();
@@ -18,6 +19,7 @@ app.get('/cors', (req, res) => {
 //api
 app.use("/api/import", importData);
 app.use("/api/products", productRoute);
+app.use("/api/user", userRoute);
 
 //error handler
 app.use(notFound);
