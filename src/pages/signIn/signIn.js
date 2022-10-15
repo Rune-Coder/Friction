@@ -1,56 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import Otp from './otp';
 import classes from './signIn.module.css';
 
 function SignIn(props){
-    const [mob, setMob] = useState(" ");
+    const [email, setEmail] = useState(" ");
     const [errMsg, setErrMsg] = useState("ok");
-    const [otpBox, setOtpBox] = useState(false);
+
+    useEffect(() => {
+        document.title = 'Online Shopping site for shoes in India | Friction';
+    });
 
     function loginHandler(event){
         event.preventDefault();
-
-        if(mob.length < 10)
-            setErrMsg("Minimum length is 10");
-        else if((/^\d+$/.test(mob) === false) || (mob.charAt(0) < 6))
-            setErrMsg("Please enter a valid 10 digit mobile number");
-        else{
+        const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(email.match(mailformat)){
             setErrMsg("ok");
-            setOtpBox(true);
         }
+        else
+            setErrMsg("Please enter a valid email address");
     }
-    function mobHandler(event){
+    function emailHandler(event){
         const no = event.target.value;
-        setMob(no);    
+        setEmail(no);    
     }
 
     return(
         <div className={classes.login}>
-            {!otpBox && <form className={classes.loginForm} onSubmit = {loginHandler}>
+            <form className={classes.loginForm} onSubmit = {loginHandler}>
                 <p className={classes.head}><span  className={classes.headSpan}>Login</span> or <span  className={classes.headSpan}>Signup</span></p>
                 <div className={classes.details}>
                     <input 
                         type= "text" 
                         placeholder=' ' 
-                        maxLength= "10"
                         required 
                         className={classes.textBox}
-                        onChange = {mobHandler}>
+                        onBlur = {emailHandler}>
                     </input>
-                    <label className={classes.cntryCode}>
-                       +91 |
-                    </label>
                     <label className={classes.formLabel}>
-                       Mobile Number*
+                       Email*
                     </label>
                     {errMsg !== "ok" && <p className={classes.errmsg}>{errMsg}</p>}
                 </div>
+                <div className={classes.details}>
+                    <input 
+                        type= "password" 
+                        placeholder=' ' 
+                        maxlength="16"
+                        required 
+                        className={classes.textBox}>
+                    </input>
+                    <label className={classes.formLabel}>
+                       Password*
+                    </label>
+                </div>
+                <p className={classes.failLogIn}>Forget Password?</p>
                 <button type = "submit" value="Submit" className={classes.contd}>CONTINUE</button>
                 <p className={classes.agree}> By continuing, I agree to the <span className={classes.bond}>Terms of Use</span> and&nbsp;
                 <span className={classes.bond}>Privacy Policy</span></p>
-            </form>}
-            {otpBox && <Otp num = {mob}/>}
+                <p className={classes.failLogIn}>New to Friction? Create an account</p>
+            </form>
         </div>
     );
 }

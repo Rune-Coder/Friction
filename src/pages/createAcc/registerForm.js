@@ -91,10 +91,11 @@ function RegisterForm(props){
                     type= "text" 
                     placeholder=' '  
                     className={classes.textBox}
+                    required
                     onBlur = {emailHandler}>
                 </input>
                 <label className={classes.formLabel}>
-                    Email (optional)
+                    Email*
                 </label>
                 {errMsg.email !== "ok" && <p className={classes.errmsg}>{errMsg.email}</p>}
             </div>
