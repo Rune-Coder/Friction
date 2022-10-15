@@ -1,22 +1,66 @@
-import express, { Router } from 'express';
+import express from 'express';
 import asyncHandler from 'express-async-handler';
-import { signup, verifyOtp } from '../controller/userController.js';
+import bcrypt from 'bcryptjs';
 import User from '../models/userModel.js';
 
 
 const userRoute = express.Router();
 
-// //login
-// userRoute.get("/", 
-//     asyncHandler(async (req, res)=>{
-//         const mobile = req.body;
-//         const user = await User.findOne({ mobile });     
-//     })
-// );
+// signup
+userRoute.post("/register", 
+    asyncHandler(async (req, res)=>{
+        const {name, mobile, email, password, gender} = req.body;
+        if(!name || !email || !mobile || !password || !gender)
+            return res.status(422).json({ error: 'Pls fill field' });
+        try{
+            const userExist = await User.findOne({ email: email });
 
-userRoute.route('/signup').post(signup);
+            if(userExist)
+                return res.status(422).json({ error: "Email already registered"});
+            else{
+                const user = new User({ name, mobile, email, password: bcrypt.hashSync(password, 10), gender });
+                await user.save();
+                res.status(201).json({ message: "User registration succcessful " });
+            }
+        }
+        catch(error){
+            console.log(error);
+        }
+    })
+);
 
-userRoute.route('/signup/verify').post(verifyOtp);
+// login
+userRoute.post("/login", 
+    asyncHandler(async (req, res)=>{
+        const { email, password } = req.body;
+        console.log( email, password );
+        if(!email || !password)
+            return res.status(422).json({ error: 'Pls fill field' });
+        try{
+            const userExist = await User.findOne({ email: email });
+            if(userExist && (await userExist.matchPassword(password))){
+                return res.status(422).json({ 
+                    _id: userExist._id,
+                    name: userExist.name,
+                    mobile: userExist.mobile,
+                    email: userExist.email,
+                    gender: userExist.gender,
+                    isAdmin: userExist.isAdmin,
+
+                });
+            }
+            else{
+                res.status(201).json({ message: "Invalid email or password" });
+            }
+        }
+        catch(error){
+            console.log(error);
+        }
+    })
+);
+
+
+
 
 export default userRoute;
 

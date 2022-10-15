@@ -16,6 +16,9 @@ app.get('/cors', (req, res) => {
     res.send({ "msg": "This has CORS enabled" })
     });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 //api
 app.use("/api/import", importData);
 app.use("/api/products", productRoute);
