@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import { useNavigate } from 'react-router-dom';
 import classes from './signIn.module.css';
 
 function SignIn(props){
@@ -23,6 +24,8 @@ function SignIn(props){
         const no = event.target.value;
         setEmail(no);    
     }
+
+    let navigate = useNavigate();
 
     return(
         <div className={classes.login}>
@@ -57,7 +60,7 @@ function SignIn(props){
                 <button type = "submit" value="Submit" className={classes.contd}>CONTINUE</button>
                 <p className={classes.agree}> By continuing, I agree to the <span className={classes.bond}>Terms of Use</span> and&nbsp;
                 <span className={classes.bond}>Privacy Policy</span></p>
-                <p className={classes.failLogIn}>New to Friction? Create an account</p>
+                <p className={classes.failLogIn} onClick = {() => navigate(`/register`)}>New to Friction? Create an account</p>
             </form>
         </div>
     );

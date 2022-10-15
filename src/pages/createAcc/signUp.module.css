@@ -22,17 +22,10 @@
     height: auto;
     width: 25rem;
 }
-.fixedLabel{
-    color: #576F72;
-    font-size: 0.8rem;
-}
 .head{
     color: #576F72;
     font-weight: bold;
     
-}
-.mobile{
-    padding-bottom: 0.8rem;
 }
 @media screen and (max-width: 800px){
     .createAcc{
