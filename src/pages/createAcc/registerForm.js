@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import NotificationCard from '../../card/notificationCard';
 import classes from './registerForm.module.css';
 
 function RegisterForm(props){
@@ -14,6 +15,7 @@ function RegisterForm(props){
     const [usePh, setUsePh] = useState(" ");
     const [useGen, setUseGen] = useState(" ");
     const [errMsg, setErrMsg] = useState(msg);
+    const [registered, setRegistered] = useState(false);
 
     useEffect(() => {
         document.title = 'Create Account';
@@ -114,12 +116,14 @@ function RegisterForm(props){
 
         const data = await res.json();
 
-        if(data.status === 422 || !data){
+        if(!res.ok || !data){
             setErrMsg({ ...errMsg, accCreated: "You are already registered!!"});
         }
         else{
             setErrMsg({ ...errMsg, accCreated: "ok"});
-            navigate(`/login`);
+            setRegistered(true);
+            setTimeout(function(){ setRegistered(false);}, 3000);
+            setTimeout(function(){ navigate(`/login`);}, 4000);
         }
     }
 
@@ -201,7 +205,7 @@ function RegisterForm(props){
             <button type= "submit" value="Submit" className={classes.save}>CREATE ACCOUNT</button>
 
             {errMsg.accCreated !== "ok" && <p className={classes.errmsg}>{errMsg.accCreated}</p>}
-            
+            {registered && <NotificationCard value = {"Account Created Successfully"} />}
         </form>
     );
 }
