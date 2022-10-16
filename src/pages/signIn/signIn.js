@@ -1,35 +1,67 @@
 import React, { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+import NotificationCard from '../../card/notificationCard';
+import preloader from '../../image/sectionLoader.gif';
 import classes from './signIn.module.css';
 
 function SignIn(props){
     const [email, setEmail] = useState(" ");
-    const [errMsg, setErrMsg] = useState("ok");
+    const [password, setPassword] = useState(" ");
+    const [errMsg, setErrMsg] = useState({ emailVerify: "ok", verifyCredentials: "ok" });
+    const [loggedin, setLoggedin] = useState(false);
+    const [loader, setLoader] = useState(false);
 
     useEffect(() => {
         document.title = 'Online Shopping site for shoes in India | Friction';
     });
 
-    function loginHandler(event){
-        event.preventDefault();
-        const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if(email.match(mailformat)){
-            setErrMsg("ok");
-        }
-        else
-            setErrMsg("Please enter a valid email address");
-    }
     function emailHandler(event){
-        const no = event.target.value;
-        setEmail(no);    
+        setEmail(event.target.value);    
+    }
+
+    function passwordHandler(event){
+        setPassword(event.target.value);    
+    }
+
+    async function loginHandler(event){
+        event.preventDefault();
+        setLoader(true);
+        const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if(email.match(mailformat) === false){
+            setErrMsg({ ...errMsg, emailVerify: "ok"});
+            return;
+        }
+        setErrMsg({ ...errMsg, emailVerify: "ok"});
+
+        const res = await fetch("/api/user/login", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+        setLoader(false);
+
+        if(!res.ok || !data){
+            setErrMsg({ ...errMsg, verifyCredentials: "Incorrect Email or Password"});
+        }
+        else{
+            setErrMsg({ ...errMsg, verifyCredentials: "ok"});
+            setLoggedin(true);
+            setTimeout(function(){ setLoggedin(false);}, 3000);
+            setTimeout(function(){ navigate(`/`);}, 4000);
+        }
+        
     }
 
     let navigate = useNavigate();
 
     return(
         <div className={classes.login}>
-            <form className={classes.loginForm} onSubmit = {loginHandler}>
+            <form method='POST' className={classes.loginForm} onSubmit = {loginHandler}>
                 <p className={classes.head}><span  className={classes.headSpan}>Login</span> or <span  className={classes.headSpan}>Signup</span></p>
                 <div className={classes.details}>
                     <input 
@@ -42,7 +74,7 @@ function SignIn(props){
                     <label className={classes.formLabel}>
                        Email*
                     </label>
-                    {errMsg !== "ok" && <p className={classes.errmsg}>{errMsg}</p>}
+                    {errMsg.emailVerify !== "ok" && <p className={classes.errmsg}>{errMsg.emailVerify}</p>}
                 </div>
                 <div className={classes.details}>
                     <input 
@@ -50,18 +82,23 @@ function SignIn(props){
                         placeholder=' ' 
                         maxlength="16"
                         required 
-                        className={classes.textBox}>
+                        className={classes.textBox}
+                        onBlur = {passwordHandler}>
                     </input>
                     <label className={classes.formLabel}>
                        Password*
                     </label>
                 </div>
+
+                {errMsg.verifyCredentials !== "ok" && <p className={classes.errmsg}>{errMsg.verifyCredentials}</p>}
                 <p className={classes.failLogIn}>Forget Password?</p>
                 <button type = "submit" value="Submit" className={classes.contd}>CONTINUE</button>
                 <p className={classes.agree}> By continuing, I agree to the <span className={classes.bond}>Terms of Use</span> and&nbsp;
                 <span className={classes.bond}>Privacy Policy</span></p>
                 <p className={classes.failLogIn} onClick = {() => navigate(`/register`)}>New to Friction? Create an account</p>
             </form>
+            {loggedin && <NotificationCard value = {"Logged in Successfully"} />}
+            {loader && <img src = {preloader} className={classes.load} alt = "Loading..."></img>}
         </div>
     );
 }

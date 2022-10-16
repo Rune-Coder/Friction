@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import NotificationCard from '../../card/notificationCard';
+import preloader from '../../image/sectionLoader.gif';
 import classes from './registerForm.module.css';
 
 function RegisterForm(props){
@@ -16,6 +17,7 @@ function RegisterForm(props){
     const [useGen, setUseGen] = useState(" ");
     const [errMsg, setErrMsg] = useState(msg);
     const [registered, setRegistered] = useState(false);
+    const [loader, setLoader] = useState(false);
 
     useEffect(() => {
         document.title = 'Create Account';
@@ -99,7 +101,7 @@ function RegisterForm(props){
 
     async function accSave(event){  
         event.preventDefault();
-        
+        setLoader(true);
         const res = await fetch("/api/user/register", {
             method: "POST",
             headers:{
@@ -115,7 +117,8 @@ function RegisterForm(props){
         });
 
         const data = await res.json();
-
+        setLoader(false);
+        
         if(!res.ok || !data){
             setErrMsg({ ...errMsg, accCreated: "You are already registered!!"});
         }
@@ -128,7 +131,7 @@ function RegisterForm(props){
     }
 
     return(
-        <form onSubmit={accSave}>
+        <form method='POST' onSubmit={accSave}>
 
             <div className={classes.details}>
                 <input 
@@ -206,6 +209,7 @@ function RegisterForm(props){
 
             {errMsg.accCreated !== "ok" && <p className={classes.errmsg}>{errMsg.accCreated}</p>}
             {registered && <NotificationCard value = {"Account Created Successfully"} />}
+            {loader && <img src = {preloader} className={classes.load} alt = "Loading..."></img>}
         </form>
     );
 }

@@ -59,6 +59,11 @@
     visibility: visible;
     border: 2px solid white;
 }
+.load{
+    position: absolute;
+    top: 40%;
+    left: 35%;
+}
 .save{
     background-color: #446A46;
     border: none;
@@ -97,4 +102,11 @@
     font-size: 0.8rem;
     left: 0.6rem;
     top: -0.65rem;
+}
+
+@media screen and (max-width: 800px){
+    .load{
+        top: 30%;
+        left: -5%;
+    }
 }

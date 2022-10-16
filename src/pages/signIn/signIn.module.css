@@ -48,6 +48,10 @@
 .headSpan{
     font-weight: bold;
 }
+.load{
+    position: absolute;
+    top: 50%;
+}
 .login{
     align-items: center;
     display: flex;
