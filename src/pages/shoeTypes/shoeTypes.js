@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import ProductCard from '../../card/productCard';
-import loader from '../../image/sectionLoader.gif';
+import preloader from '../../image/sectionLoader.gif';
 import classes from './shoeTypes.module.css';
 
 function ShoeTypes(props){
@@ -14,16 +14,20 @@ function ShoeTypes(props){
 
     const [gen, stype] = tname.split("-");
 
+    const [loader, setLoader] = useState(false);
+
     useEffect(() => {
         document.title = 'Buy '+ gen.charAt(0).toUpperCase() + gen.slice(1) +' '+ stype.charAt(0).toUpperCase() + stype.slice(1) + ' Online in India | Friction';
     });
 
     function getData(){
+        setLoader(true);
         fetch(`/api/products/type/${tname}`, {mode: 'cors'})
         .then((response) => {
             return response.json();
         }).then((data) => {
             setProducts(data);
+            setLoader(false);
         });
     }
 
@@ -50,12 +54,13 @@ function ShoeTypes(props){
         return(
             <div className={classes.catalogue}>
             {productList}
+            {loader && <img src = {preloader} alt = "Loading..."></img>}
             </div>
         );
     }
     return(
         <div>
-            <img src = {loader} alt = "Loading..."></img>
+            <img src = {preloader} alt = "Loading..."></img>
         </div>
     );
 }

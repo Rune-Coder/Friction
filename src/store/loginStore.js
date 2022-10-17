@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { SetCookie, GetCookie, RemoveCookie } from "../hooks/cookies";
 
 
 const initialLoginState = {
-    token: '', 
+    token: GetCookie("token") ? GetCookie("token") : '', 
     userData: {},
     loggedin: false
 };
@@ -23,6 +24,15 @@ const loginSlice = createSlice({
                 isAdmin: user.isAdmin
             };
             state.loggedin = true;
+            SetCookie("token", user.token);
+            localStorage.removeItem("products");
+            localStorage.removeItem("billStore");
+        },
+        logout(state){
+            state.token = '';
+            state.userData = {};
+            state.loggedin = false;
+            RemoveCookie("token");
         }
     },
 });

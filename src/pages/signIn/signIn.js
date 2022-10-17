@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
+
+import { useDispatch } from 'react-redux';
+import { loginActions } from '../../store/loginStore';
+
 import NotificationCard from '../../card/notificationCard';
 import preloader from '../../image/sectionLoader.gif';
 import classes from './signIn.module.css';
@@ -23,6 +27,8 @@ function SignIn(props){
     function passwordHandler(event){
         setPassword(event.target.value);    
     }
+
+    const dispatch = useDispatch();
 
     async function loginHandler(event){
         event.preventDefault();
@@ -50,11 +56,21 @@ function SignIn(props){
         }
         else{
             
+            dispatch(loginActions.login({
+                _id: data._id,
+                name: data.name,
+                mobile: data.mobile,
+                email: data.email,
+                gender: data.gender,
+                isAdmin: data.isAdmin,
+                token: data.token
+            }));
 
             setErrMsg({ ...errMsg, verifyCredentials: "ok"});
             setLoggedin(true);
             setTimeout(function(){ setLoggedin(false);}, 3000);
             setTimeout(function(){ navigate(`/`);}, 4000);
+            //window.location.reload();
         }
         
     }
