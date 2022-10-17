@@ -2,16 +2,20 @@ import React, { useState, useEffect } from 'react';
 import classes from './catalogue.module.css';
 import ProductCard from '../card/productCard';
 import axios from 'axios';
-import loader from '../image/sectionLoader.gif';
+import preloader from '../image/sectionLoader.gif';
 
 function Catalogue(props) {
 
     const [products, setProducts] = useState([]);
+    const [loader, setLoader] = useState(false);
+
 
     useEffect(() => {
         async function getData() {
+          setLoader(true);  
           const {data} = await axios.get('/api/products');
           setProducts(data.products);
+          setLoader(false);
         }
         getData();
     }, []);
@@ -33,12 +37,13 @@ function Catalogue(props) {
         return(
             <div className={classes.features}>
             {productList}
+            {loader && <img src = {preloader} alt = "Loading..."></img>}
             </div>
         );
     }
     return(
         <div>
-            <img src = {loader} alt = "Loading..."></img>
+            <img src = {preloader} alt = "Loading..."></img>
         </div>
     );
     

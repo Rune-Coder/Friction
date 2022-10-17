@@ -49,7 +49,7 @@
     font-weight: bold;
 }
 .load{
-    position: absolute;
+    position: fixed;
     top: 50%;
 }
 .login{
