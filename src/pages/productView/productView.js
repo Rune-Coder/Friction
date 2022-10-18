@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cartStore';
 import { wishActions } from '../../store/wishStore';
 
@@ -14,6 +14,9 @@ import classes from './productView.module.css';
 import loader from '../../image/sectionLoader.gif';
 
 function ProductView(props) {
+
+    const loginSub = useSelector((state) => state.login.loggedin);
+    let navigate = useNavigate();
     
     const {prdct, pid} = useParams();
 
@@ -52,6 +55,13 @@ function ProductView(props) {
     }
 
     function addWish(event){
+
+        //authenticate
+        if(!loginSub){
+            navigate(`/login`);
+            return;
+        }
+
         if(showToast !== "false")
             return;
 

@@ -4,26 +4,31 @@ import { loginActions } from '../store/loginStore';
 
 function UserData(token){
     const [user, setUser] = useState({});
-
-    async function getData(token){
-        const res = await fetch(`/api/user/profile`, {
-            method: "GET",
-            headers:{
-                Authorization: `Bearer ${token}`
-            }
-        });
-    
-        const data = await res.json();
-        console.log(token);
-        if(res.ok)
-            setUser(data);
-    }
+    var loggedin = true;
+    var newtoken = token;
 
     useEffect(() =>{
-        getData(token);
-    }, [token]);
+        async function getData(){
+    
+            const res = await fetch(`/api/user/profile`, {
+                method: "GET",
+                headers:{
+                    Authorization: `Bearer ${newtoken}`
+                }
+            });
+        
+            const data = await res.json();
+            
+            if(res.ok)
+                setUser(data);
+    
+        }
 
-    var loggedin = true;
+        getData();
+
+    }, [newtoken]);
+
+    
     const dispatch = useDispatch();
     
     if(Object.keys(user).length === 0){
@@ -31,14 +36,13 @@ function UserData(token){
         loggedin = false;
     }
 
-    
-
     dispatch(loginActions.loginVerify({
         token: token,
         userData: user,
         loggedin: loggedin
     }));
     
+    return loggedin;
 }
 
 export { UserData };

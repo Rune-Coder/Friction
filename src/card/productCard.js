@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { wishActions } from '../store/wishStore';
 
@@ -10,7 +10,9 @@ import HeartIcon from '../icons/heartIcon';
 import classes from './productCard.module.css';
 
 function ProductCard(props) {
+    const loginSub = useSelector((state) => state.login.loggedin);
     let navigate = useNavigate();
+
     function routeChange(){ 
         let path = `/shoes/`+props.company.toLowerCase()+'-'+props.product.toLowerCase()+'/'+props.id; 
         navigate(path);
@@ -21,6 +23,13 @@ function ProductCard(props) {
     const [addWish, setAddWish] = useState(false);
     function wishHandler(event){
         event.stopPropagation();
+
+        //authenticate
+        if(!loginSub){
+            navigate(`/login`);
+            return;
+        }
+
         if(addWish)
             setAddWish(false);
         else

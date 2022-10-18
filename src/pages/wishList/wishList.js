@@ -1,5 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { wishActions } from '../../store/wishStore';
@@ -10,6 +12,12 @@ import ToastCard from '../../card/toastCard';
 import classes from './wishList.module.css';
 
 function WishList(props) {
+
+    const loginSub = useSelector((state) => state.login.loggedin);
+    let navigate = useNavigate();
+
+    if(!loginSub)
+        navigate(`/login`);
 
     useEffect(() => {
         document.title = 'Wishlist';

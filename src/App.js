@@ -1,7 +1,9 @@
 import React, { Suspense } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
+
 import { UserData } from './connect/userData';
+
 import { GetCookie } from './hooks/cookies';
 import Layout from './layout/layout';
 import PreLoader from './preLoader/preLoader';
@@ -21,8 +23,7 @@ const NotFound = React.lazy(() => import('./pages/notFound/notFound'));
 function App() {
 
   //get user data
-    UserData(GetCookie("token"));
-    console.log(GetCookie("token"));
+  const loginSub = UserData(GetCookie("token")); 
 
   return (
     <Layout>
@@ -30,13 +31,25 @@ function App() {
         <Routes>
           <Route path = "/" exact element={<Navigate replace to="/home" />}/>
           <Route path = "/home" element = {<Home />} />
-          <Route path = "/profile" element = {<Profile />} />
-          <Route path = "/login" element = {<SignIn />} />
-          <Route path = "/register" element = {<SignUp />} />
+          {loginSub && <Route path = "/profile" element = {<Profile />} />}
+          {!loginSub && <Route path = "/profile" element={<Navigate replace to="/login" />} />}
+
+          {!loginSub && <Route path = "/login" element = {<SignIn />} />}
+          {loginSub && <Route path = "/login" element={<Navigate replace to="/home" />} />}
+
+          {!loginSub && <Route path = "/register" element = {<SignUp />} />}
+          {loginSub && <Route path = "/register" element={<Navigate replace to="/home" />} />}
+
           <Route path = "/types/:tname" element = {<ShoeTypes />} />
-          <Route path = "/orders" element = {<Orders />} />
+
+          {loginSub && <Route path = "/orders" element = {<Orders />} />}
+          {!loginSub && <Route path = "/orders" element={<Navigate replace to="/login" />} />}
+
           <Route path = "/shoes/:prdct/:pid/*" element = {<ProductView />} />
-          <Route path = "/wishlist" element = {<WishList />} />
+
+          {loginSub && <Route path = "/wishlist" element = {<WishList />} />}
+          {!loginSub && <Route path = "/wishlist" element={<Navigate replace to="/login" />} />}
+
           <Route path = "/cart" element = {<Cart />} />
           <Route path = "/address" element = {<Address />} />
           <Route path = "*" element = {<NotFound />} />

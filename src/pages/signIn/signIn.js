@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-
 import { useDispatch } from 'react-redux';
 import { loginActions } from '../../store/loginStore';
 
@@ -10,6 +9,8 @@ import preloader from '../../image/sectionLoader.gif';
 import classes from './signIn.module.css';
 
 function SignIn(props){
+    let navigate = useNavigate();
+
     const [email, setEmail] = useState(" ");
     const [password, setPassword] = useState(" ");
     const [errMsg, setErrMsg] = useState({ emailVerify: "ok", verifyCredentials: "ok" });
@@ -69,13 +70,13 @@ function SignIn(props){
             setErrMsg({ ...errMsg, verifyCredentials: "ok"});
             setLoggedin(true);
             setTimeout(function(){ setLoggedin(false);}, 3000);
-            window.location.reload();
-            setTimeout(function(){ navigate(`/`);}, 4000)
+            setTimeout(function(){ 
+                window.location.reload();
+                navigate(`/`, { replace: true });
+            }, 4000)
         }
         
     }
-
-    let navigate = useNavigate();
 
     return(
         <div className={classes.login}>
