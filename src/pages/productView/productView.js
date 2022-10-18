@@ -46,8 +46,6 @@ function ProductView(props) {
 
     if(products){
 
-    console.log(products);
-
     function sizeHandler(event){
         setSize(event.target.innerText);
         return;

@@ -1,7 +1,7 @@
 import Cookies from 'js-cookie'
 
 function SetCookie(key, val){
-    Cookies.set(key, val, { path: '/' });
+    Cookies.set(key, val, { expires: 365 });
 }
 
 function GetCookie(key){
@@ -9,7 +9,7 @@ function GetCookie(key){
 }
 
 function RemoveCookie(key){
-    Cookies.remove(key, { path: '' });
+    Cookies.remove(key);
 }
 
 

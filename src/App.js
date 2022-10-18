@@ -1,6 +1,8 @@
 import React, { Suspense } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
+import { UserData } from './connect/userData';
+import { GetCookie } from './hooks/cookies';
 import Layout from './layout/layout';
 import PreLoader from './preLoader/preLoader';
 
@@ -17,6 +19,11 @@ const ProductView = React.lazy(() => import('./pages/productView/productView'));
 const NotFound = React.lazy(() => import('./pages/notFound/notFound'));
 
 function App() {
+
+  //get user data
+    UserData(GetCookie("token"));
+    console.log(GetCookie("token"));
+
   return (
     <Layout>
       <Suspense fallback= {<PreLoader />}>
