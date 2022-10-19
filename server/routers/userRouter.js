@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs';
 import User from '../models/userModel.js';
 import generateToken from '../util/generateToken.js';
 import protect from '../middleware/auth.js';
+import UserHistory from '../models/userHistoryModel.js';
 
 
 const userRoute = express.Router();
@@ -80,6 +81,52 @@ userRoute.get("/profile", protect,
     })
 );
 
+// post user history
+userRoute.post("/history-create",
+    asyncHandler(async (req, res)=>{
+
+        const { email, cart, bill, wish, address } = req.body;
+        const user = await UserHistory.findOne({ email: email });
+
+        if(user){
+            await UserHistory.updateOne(
+                { email },
+                {
+                    $set: { cart, bill, wish, address}
+                }
+            );
+
+            res.status(202).json({ message: "User history updated" });
+        }
+        else{
+            const newUserHistory = new UserHistory({ email, cart, bill, wish, address });
+            await newUserHistory.save();
+            res.status(201).json({ message: "User history created" });
+        }
+    })
+);
+
+// get user history
+userRoute.post("/history-get",
+    asyncHandler(async (req, res)=>{
+
+        const { email } = req.body;
+        const user = await UserHistory.findOne({ email: email });
+
+        if(user){
+            return res.status(202).json({ 
+                email: user.email,
+                cart: user.cart,
+                bill: user.mobile,
+                wish: user.wish,
+                address: user.address
+            });
+        }
+        else{
+            res.status(422).json({ message: "No such user exist" });
+        }
+    })
+);
 
 
 export default userRoute;
