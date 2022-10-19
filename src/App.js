@@ -55,7 +55,10 @@ function App() {
           {!loginSub && <Route path = "/wishlist" element={<Navigate replace to="/login" />} />}
 
           <Route path = "/cart" element = {<Cart />} />
-          <Route path = "/address" element = {<Address />} />
+
+          {loginSub && <Route path = "/address" element = {<Address />} />}
+          {!loginSub && <Route path = "/address" element={<Navigate replace to="/login" />} />}
+
           <Route path = "*" element = {<NotFound />} />
         </Routes>
       </Suspense>

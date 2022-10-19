@@ -30,6 +30,22 @@ function WishCard(props) {
 
     }
 
+    //post wish data mongodb
+    async function postWishData(email, wish){
+
+        const res = await fetch("/api/user/history-create", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, wish })
+        });
+    
+        await res.json();
+
+    }
+
+
     let navigate = useNavigate();
     function routeChange(){ 
         let path = `/shoes/`+props.company.toLowerCase()+'-'+props.product.toLowerCase()+'/'+props.id; 
@@ -77,6 +93,13 @@ function WishCard(props) {
         dispatch(wishActions.removeItem({
             id: props.id,
         }));
+
+        //store wish in mongodb
+        const email = userSub.email;
+        const wish = JSON.parse(localStorage.getItem("wishStore"));
+
+        postWishData(email, wish);
+        
     }
 
     return(

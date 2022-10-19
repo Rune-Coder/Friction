@@ -65,6 +65,21 @@ function ProductView(props) {
 
     }
 
+    //post wish data mongodb
+    async function postWishData(email, wish){
+
+        const res = await fetch("/api/user/history-create", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, wish })
+        });
+    
+        await res.json();
+
+    }
+
     if(products){
 
     function sizeHandler(event){
@@ -97,7 +112,11 @@ function ProductView(props) {
         setShowToast("wishlist");
         setTimeout(function(){ setShowToast("false"); }, 3000);
 
-        
+        //store wish in mongodb
+        const email = userSub.email;
+        const wish = JSON.parse(localStorage.getItem("wishStore"));
+
+        postWishData(email, wish);
 
         return;
     }

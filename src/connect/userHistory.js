@@ -57,6 +57,10 @@ function UserHistory(token){
             localStorage.setItem("billStore", JSON.stringify(data.bill));
         }
 
+        if(data.wish){
+            localStorage.setItem("wishStore", JSON.stringify(data.wish));
+        }
+
     }
 
     getCartData(user.email);

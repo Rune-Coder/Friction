@@ -5,17 +5,17 @@ import importData from "./dataImport.js";
 import productRoute from "./routers/productRouter.js";
 import { errorHandler, notFound } from "./middleware/error.js";
 import userRoute from "./routers/userRouter.js";
+import cors from "cors";
 
 dotenv.config();
 connectDatabase();
 
 const app = express();
 
-app.get('/cors', (req, res) => {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.send({ "msg": "This has CORS enabled" })
-    });
-
+app.use(cors({
+    origin: "http://www.postalpincode.in",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

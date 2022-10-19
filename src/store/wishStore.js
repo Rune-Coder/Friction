@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialWishState = {
-    items: [], 
-    len: 0,
+    items: localStorage.getItem("wishStore") ? JSON.parse(localStorage.getItem("wishStore")) : [], 
+    len: localStorage.getItem("wishStore") ? JSON.parse(localStorage.getItem("wishStore")).length : 0,
     rem: false
 };
 
@@ -26,6 +26,7 @@ const wishSlice = createSlice({
                     discount: newItem.discount,
                 });
                 state.len++;
+                localStorage.setItem("wishStore", JSON.stringify(state.items));
             }
         },
         removeItem(state, action){
@@ -34,6 +35,7 @@ const wishSlice = createSlice({
             state.items = state.items.filter(item => item.id !== delItem.id);
             state.len--;
             state.rem = true;
+            localStorage.setItem("wishStore", JSON.stringify(state.items));
             // || given to allow items of same size diff id & same id diff size
         },
         remAlert(state){

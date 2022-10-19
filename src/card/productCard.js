@@ -11,6 +11,7 @@ import classes from './productCard.module.css';
 
 function ProductCard(props) {
     const loginSub = useSelector((state) => state.login.loggedin);
+    const userSub = useSelector((state) => state.login.userData);
     let navigate = useNavigate();
 
     function routeChange(){ 
@@ -19,6 +20,21 @@ function ProductCard(props) {
     }
 
     const dispatch = useDispatch();
+
+    //post wish data mongodb
+    async function postWishData(email, wish){
+
+        const res = await fetch("/api/user/history-create", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, wish })
+        });
+    
+        await res.json();
+
+    }
 
     const [addWish, setAddWish] = useState(false);
     function wishHandler(event){
@@ -45,6 +61,12 @@ function ProductCard(props) {
             mrp: props.mrp,
             discount: props.discount,
         }));
+
+        //store wish in mongodb
+        const email = userSub.email;
+        const wish = JSON.parse(localStorage.getItem("wishStore"));
+
+        postWishData(email, wish);
 
         return; 
     }

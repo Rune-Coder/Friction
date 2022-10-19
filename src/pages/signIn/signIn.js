@@ -69,9 +69,9 @@ function SignIn(props){
 
             setErrMsg({ ...errMsg, verifyCredentials: "ok"});
             setLoggedin(true);
-            setTimeout(function(){ setLoggedin(false);}, 3000);
+            setTimeout(function(){ setLoggedin(false);
+                window.location.reload(true);}, 3000);
             setTimeout(function(){ 
-                window.location.reload();
                 navigate(`/`, { replace: true });
             }, 4000)
         }

@@ -8,6 +8,18 @@
     color: #EB1D36;
     font-size: 0.8rem;
 }
+.fixed{
+    background-color: #CFD2CF;
+    border: 0.063rem solid #cfd2cfaf;
+    border-radius: 0.2rem;
+    color: #576F72;
+    font-size: 0.85rem;
+    height: 3rem;
+    padding: 0.9rem 1rem 0 1rem;
+    outline: none;
+    user-select: none;
+    width: 25rem;
+}
 .formLabel{
     color: #576F72;
     cursor: text;
@@ -54,7 +66,7 @@
     top: -0.65rem;
 }
 @media screen and (max-width: 1000px){
-    .con, .details input, .save{
+    .con, .details input, .details .fixed, .save{
         width: 100%;
     }
 }

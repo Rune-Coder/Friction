@@ -14,6 +14,7 @@ const loginSlice = createSlice({
         login(state, action){
             localStorage.removeItem("products");
             localStorage.removeItem("billStore");
+            localStorage.removeItem("wishStore");
             const user = action.payload;
             state.token = user.token;
             state.userData = {
@@ -34,6 +35,7 @@ const loginSlice = createSlice({
             RemoveCookie("token");
             localStorage.removeItem("products");
             localStorage.removeItem("billStore");
+            localStorage.removeItem("wishStore");
         },
         loginVerify(state, action){
             const user = action.payload;

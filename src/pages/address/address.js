@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-import { useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import CheckoutMenu from '../cart/checkoutMenu';
 import ProductBillCard from '../../card/productBillCard';
@@ -8,7 +8,21 @@ import AddressForm from './addressForm';
 import classes from './address.module.css';
 
 function Address(props){
-    const location = useLocation();
+    let navigate = useNavigate();
+
+    var bill;
+    if(localStorage.getItem("billStore")){
+        bill = JSON.parse(localStorage.getItem("billStore"));
+        if(bill.tmrp === 0)
+            navigate(`/`, { replace: true });
+    }
+    else{
+        navigate(`/`, { replace: true });
+    }
+
+    useEffect(() => {
+        document.title = 'ADDRESS';
+    });
 
     return(
         <div>
@@ -20,11 +34,11 @@ function Address(props){
                     <AddressForm />
                 </div>
                 <ProductBillCard 
-                    tmrp = {location.state.tmrp} 
-                    tdis = {location.state.tdis} 
-                    tdelfee = {location.state.tdelfee} 
-                    amount = {location.state.amount} 
-                    itemQty = {location.state.itemQty}
+                    tmrp = {bill[0].tmrp} 
+                    tdis = {bill[0].tdis} 
+                    tdelfee = {bill[0].tdelfee} 
+                    amount = {bill[0].amount} 
+                    itemQty = {bill[0].len}
                     value = {"info"}
                 />
             </div>
