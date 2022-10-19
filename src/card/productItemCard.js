@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import TrashIcon from '../icons/trashIcon';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../store/cartStore';
 
 import classes from './productItemCard.module.css';
@@ -9,6 +9,23 @@ import AlertCard from './alertCard';
 
 function ProductItemCard(props){
     const dispatch = useDispatch();
+    const userSub = useSelector((state) => state.login.userData);
+
+    //post cart data mongodb
+    async function postData(email, cart, bill){
+
+        const res = await fetch("/api/user/history-create", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, cart, bill })
+        });
+    
+        await res.json();
+
+    }
+
     const [rem, setRem] = useState(false);
     function remHandler(event){
         if(rem === true)
@@ -32,6 +49,13 @@ function ProductItemCard(props){
             id: props.id,
             sz: props.size,
         }));
+
+        //store cart in mongodb
+        const email = userSub.email;
+        const cart = JSON.parse(localStorage.getItem("products"));
+        const bill = JSON.parse(localStorage.getItem("billStore"));
+
+        postData(email, cart, bill);
     }
     function qtyHandler(event){
         dispatch(cartActions.open({

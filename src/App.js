@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
 
 import { UserData } from './connect/userData';
+import { UserHistory } from './connect/userHistory';
 
 import { GetCookie } from './hooks/cookies';
 import Layout from './layout/layout';
@@ -24,6 +25,9 @@ function App() {
 
   //get user data
   const loginSub = UserData(GetCookie("token")); 
+
+  //get user history
+  UserHistory(GetCookie("token"));
 
   return (
     <Layout>

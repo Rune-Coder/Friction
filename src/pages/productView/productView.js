@@ -15,7 +15,9 @@ import loader from '../../image/sectionLoader.gif';
 
 function ProductView(props) {
 
+    //login authenticate
     const loginSub = useSelector((state) => state.login.loggedin);
+    const userSub = useSelector((state) => state.login.userData);
     let navigate = useNavigate();
     
     const {prdct, pid} = useParams();
@@ -33,7 +35,8 @@ function ProductView(props) {
     const [products, setProducts] = useState({});
     
     const dispatch = useDispatch();
-
+    
+    //fetch products data
     function getData(){
         fetch(`/api/products/${pid}`, {mode: 'cors'})
         .then((response) => {
@@ -46,6 +49,21 @@ function ProductView(props) {
     useEffect(() =>{
         getData();
     }, []);
+
+    //post cart data mongodb
+    async function postData(email, cart, bill){
+
+        const res = await fetch("/api/user/history-create", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, cart, bill })
+        });
+    
+        await res.json();
+
+    }
 
     if(products){
 
@@ -79,6 +97,8 @@ function ProductView(props) {
         setShowToast("wishlist");
         setTimeout(function(){ setShowToast("false"); }, 3000);
 
+        
+
         return;
     }
 
@@ -107,6 +127,13 @@ function ProductView(props) {
 
         setShowToast("bag");
         setTimeout(function(){ setShowToast("false"); }, 3000);
+
+        //store cart in mongodb
+        const email = userSub.email;
+        const cart = JSON.parse(localStorage.getItem("products"));
+        const bill = JSON.parse(localStorage.getItem("billStore"));
+
+        postData(email, cart, bill);
 
         return;
     }

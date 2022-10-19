@@ -117,7 +117,7 @@ userRoute.post("/history-get",
             return res.status(202).json({ 
                 email: user.email,
                 cart: user.cart,
-                bill: user.mobile,
+                bill: user.bill,
                 wish: user.wish,
                 address: user.address
             });

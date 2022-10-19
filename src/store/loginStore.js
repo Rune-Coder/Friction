@@ -12,6 +12,8 @@ const loginSlice = createSlice({
     initialState: initialLoginState,
     reducers: {
         login(state, action){
+            localStorage.removeItem("products");
+            localStorage.removeItem("billStore");
             const user = action.payload;
             state.token = user.token;
             state.userData = {
@@ -24,14 +26,14 @@ const loginSlice = createSlice({
             };
             state.loggedin = true;
             SetCookie("token", user.token);
-            localStorage.removeItem("products");
-            localStorage.removeItem("billStore");
         },
         logout(state){
             state.token = "";
             state.userData = {};
             state.loggedin = false;
             RemoveCookie("token");
+            localStorage.removeItem("products");
+            localStorage.removeItem("billStore");
         },
         loginVerify(state, action){
             const user = action.payload;

@@ -9,8 +9,24 @@ import classes from './alertCard.module.css';
 function AlertCard(props){
     const dispatch = useDispatch();
     const alertItems = useSelector((state) => state.cart.alertDetails);
+    const userSub = useSelector((state) => state.login.userData);
 
     const [value, setValue] = useState(alertItems[0].value.toString());
+
+    //post cart data mongodb
+    async function postData(email, cart, bill){
+
+        const res = await fetch("/api/user/history-create", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, cart, bill })
+        });
+    
+        await res.json();
+
+    }
 
     function closeHandler(event){
         dispatch(cartActions.open({
@@ -31,6 +47,13 @@ function AlertCard(props){
             sz: alertItems[0].sz,
             value: value,
         }));
+
+        //store cart in mongodb
+        const email = userSub.email;
+        const cart = JSON.parse(localStorage.getItem("products"));
+        const bill = JSON.parse(localStorage.getItem("billStore"));
+
+        postData(email, cart, bill);
     }
     function closeRem(event){
         props.confirm(0);

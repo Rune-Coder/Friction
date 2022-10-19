@@ -42,6 +42,8 @@ function UserData(token){
         loggedin: loggedin
     }));
     
+    console.log(user);
+
     return loggedin;
 }
 

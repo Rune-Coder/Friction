@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { wishActions } from '../store/wishStore';
 import { cartActions } from '../store/cartStore';
 
@@ -11,7 +11,24 @@ import CloseIcon from '../icons/closeIcon';
 import classes from './wishCard.module.css';
 
 function WishCard(props) {
+    const userSub = useSelector((state) => state.login.userData);
+
     const [size, setSize] = useState(false);
+
+    //post cart data mongodb
+    async function postData(email, cart, bill){
+
+        const res = await fetch("/api/user/history-create", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, cart, bill })
+        });
+    
+        await res.json();
+
+    }
 
     let navigate = useNavigate();
     function routeChange(){ 
@@ -37,6 +54,13 @@ function WishCard(props) {
             sz: size,
             delfee: 0,
         }));
+
+        //store cart in mongodb
+        const email = userSub.email;
+        const cart = JSON.parse(localStorage.getItem("products"));
+        const bill = JSON.parse(localStorage.getItem("billStore"));
+
+        postData(email, cart, bill);
     
         remItem();
         return;
