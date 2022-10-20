@@ -5,6 +5,7 @@ import User from '../models/userModel.js';
 import generateToken from '../util/generateToken.js';
 import protect from '../middleware/auth.js';
 import UserHistory from '../models/userHistoryModel.js';
+import fetch from "node-fetch";
 
 
 const userRoute = express.Router();
@@ -127,6 +128,17 @@ userRoute.post("/history-get",
         }
     })
 );
+
+//pin code
+userRoute.get("/getPinData/:pin", async (req, res) => {
+    const fetchOptions = {
+        method: 'GET'
+    }
+    const pin = req.params.pin;
+    const response = await fetch('http://www.postalpincode.in/api/pincode/'+pin, fetchOptions);
+    const jsonResponse = await response.json();
+    res.json(jsonResponse);
+});
 
 
 export default userRoute;

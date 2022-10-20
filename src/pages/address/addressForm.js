@@ -11,6 +11,8 @@ function AddressForm(props){
     const [house, setHouse] = useState(" ");
     const [town, setTown] = useState(" ");
     const [landmark, setLandmark] = useState(" ");
+    const [city, setCity] = useState(" ");
+    const [state, setState] = useState(" ");
     const [errMsg, setErrMsg] = useState(msg);
 
     function addressSave(event){  
@@ -19,7 +21,7 @@ function AddressForm(props){
         if(errMsg.mobNo !== "ok" || errMsg.pinCode !== "ok")
             return;
         
-        console.log(name, mob, pin, house, town, landmark);
+        console.log(name +" "+ mob+" "+ pin +" "+ house +" "+ town+" "+ landmark +" "+ city +" "+ state);
         
         
     }
@@ -28,46 +30,56 @@ function AddressForm(props){
         setName(event.target.value);
     }
     function mobHandler(event){
-        setMob(event.target.value);  
+        const contact = event.target.value;
+        if(contact === ""){
+            setErrMsg({ ...errMsg, mobNo: "This is a mandatory field"});
+            return;
+        }
+
+        setMob(contact);  
         
-        if(mob.length < 10)
+        if(contact.length < 10)
             setErrMsg({ ...errMsg, mobNo: "Minimum length is 10"});
-        else if(/^\d+$/.test(mob) === false || mob.charAt(0) < 6)
+        else if(/^\d+$/.test(contact) === false || contact.charAt(0) < 6)
             setErrMsg({ ...errMsg, mobNo: "Please enter a valid 10 digit mobile number"});
         else
             setErrMsg({ ...errMsg, mobNo: "ok"});
     }
     async function pinHandler(event){
         const code = event.target.value;
+        if(code === ""){
+            setErrMsg({ ...errMsg, pinCode: "This is a mandatory field"});
+            return;
+        }
+            
         setPin(code); 
 
         let data;
 
         try{
-            const res = await fetch(`https://cors-anywhere.herokuapp.com/http://www.postalpincode.in/api/pincode/${code}`, {
-                   
+            const res = await fetch(`/api/user/getPinData/${code}`, {
                 method: "GET",
                 headers:{
                     "Content-Type": "application/json"
                 },
             });
-
             data = await res.json();
-            console.log(data);
+            
         }
         catch(error){
             console.log(error);
             return;
         }
 
-        if(data.Status === "Error"){
+        if(data.Status === "Error" || data.PostOffice === null){
             setErrMsg({ ...errMsg, pinCode: "Invalid pincode"});
             return;
         }
         
         setErrMsg({ ...errMsg, pinCode: "ok"});
 
-        console.log(data.PostOffice);
+        setCity(data.PostOffice[0].Taluk);
+        setState(data.PostOffice[0].State);
 
         
     }
@@ -105,7 +117,7 @@ function AddressForm(props){
                         maxlength="10" 
                         required 
                         className={classes.textBox}
-                        onChange = {mobHandler}>
+                        onBlur = {mobHandler}>
                     </input>
                     <label className={classes.formLabel}>
                         Mobile No*
@@ -165,10 +177,12 @@ function AddressForm(props){
                     </label>
                 </div>
                 <div className={classes.details}>
-                    <div className={classes.fixed}>City/District*</div>
+                    {city === " " && <div className={classes.fixed}>City/District*</div>}
+                    {city !== " " && <div className={classes.fixed}>{city}</div>}
                 </div>
                 <div className={classes.details}>
-                    <div className={classes.fixed}>State*</div>
+                    {state === " " && <div className={classes.fixed}>State*</div>}
+                    {state !== " " && <div className={classes.fixed}>{state}</div>}
                 </div>
             </div>
             <button type= "submit" value="Submit" className={classes.save}>ADD ADDRESS</button>
