@@ -18,6 +18,7 @@ const Orders = React.lazy(() => import('./pages/orders/orders'));
 const WishList = React.lazy(() => import('./pages/wishList/wishList'));
 const Cart = React.lazy(() => import('./pages/cart/cart'));
 const Address = React.lazy(() => import('./pages/address/address'));
+const Payment = React.lazy(() => import('./pages/payment/payment'));
 const ProductView = React.lazy(() => import('./pages/productView/productView'));
 const NotFound = React.lazy(() => import('./pages/notFound/notFound'));
 
@@ -58,6 +59,9 @@ function App() {
 
           {loginSub && <Route path = "/address" element = {<Address />} />}
           {!loginSub && <Route path = "/address" element={<Navigate replace to="/login" />} />}
+
+          <Route path = "/payment" element = {<Payment />} />
+
 
           <Route path = "*" element = {<NotFound />} />
         </Routes>

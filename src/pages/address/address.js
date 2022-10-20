@@ -1,14 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import CheckoutMenu from '../cart/checkoutMenu';
 import ProductBillCard from '../../card/productBillCard';
 import AddressForm from './addressForm';
 import classes from './address.module.css';
+import AddressSavedCard from '../../card/addressSavedCard';
 
 function Address(props){
+
+    const userSub = useSelector((state) => state.login.userData);
     let navigate = useNavigate();
+    const [address, setAddress] = useState([]);
+
+    useEffect(() => {
+        document.title = 'ADDRESS';
+    });
 
     var bill;
     if(localStorage.getItem("billStore")){
@@ -20,9 +29,43 @@ function Address(props){
         navigate(`/`, { replace: true });
     }
 
-    useEffect(() => {
-        document.title = 'ADDRESS';
-    });
+
+    useEffect(() =>{
+
+        //post cart data mongodb
+        async function getAddress(email){
+
+            const res = await fetch("/api/user/history-get", {
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email })
+            });
+        
+            const data = await res.json();
+                
+            if(res.ok && data.address)
+                setAddress(data.address);
+
+        }
+        getAddress(userSub.email);
+
+    }, [userSub.email]);
+
+    const addressList = address.map((add) => (
+        <AddressSavedCard 
+            key = {add._id} 
+            name = {add.name}
+            mobile = {add.mobile}
+            house = {add.house} 
+            town = {add.town} 
+            landmark = {add.landmark} 
+            city = {add.city} 
+            state = {add.state} 
+            pin = {add.pin} 
+        />
+    ));
 
     return(
         <div>
@@ -30,6 +73,7 @@ function Address(props){
                 <CheckoutMenu value = "add" />
             </div>
             <div className={classes.address}>
+                <div className={classes.savedAdd}>{addressList}</div>
                 <div className={classes.form}>
                     <AddressForm />
                 </div>

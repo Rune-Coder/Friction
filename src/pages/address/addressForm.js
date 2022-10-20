@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import { useSelector } from 'react-redux';
 import classes from './addressForm.module.css';
 
 function AddressForm(props){
+
+    const userSub = useSelector((state) => state.login.userData);
     const msg = {mobNo: "ok", pinCode: "ok"};
 
     const [name, setName] = useState(" ");
@@ -14,6 +17,45 @@ function AddressForm(props){
     const [city, setCity] = useState(" ");
     const [state, setState] = useState(" ");
     const [errMsg, setErrMsg] = useState(msg);
+    const [addr, setAddr] = useState([]);
+
+    useEffect(() =>{
+
+        //post cart data mongodb
+        async function getAddress(email){
+
+            const res = await fetch("/api/user/history-get", {
+                method: "POST",
+                headers:{
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ email })
+            });
+        
+            const data = await res.json();
+                
+            if(res.ok && data.address)
+                setAddr(data.address);
+
+        }
+        getAddress(userSub.email);
+
+    }, [userSub.email]);
+
+    //post address
+    async function postAddress(email, address){
+
+        const res = await fetch("/api/user/history-create", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, address })
+        });
+    
+        await res.json();
+
+    }
 
     function addressSave(event){  
         event.preventDefault();
@@ -22,7 +64,24 @@ function AddressForm(props){
             return;
         
         console.log(name +" "+ mob+" "+ pin +" "+ house +" "+ town+" "+ landmark +" "+ city +" "+ state);
-        
+
+        let newAddress = addr.slice();
+
+        const id = "a"+newAddress.length;
+        newAddress.push({
+            _id: id,
+            name : name,
+            mobile : mob,
+            house : house ,
+            town : town,
+            landmark: landmark,
+            city : city,
+            state : state,
+            pin : pin
+        });
+
+        postAddress(userSub.email, newAddress);
+
         
     }
 

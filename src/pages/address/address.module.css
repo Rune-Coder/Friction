@@ -9,10 +9,13 @@
 }
 .form{
     padding-bottom: 1rem;
-}
+} 
 @media screen and (max-width: 1000px){
     .address{
         padding: 3rem 0.5rem 0 0.5rem;
+        width: 100%;
+    }
+    .savedAdd{
         width: 100%;
     }
     .form{

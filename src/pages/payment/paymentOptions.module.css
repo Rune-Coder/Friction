@@ -1,0 +1,16 @@
+.paymentOps{
+    background-color: white;
+    border-radius: 0.5rem;
+    color: black;
+    font-size: 1rem;
+    font-style: 'sans-serif';
+    height: auto;
+    padding: 1rem 1rem 1rem 1rem;
+    text-align: center;
+    width: 25rem;
+}
+@media screen and (max-width: 800px){
+    .paymentOps{
+        width: 100%;
+    }
+}
