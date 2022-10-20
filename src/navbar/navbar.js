@@ -18,6 +18,15 @@ import ShoeMenuSmall from './shoeMenuSmall';
 function Navbar(props) {
   let navigate = useNavigate(); 
   const itemFreq = useSelector((state) => state.cart.bill);
+
+  var len = 0;
+  if(itemFreq.length !== 0)
+    len = itemFreq[0].len;
+
+  if(len === 0){
+    const bill = [{ tmrp: 0, tdis: 0, tdelfee: 0, amount: 0, len: 0 }];
+    localStorage.setItem("billStore", JSON.stringify(bill));
+  }
   
   function toHome(){ 
     let path = `/home`; 
@@ -61,7 +70,7 @@ function Navbar(props) {
 
       <div className={classes.cart} onClick={toCart}>
         <span className={classes.navIcons}><CartIcon /></span>
-        {itemFreq[0].len !== 0 && <span className={classes.notify}>{itemFreq[0].len}</span>}
+        {len !== 0 && <span className={classes.notify}>{len}</span>}
       </div>
 
       <SearchBox />
@@ -83,7 +92,7 @@ function Navbar(props) {
           </li>
           <li className={classes.cartMenu} onClick={toCart}>
             <span className={classes.navIcons}><CartIcon /></span>
-            {itemFreq[0].len !== 0 && <span className={classes.notify}>{itemFreq[0].len}</span>}
+            {len !== 0 && <span className={classes.notify}>{len}</span>}
             Bag
           </li>
           

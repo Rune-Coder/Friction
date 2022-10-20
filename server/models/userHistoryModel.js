@@ -26,6 +26,11 @@ const userHistorySchema = mongoose.Schema({
         type: Array,
         required: true,
         default: []
+    },
+    orders:{
+        type: Array,
+        required: true,
+        default: []
     }
 
 });

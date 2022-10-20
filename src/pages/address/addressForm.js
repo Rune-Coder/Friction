@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { addressActions } from '../../store/addressStore';
 import classes from './addressForm.module.css';
 
 function AddressForm(props){
 
     const userSub = useSelector((state) => state.login.userData);
+    const dispatch = useDispatch();
+    let navigate = useNavigate();
+
     const msg = {mobNo: "ok", pinCode: "ok"};
 
     const [name, setName] = useState(" ");
@@ -21,7 +26,7 @@ function AddressForm(props){
 
     useEffect(() =>{
 
-        //post cart data mongodb
+        //get address data mongodb
         async function getAddress(email){
 
             const res = await fetch("/api/user/history-get", {
@@ -57,13 +62,15 @@ function AddressForm(props){
 
     }
 
+    function toPayment(){
+        navigate(`/payment`, { replace: true });
+    }
+
     function addressSave(event){  
         event.preventDefault();
 
         if(errMsg.mobNo !== "ok" || errMsg.pinCode !== "ok")
             return;
-        
-        console.log(name +" "+ mob+" "+ pin +" "+ house +" "+ town+" "+ landmark +" "+ city +" "+ state);
 
         let newAddress = addr.slice();
 
@@ -81,6 +88,19 @@ function AddressForm(props){
         });
 
         postAddress(userSub.email, newAddress);
+
+        dispatch(addressActions.addAddress({
+            name : name,
+            mobile : mob,
+            house : house ,
+            town : town,
+            landmark: landmark,
+            city : city,
+            state : state,
+            pin : pin
+        }));
+
+        toPayment();
 
         
     }

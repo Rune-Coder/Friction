@@ -35,7 +35,7 @@ function UserHistory(token){
     if(!loggedin)
         return;
     
-    //post cart data mongodb
+    //get cart data mongodb
     async function getCartData(email){
 
         const res = await fetch("/api/user/history-get", {
@@ -55,6 +55,10 @@ function UserHistory(token){
         if(data.cart && data.bill){
             localStorage.setItem("products", JSON.stringify(data.cart));
             localStorage.setItem("billStore", JSON.stringify(data.bill));
+            if(data.bill.length === 0){
+                const bill = [{ tmrp: 0, tdis: 0, tdelfee: 0, amount: 0, len: 0 }];
+                localStorage.setItem("billStore", JSON.stringify(bill));
+            }
         }
 
         if(data.wish){

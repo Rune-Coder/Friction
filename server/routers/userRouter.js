@@ -86,21 +86,21 @@ userRoute.get("/profile", protect,
 userRoute.post("/history-create",
     asyncHandler(async (req, res)=>{
 
-        const { email, cart, bill, wish, address } = req.body;
+        const { email, cart, bill, wish, address, orders } = req.body;
         const user = await UserHistory.findOne({ email: email });
 
         if(user){
             await UserHistory.updateOne(
                 { email },
                 {
-                    $set: { cart, bill, wish, address}
+                    $set: { cart, bill, wish, address, orders}
                 }
             );
 
             res.status(202).json({ message: "User history updated" });
         }
         else{
-            const newUserHistory = new UserHistory({ email, cart, bill, wish, address });
+            const newUserHistory = new UserHistory({ email, cart, bill, wish, address, orders });
             await newUserHistory.save();
             res.status(201).json({ message: "User history created" });
         }
@@ -120,7 +120,8 @@ userRoute.post("/history-get",
                 cart: user.cart,
                 bill: user.bill,
                 wish: user.wish,
-                address: user.address
+                address: user.address,
+                orders: user.orders
             });
         }
         else{
