@@ -29,6 +29,11 @@ function ProfileAccordian(props) {
         navigate(path);
     }
 
+    function toOrders(){ 
+        let path = `/orders`; 
+        navigate(path);
+    }
+
     return(
         <ul className={classes.profileList}>
             {!loginSub && <p className={classes.head}>Hello User</p>}
@@ -40,7 +45,7 @@ function ProfileAccordian(props) {
             
             {loginSub && <li onClick={toProfile}>Edit Profile</li>}
 
-            <li>My Orders</li>
+            <li onClick={toOrders}>My Orders</li>
             {loginSub && <li onClick={toLogout}>Log Out</li>}
         </ul>
     );

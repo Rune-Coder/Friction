@@ -76,6 +76,7 @@ function PaymentOptions(props){
 
             var currOrder = orders.slice();
             currOrder.push({
+                order_id: "",
                 status: "processing",
                 bill: bill,
                 products: products,

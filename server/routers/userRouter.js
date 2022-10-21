@@ -6,6 +6,7 @@ import generateToken from '../util/generateToken.js';
 import protect from '../middleware/auth.js';
 import UserHistory from '../models/userHistoryModel.js';
 import fetch from "node-fetch";
+import  uuid  from 'uuid4';
 
 
 const userRoute = express.Router();
@@ -89,11 +90,17 @@ userRoute.post("/history-create",
         const { email, cart, bill, wish, address, orders } = req.body;
         const user = await UserHistory.findOne({ email: email });
 
+        if(orders && orders.length > 0){
+            const currOrder = orders.pop();
+            currOrder.order_id = uuid();
+            orders.push(currOrder);
+        }
+
         if(user){
             await UserHistory.updateOne(
                 { email },
                 {
-                    $set: { cart, bill, wish, address, orders}
+                    $set: { cart, bill, wish, address, orders }
                 }
             );
 

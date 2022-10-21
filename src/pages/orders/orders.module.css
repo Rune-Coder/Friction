@@ -1,0 +1,17 @@
+.orders{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 7.5rem;
+    padding: 1rem 1rem 1rem 1rem;
+    width: 100%;
+}
+.ordersCard{
+    margin-bottom: 1rem;
+}
+@media screen and (max-width: 1000px){
+    .ordersCard{
+        width: 100%;
+    }
+}
