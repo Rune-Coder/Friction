@@ -1,0 +1,26 @@
+.head{
+    display: flex;
+    flex-direction: row;
+    font-size: 1.2rem;
+}
+.profileAccordian{
+    color: black;
+    list-style: none;
+}
+.profileAccordian li{
+    margin-bottom: 1rem;
+}
+.profileAccordian li:hover{
+    color: #446A46;
+}
+.profileIcon{
+    display: inherit;
+    fill: #446A46;
+    height: 1.5rem;
+    width: 1.5rem;
+}
+.profileList{
+    color: black;
+    list-style: none;
+    padding: 0;
+}

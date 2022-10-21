@@ -51,8 +51,8 @@ function App() {
           {loginSub && <Route path = "/orders" element = {<Orders />} />}
           {!loginSub && <Route path = "/orders" element={<Navigate replace to="/login" />} />}
 
-          <Route path = "/orders/:oid" element = {<OrderView />} />
-
+          {loginSub && <Route path = "/orders/:oid" element = {<OrderView />} />}
+          {!loginSub && <Route path = "/orders/:oid" element={<Navigate replace to="/login" />} />}
 
 
           <Route path = "/shoes/:prdct/:pid/*" element = {<ProductView />} />

@@ -79,8 +79,16 @@ function ProductView(props) {
         await res.json();
 
     }
+    if(products.message){
+        navigate('/none', {required: true});
+        return(
+            <div className={classes.loading}>
+                 <img src = {loader} alt = "Loading..." className={classes.loaderImg}></img>
+            </div>
+        );
+    }
 
-    if(products){
+    if(products !== {}){
 
     function sizeHandler(event){
         setSize(event.target.innerText);

@@ -13,6 +13,7 @@ import ProfileAccordian from './profileAccordian';
 import SearchBox from './searchBox';
 import ShoeMenu from '../shoeMenu/shoeMenu';
 import ShoeMenuSmall from './shoeMenuSmall';
+import ProfileAccordianSmall from './profileAccordianSmall';
 
 
 function Navbar(props) {
@@ -80,12 +81,13 @@ function Navbar(props) {
       <ul className = {`${classes.navlist} ${!closeMenu && classes.menubar}  ${closeMenu && ''}`}>
           
           <li className={classes.close} onClick={menuCloseHandler}><span className={classes.menuIcons}><CloseIcon /></span></li>
-          <li onMouseOver = {profileHandler} onMouseOut = {profileHandler}><span className={classes.navIcons}><ProfileIcon /></span>
+          {closeMenu && <li onMouseOver = {profileHandler} onMouseOut = {profileHandler}><span className={classes.navIcons}><ProfileIcon /></span>
             Profile
             <div className = {`${classes.profileOps} ${addProfOps && classes.activeTypes}  ${!addProfOps && ''}`}>
               <ProfileAccordian />
             </div>
-          </li>
+          </li>}
+          {!closeMenu && <li><ProfileAccordianSmall close = {menuCloseHandler} /></li>}
           <li onClick={toWishList}>
             <span className={classes.navIcons}><HeartIcon /></span>
             Wishlist

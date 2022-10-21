@@ -53,6 +53,7 @@ function Orders(props){
             {orders.length === 0 && <div><OrdersEmpty /></div>}
 
             {orders.length > 0 && <div className={classes.ordersCard}>
+                <p className={classes.head}>Your Orders</p>
                 {orderList}
             </div>}
         </div>

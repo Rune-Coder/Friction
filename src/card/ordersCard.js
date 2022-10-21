@@ -1,9 +1,13 @@
 import React from 'react';
 import OrderList from '../pages/orders/orderList';
 
+import { useNavigate } from 'react-router-dom';
+
 import classes from './ordersCard.module.css';
 
 function OrdersCard(props){
+    let navigate = useNavigate(); 
+
     const productList = props.products.map((order) => (
         <OrderList 
             key = {order.product} 
@@ -11,8 +15,13 @@ function OrdersCard(props){
             product = {order.product} 
         />
     ));
+
+    function toOrderView(event){
+        let path = `/orders/${props.id}`; 
+        navigate(path);
+    }
     return(
-        <div className={classes.layout}>
+        <div className={classes.layout} onClick = {toOrderView}>
             <div className={classes.head}>
                 <ul className={classes.orderDetails}>
                     <li>
