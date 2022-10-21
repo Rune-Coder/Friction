@@ -34,6 +34,7 @@ function Orders(props){
 
     }, [userSub.email]);
 
+    orders.reverse();
     const orderList = orders.map((order) => (
         <OrdersCard 
             key = {order.order_id} 

@@ -4,8 +4,8 @@ import React from 'react';
 function OrderList(props){
     return(
         <li>
-            <div>Boots</div>
-            <div>Nike</div>
+            <div>{props.product}</div>
+            <div>{props.company}</div>
         </li>
     );
 }

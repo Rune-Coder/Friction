@@ -4,6 +4,13 @@ import OrderList from '../pages/orders/orderList';
 import classes from './ordersCard.module.css';
 
 function OrdersCard(props){
+    const productList = props.products.map((order) => (
+        <OrderList 
+            key = {order.product} 
+            company = {order.company}
+            product = {order.product} 
+        />
+    ));
     return(
         <div className={classes.layout}>
             <div className={classes.head}>
@@ -24,8 +31,7 @@ function OrdersCard(props){
             </div>
             <div className={classes.orderBody}>
                 <ul className={classes.cartDetails}>
-                    <OrderList />
-                    <OrderList />
+                    {productList}
                 </ul>
             </div>
         </div>
