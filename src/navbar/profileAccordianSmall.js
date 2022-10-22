@@ -19,6 +19,7 @@ function ProfileAccordianSmall(props) {
     const dispatch = useDispatch();
 
     function toLogin(){ 
+        props.close(true);
         let path = `/login`; 
         navigate(path);
     }

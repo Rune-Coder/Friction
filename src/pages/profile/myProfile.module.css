@@ -28,6 +28,9 @@
 }
 @media screen and (max-width: 1000px){
     .accDetails{
-        grid-template-columns: 25ch 25ch;
+        grid-template-columns: 20ch 20ch;
+    }
+    .save{
+        width: 100%;
     }
 }
