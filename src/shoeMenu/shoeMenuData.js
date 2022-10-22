@@ -6,13 +6,13 @@ import classes from './shoeMenuData.module.css';
 
 //MEN SHOES
 
-function CasualsData(){
+function CasualsData(props){
     let navigate = useNavigate();
 
     return(
-        <ul className={classes.shoeList}>
-            <li onClick = {() => navigate(`/types/men-sneakers`)}>Sneakers</li>
-            <li onClick = {() => navigate(`/types/men-boots`)}>Boots</li>
+        <ul className = {`${classes.shoeList} ${props.value && classes.shoeListSmall}  ${!props.value && ''}`} >
+            <li onClick = {() => {navigate(`/types/men-sneakers`); window.location.reload();}}>Sneakers</li>
+            <li onClick = {() => {navigate(`/types/men-boots`); window.location.reload();}}>Boots</li>
             <li>Loafers</li>
             <li>Boats</li>
             <li>Driving</li>
@@ -21,9 +21,9 @@ function CasualsData(){
     );
 }
 
-function SportsData(){
+function SportsData(props){
     return(
-        <ul className={classes.shoeList}>
+        <ul className = {`${classes.shoeList} ${props.value && classes.shoeListSmall}  ${!props.value && ''}`} >
             <li>Walking</li>
             <li>Running</li>
         </ul>

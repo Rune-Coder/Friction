@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
 import classes from './shoeMenuSmall.module.css';
+import {CasualsData, SportsData} from '../shoeMenu/shoeMenuData';
+import AngleRight from '../icons/angleRight';
+import AngleDown from '../icons/angleDown';
 
 function ShoeMenuSmall(props){
 
@@ -86,7 +89,10 @@ function ShoeMenuSmall(props){
 
                 <div className={classes.headItem} onClick={dropMen}>
                     <div>Men</div>
-                    <div>></div>
+                    <div>
+                        {!dropMenuMen && <span className={classes.angleRight}><AngleRight /></span>}
+                        {dropMenuMen && <span className={classes.angleDown}><AngleDown /></span>}
+                    </div>
                 </div>
 
                 {dropMenuMen && 
@@ -95,27 +101,27 @@ function ShoeMenuSmall(props){
                         <li className={classes.subHeadItem}>
 
                             <div className={classes.headItem} onClick={dropMenTypes1}>
-                                <div>Men</div>
-                                <div>></div>
+                                <div>Casual Wear</div>
+                                <div>
+                                    {!dropMenuMenTypes1 && <span className={classes.angleRight}><AngleRight /></span>}
+                                    {dropMenuMenTypes1 && <span className={classes.angleDown}><AngleDown /></span>}
+                                </div>
                             </div>
 
-                            {dropMenuMenTypes1 && <ul className={classes.subList}>
-                                <li>Boots</li>
-                                <li>Boots</li>
-                            </ul>}
+                            {dropMenuMenTypes1 && <div className={classes.subList}><CasualsData value= {true} /></div>}
 
                         </li>
                         <li className={classes.subHeadItem}>
                             
                             <div className={classes.headItem} onClick={dropMenTypes2}>
-                                <div>Men</div>
-                                <div>></div>
+                                <div>Sports Wear</div>
+                                <div>
+                                    {!dropMenuMenTypes2 && <span className={classes.angleRight}><AngleRight /></span>}
+                                    {dropMenuMenTypes2 && <span className={classes.angleDown}><AngleDown /></span>}
+                                </div>
                             </div>
 
-                            {dropMenuMenTypes2 && <ul className={classes.subList}>
-                                <li>Boots</li>
-                                <li>Boots</li>
-                            </ul>}
+                            {dropMenuMenTypes2 && <div className={classes.subList}><SportsData value= {true} /></div>}
 
                         </li>
                     </ul>

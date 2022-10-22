@@ -1,15 +1,19 @@
 .angle{
     display: inherit;
-    fill: black;
+    fill: white;
     height: 1rem;
     width: 1rem;
 }
 .head{
     align-items: center;
+    background-color: #446A46;
+    color: white;
     display: flex;
     flex-direction: row;
     font-size: 1.2rem;
     justify-content: space-between;
+    margin: -1rem 0 0 -1rem;
+    padding: 1rem 1rem 1rem 2rem;
 }
 .profileAccordian{
     color: black;
@@ -27,7 +31,7 @@
 }
 .profileIcon{
     display: inherit;
-    fill: #446A46;
+    fill: white;
     height: 1.5rem;
     width: 1.5rem;
 }
@@ -36,6 +40,6 @@
     cursor: pointer;
     list-style: none;
     margin-top: 1rem;
-    padding: 0 1rem 0 1rem;
+    padding: 0;
     width: 100%;
 }

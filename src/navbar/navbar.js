@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 import classes from './navbar.module.css';
 import BurgerIcon from '../icons/burgerIcon';
-import CloseIcon from '../icons/closeIcon';
 import CartIcon from '../icons/cartIcon';
 import HeartIcon from '../icons/heartIcon';
 import ProfileIcon from '../icons/profileIcon';
@@ -47,6 +46,8 @@ function Navbar(props) {
 
   const [closeMenu, setMenuClose] = useState(true);
   const [addProfOps, setAddProfOps] = useState(false);
+  const [isDragged, setIsDragged] = useState(0);
+
   function menuOpenHandler(event){
     setMenuClose(false);
     return;
@@ -55,6 +56,20 @@ function Navbar(props) {
     setMenuClose(true);
     return;
   }
+
+  //only for mobile users
+  function menuEndDragHandler(event){
+    const x = event.clientX;
+    if(isDragged - x >= 50){
+      setIsDragged(0);
+      menuCloseHandler();
+    }
+    return;
+  }
+  function menuDragStartHandler(event){
+    setIsDragged(event.clientX);
+  }//only for mobile users
+
   function profileHandler(event){
     if(addProfOps === true)
       setAddProfOps(false);
@@ -78,9 +93,8 @@ function Navbar(props) {
       
       <div className = {`${!closeMenu && classes.backdrop}  ${closeMenu && ''}`} onClick={menuCloseHandler}/>
       
-      <ul className = {`${classes.navlist} ${!closeMenu && classes.menubar}  ${closeMenu && ''}`}>
-          
-          <div className={classes.close} onClick={menuCloseHandler}><span className={classes.menuIcons}><CloseIcon /></span></div>
+      <ul className = {`${classes.navlist} ${!closeMenu && classes.menubar}  ${closeMenu && ''}`} 
+      onMouseDown={menuDragStartHandler} onMouseUp={menuEndDragHandler}>
 
           {closeMenu && <li onMouseOver = {profileHandler} onMouseOut = {profileHandler}>
             <span className={classes.navIcons}><ProfileIcon /></span>
