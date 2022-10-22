@@ -80,18 +80,22 @@ function Navbar(props) {
       
       <ul className = {`${classes.navlist} ${!closeMenu && classes.menubar}  ${closeMenu && ''}`}>
           
-          <li className={classes.close} onClick={menuCloseHandler}><span className={classes.menuIcons}><CloseIcon /></span></li>
-          {closeMenu && <li onMouseOver = {profileHandler} onMouseOut = {profileHandler}><span className={classes.navIcons}><ProfileIcon /></span>
+          <div className={classes.close} onClick={menuCloseHandler}><span className={classes.menuIcons}><CloseIcon /></span></div>
+
+          {closeMenu && <li onMouseOver = {profileHandler} onMouseOut = {profileHandler}>
+            <span className={classes.navIcons}><ProfileIcon /></span>
             Profile
             <div className = {`${classes.profileOps} ${addProfOps && classes.activeTypes}  ${!addProfOps && ''}`}>
               <ProfileAccordian />
             </div>
           </li>}
-          {!closeMenu && <li><ProfileAccordianSmall close = {menuCloseHandler} /></li>}
+          {!closeMenu && <ProfileAccordianSmall close = {menuCloseHandler} />}
+
           <li onClick={toWishList}>
             <span className={classes.navIcons}><HeartIcon /></span>
             Wishlist
           </li>
+
           <li className={classes.cartMenu} onClick={toCart}>
             <span className={classes.navIcons}><CartIcon /></span>
             {len !== 0 && <span className={classes.notify}>{len}</span>}

@@ -6,6 +6,8 @@ import { loginActions } from '../store/loginStore';
 
 import ProfileIcon from '../icons/profileIcon';
 import classes from './profileAccordianSmall.module.css';
+import AngleRight from '../icons/angleRight';
+import AngleDown from '../icons/angleDown';
 
 function ProfileAccordianSmall(props) {
 
@@ -48,12 +50,22 @@ function ProfileAccordianSmall(props) {
 
     return(
         <ul className={classes.profileList} onClick = {showAcc}>
-            {!loginSub && <p className={classes.head}>
-                <span className={classes.profileIcon}><ProfileIcon /></span>&nbsp;Hello&nbsp;User
-            </p>}
-            {loginSub && <p className={classes.head}>
-                <span className={classes.profileIcon}><ProfileIcon /></span>&nbsp;Hello&nbsp;{userSub.name.split(" ")[0]}
-            </p>}
+            {!loginSub && <li className={classes.head}>
+                <div className={classes.profileHeader}>
+                    <span className={classes.profileIcon}><ProfileIcon /></span>&nbsp;&nbsp;
+                    Hello&nbsp;User
+                </div>
+                {!showAccordian && <span className={classes.angle}><AngleRight /></span>}
+                {showAccordian && <span className={classes.angle}><AngleDown /></span>}
+            </li>}
+            {loginSub && <li className={classes.head}>
+                <div className={classes.profileHeader}>
+                    <span className={classes.profileIcon}><ProfileIcon /></span>&nbsp;&nbsp;
+                    Hello&nbsp;{userSub.name.split(" ")[0]}
+                </div>
+                {!showAccordian && <span className={classes.angle}><AngleRight /></span>}
+                {showAccordian && <span className={classes.angle}><AngleDown /></span>}
+            </li>}
 
             {showAccordian && <ul className={classes.profileAccordian}>
 
