@@ -63,6 +63,29 @@ userRoute.post("/login",
     })
 );
 
+// update profile
+userRoute.post("/update-profile",
+    asyncHandler(async (req, res)=>{
+
+        const { email, name, gender } = req.body;
+        const user = await User.findOne({ email: email });
+
+        if(user){
+            await UserHistory.updateOne(
+                { email },
+                {
+                    $set: { name, gender }
+                }
+            );
+
+            res.status(202).json({ message: "User profile updated" });
+        }
+        else{
+            res.status(402).json({ error: "User Invalid" });
+        }
+    })
+);
+
 // profile
 userRoute.get("/profile", protect,
     asyncHandler(async (req, res)=>{

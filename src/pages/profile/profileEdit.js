@@ -1,14 +1,66 @@
 import React, { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+import { GetCookie } from '../../hooks/cookies';
+import NotificationCard from '../../card/notificationCard';
+import preloader from '../../image/sectionLoader.gif';
 import classes from './profileEdit.module.css';
 
 function ProfileEdit(props){
 
     const [useName, setUseName] = useState(" ");
     const [useGen, setUseGen] = useState(" ");
+    const [user, setUser] = useState({});
+    const [updated, setUpdated] = useState(false);
+    const [loader, setLoader] = useState(false);
 
-    function loginHandler(event){
+    let navigate = useNavigate();
 
+    async function loginHandler(event){
+        if(useName.trim() === "" || useGen.trim() === "")
+            return;
+
+        setUpdated(true);
+
+        async function getData(token){
+
+            const res = await fetch(`/api/user/profile`, {
+                method: "GET",
+                headers:{
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        
+            const data = await res.json();
+            
+            if(res.ok)
+                setUser(data);
+            else
+                navigate(`/login`, { replace: true });  
+    
+        }
+
+        getData(GetCookie("token"));
+
+        if(user === {})
+            return;
+
+        const email = user.email;
+
+        const res = await fetch("/update-profile", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email: email, name: useName, gender: useGen  })
+        });
+    
+        await res.json();
+            
+        if(res.ok){
+            setUpdated(false);
+        }
+        
     }
     function nameHandler(event){
         setUseName(event.target.value);
