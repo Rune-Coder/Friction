@@ -43,7 +43,7 @@ function ProfileAccordian(props) {
 
             {!loginSub && <li onClick={toLogin}>Sign Up</li>}
             
-            {loginSub && <li onClick={toProfile}>Edit Profile</li>}
+            {loginSub && <li onClick={toProfile}>My Profile</li>}
 
             <li onClick={toOrders}>My Orders</li>
             {loginSub && <li onClick={toLogout}>Log Out</li>}

@@ -1,21 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
 
 import classes from './myProfile.module.css';
+import ProfileEdit from './profileEdit';
 
 function MyProfile(props){
 
     const loginSub = useSelector((state) => state.login.loggedin);
     const userSub = useSelector((state) => state.login.userData);
+    const [edit, setEdit] = useState(false);
 
     
     useEffect(() => {
         document.title = 'Profile';
     });
+
+    function toEdit(event){
+        if(edit)
+            setEdit(false);
+        else
+            setEdit(true);
+        return;
+    }
     return (
         <div className={classes.profile}>
-            <div>
+            {!edit && <div>
                 <p className={classes.head}>Profile Details</p>
                 <div className={classes.accDetails}>
                     <div>Full Name</div>
@@ -34,8 +44,9 @@ function MyProfile(props){
                     {loginSub && <div>{userSub.gender}</div>}
                     {!loginSub && <div>- not added -</div>}
                 </div>
-                <button type= "button" className={classes.save}>EDIT</button>
-            </div>
+                <button type= "button" onClick = {toEdit} className={classes.save}>EDIT</button>
+            </div>}
+            {edit && <ProfileEdit />}
         </div>
     );
 }

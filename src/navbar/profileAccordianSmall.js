@@ -70,8 +70,9 @@ function ProfileAccordianSmall(props) {
 
             {showAccordian && <ul className={classes.profileAccordian}>
 
+                {!loginSub && <p className={classes.subHead}>Sign up to access your Friction account</p>}
                 {!loginSub && <li onClick={toLogin}>Sign&nbsp;Up</li>}
-                {loginSub && <li onClick={toProfile}>Edit&nbsp;Profile</li>}
+                {loginSub && <li onClick={toProfile}>My&nbsp;Profile</li>}
 
                 <li onClick={toOrders}>My&nbsp;Orders</li>
                 {loginSub && <li onClick={toLogout}>Log&nbsp;Out</li>}
