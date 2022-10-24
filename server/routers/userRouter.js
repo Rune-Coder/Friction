@@ -7,7 +7,9 @@ import protect from '../middleware/auth.js';
 import UserHistory from '../models/userHistoryModel.js';
 import fetch from "node-fetch";
 import  uuid  from 'uuid4';
-
+import nodemailer from 'nodemailer';
+import {username, pass} from '../frictionData/cred.js';
+import otpGenerator from 'otp-generator';
 
 const userRoute = express.Router();
 
@@ -169,6 +171,34 @@ userRoute.get("/getPinData/:pin", async (req, res) => {
     const response = await fetch('http://www.postalpincode.in/api/pincode/'+pin, fetchOptions);
     const jsonResponse = await response.json();
     res.json(jsonResponse);
+});
+
+//send otp to email and api
+userRoute.post("/send-otp", async (req, res) => {
+    const { email } = req.body;
+    const subject = "OTP";
+    const otp = otpGenerator.generate(6, { upperCaseAlphabets: false, lowerCaseAlphabets: false, specialChars: false });
+    const msg = "Your OTP for your Friction account is "+ otp + " and is valid for 30 mins. Please DO NOT share this OTP with anyone to keep your account safe. Thanks, with regards, Friction.";
+
+    const mail = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 587,
+        secure: false,
+        auth: {
+            user: username,
+            pass: pass
+        }
+    });
+
+    mail.sendMail({
+        from: 'creationamyah@gmail.com',
+        to: [email],
+        subject: subject,
+        html: msg
+    }, (err) => {
+        if(err) throw err;
+        res.send(otp);
+    });
 });
 
 
