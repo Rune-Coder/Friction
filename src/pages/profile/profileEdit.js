@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { GetCookie } from '../../hooks/cookies';
@@ -16,13 +16,11 @@ function ProfileEdit(props){
 
     let navigate = useNavigate();
 
-    async function loginHandler(event){
-        if(useName.trim() === "" || useGen.trim() === "")
-            return;
+    const token = GetCookie("token");
 
-        setUpdated(true);
-
-        async function getData(token){
+    useEffect(() =>{
+        
+        async function getData(){
 
             const res = await fetch(`/api/user/profile`, {
                 method: "GET",
@@ -40,14 +38,22 @@ function ProfileEdit(props){
     
         }
 
-        getData(GetCookie("token"));
+        getData();
+    }, [token]);
+
+    async function profileHandler(event){
+        event.preventDefault();
+        if(useName.trim() === "" || useGen.trim() === "")
+            return;
+
+        setLoader(true);
 
         if(user === {})
             return;
 
         const email = user.email;
 
-        const res = await fetch("/update-profile", {
+        const res = await fetch("/api/user/update-profile", {
             method: "POST",
             headers:{
                 "Content-Type": "application/json"
@@ -56,11 +62,17 @@ function ProfileEdit(props){
         });
     
         await res.json();
+
+        setLoader(false);
             
         if(res.ok){
-            setUpdated(false);
+            setUpdated(true);
+            setTimeout(function(){ setUpdated(false);}, 3000);
+            setTimeout(function(){ navigate(`/`);}, 3500);
         }
-        
+        else
+            navigate(`/login`, { replace: true });  
+        return;
     }
     function nameHandler(event){
         setUseName(event.target.value);
@@ -79,7 +91,7 @@ function ProfileEdit(props){
 
     return (
         <div className={classes.layout}>
-            <form method='POST' className={classes.loginForm} onSubmit = {loginHandler}>
+            <form className={classes.loginForm} onSubmit = {profileHandler}>
                 <div className={classes.details}>
                     <input 
                         type= "text" 
@@ -89,7 +101,7 @@ function ProfileEdit(props){
                         onBlur = {nameHandler}>
                     </input>
                     <label className={classes.formLabel}>
-                       Full Name
+                       Full Name*
                     </label>
                 </div>
                 <div className={classes.gen} onClick = {genHandler}>
@@ -105,6 +117,8 @@ function ProfileEdit(props){
                 <button type= "submit" value="Submit" className={classes.save}>SAVE</button>
 
             </form>
+            {updated && <NotificationCard value = {"Profile Updated Successfully"} />}
+            {loader && <img src = {preloader} className={classes.load} alt = "Loading..."></img>}
         </div>
     );
 }

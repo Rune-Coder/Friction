@@ -71,7 +71,7 @@ userRoute.post("/update-profile",
         const user = await User.findOne({ email: email });
 
         if(user){
-            await UserHistory.updateOne(
+            await User.updateOne(
                 { email },
                 {
                     $set: { name, gender }
