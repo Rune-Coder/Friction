@@ -1,9 +1,7 @@
 import Razorpay from "razorpay";
 
 //payment instance
-const instance = new Razorpay({
-    key_id: process.env.RAZORPAY_API_KEY,
-    key_secret: process.env.RAZORPAY_API_SECRET,
+export const instance = new Razorpay({
+    key_id: 'rzp_test_5unrIoTw0WhrB6',
+    key_secret: 'rDcoHQp49ng3eLVtziVEgOT7',//key id given by razorpay
 });
-
-export default instance;
