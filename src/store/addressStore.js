@@ -18,7 +18,6 @@ const addressSlice = createSlice({
                 state : address.state,
                 pin : address.pin
             };
-            console.log(state.currAddress);
         },
         remAddress(state){
             state.currAddress = {};

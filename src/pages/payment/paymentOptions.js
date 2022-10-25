@@ -5,12 +5,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import BadgeCheckIcon from '../../icons/badgeCheckIcon';
 import classes from './paymentOptions.module.css';
 import { addressActions } from '../../store/addressStore';
+import preloader from '../../image/sectionLoader.gif';
 
 function PaymentOptions(props){
     const bill = localStorage.getItem("billStore") ? JSON.parse(localStorage.getItem("billStore")) : [{amount: 0}];
     const products = localStorage.getItem("products") ? JSON.parse(localStorage.getItem("products")) : [];
     const address = useSelector((state) => state.address.currAddress);
     const userSub = useSelector((state) => state.login.userData);
+    const [loader, setLoader] = useState(false);
     let navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -61,6 +63,62 @@ function PaymentOptions(props){
         navigate(`/orders`, { replace: true });
     }
 
+    async function onlinePay(amount){
+
+        setLoader(true);
+
+        const res = await fetch("/api/payment/checkout", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ amount })
+        });
+    
+        const data = await res.json();
+            
+        if(res.ok && data)
+            console.log(data);
+        else
+            return;
+
+        const rzp_key = await fetch("/api/payment/key", {
+            method: "GET",
+            headers:{
+                "Content-Type": "application/json"
+            }
+        });
+
+        const rzpKeyData = await rzp_key.json();
+
+        if(!rzp_key.ok || !rzpKeyData)
+            return;
+        setLoader(false);
+        const options = {
+            key: rzpKeyData, // Enter the Key ID generated from the Dashboard
+            amount: data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            currency: "INR",
+            name: "Friction",
+            description: "Online Shopping site for Shoes in India",
+            image: "/images/product_p1.png",
+            order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            callback_url: "/api/payment/verification",
+            prefill: {
+                "name": userSub.name,
+                "email": userSub.email,
+                "contact": userSub.mobile
+            },
+            notes: {
+                "address": "Razorpay Corporate Office"
+            },
+            theme: {
+                "color": "#446A46"
+            }
+        };
+        var razor = new window.Razorpay(options);
+        razor.open();
+    }
+
     function pay(event){
 
         if(ops === " ")
@@ -91,7 +149,9 @@ function PaymentOptions(props){
 
             toOrders();
 
-
+        }
+        else{
+            onlinePay(bill[0].amount);
         }
     }
 
@@ -112,7 +172,9 @@ function PaymentOptions(props){
                     <div className={classes.subHead}>Debit Card, Credit Card, Net Banking, UPI</div>
                 </li>
                 <li><button onClick = {pay} className={classes.continue}>CONTINUE</button></li>
+                
             </ul>
+            {loader && <img src = {preloader} className={classes.load} alt = "Loading..."></img>}
         </div>
     );
 }
