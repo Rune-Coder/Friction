@@ -73,7 +73,6 @@ function App() {
           {!loginSub && <Route path = "/payment" element={<Navigate replace to="/login" />} />}
 
           {loginSub && <Route path = "/payment-status" element = {<PaymentSuccess />} />}
-          {!loginSub && <Route path = "/payment-status" element = {<Navigate replace to="/" />} />}
 
           <Route path = "*" element = {<NotFound />} />
         </Routes>

@@ -73,7 +73,7 @@ function SignIn(props){
                 window.location.reload(true);}, 3000);
             setTimeout(function(){ 
                 navigate(`/`, { replace: true });
-            }, 4000)
+            }, 4000);
         }
         
     }

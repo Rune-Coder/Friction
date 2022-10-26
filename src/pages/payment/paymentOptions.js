@@ -95,13 +95,13 @@ function PaymentOptions(props){
             return;
         setLoader(false);
         const options = {
-            key: rzpKeyData, // Enter the Key ID generated from the Dashboard
-            amount: data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            key: rzpKeyData, 
+            amount: data.amount, 
             currency: "INR",
             name: "Friction",
             description: "Online Shopping site for Shoes in India",
             image: "/images/product_p1.png",
-            order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            order_id: data.id, 
             callback_url: "/api/payment/verification",
             prefill: {
                 "name": userSub.name,
@@ -138,7 +138,7 @@ function PaymentOptions(props){
                 status: "processing",
                 bill: bill,
                 products: products,
-                payment: "cash",
+                payment: "Cash",
                 address: address,
                 date: today
             });
