@@ -1,28 +1,28 @@
 import React, { useState, useEffect } from 'react';
 
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import ProductCard from '../../card/productCard';
 import preloader from '../../image/sectionLoader.gif';
-import classes from './shoeTypes.module.css';
+import rack from '../../image/shoe-rack.jpg';
+import classes from './search.module.css';
 
-function ShoeTypes(props){
-
-    const {tname} = useParams();
+function Search(props){
+    const {prdct} = useParams();
 
     const [products, setProducts] = useState([]);
 
-    const [gen, stype] = tname.split("-");
-
     const [loader, setLoader] = useState(false);
 
+    let navigate = useNavigate();
+
     useEffect(() => {
-        document.title = 'Buy '+ gen.charAt(0).toUpperCase() + gen.slice(1) +' '+ stype.charAt(0).toUpperCase() + stype.slice(1) + ' Online in India | Friction';
+        document.title = 'Buy '+ prdct + ' Online in India | Friction';
     });
 
     function getData(){
         setLoader(true);
-        fetch(`/api/products/type/${tname}`, {mode: 'cors'})
+        fetch(`/api/products/category/${prdct}`, {mode: 'cors'})
         .then((response) => {
             return response.json();
         }).then((data) => {
@@ -35,8 +35,7 @@ function ShoeTypes(props){
         getData();
     }, []);
 
-
-    if(products){
+    if(products && products.length > 0){
         const productList = products.map((shoe) => (
             <ProductCard 
                 key = {shoe._id} 
@@ -52,16 +51,21 @@ function ShoeTypes(props){
         ));
         return(
             <div className={classes.catalogue}>
-            {productList}
-            {loader && <img src = {preloader} alt = "Loading..."></img>}
+                {productList}
+                {loader && <img src = {preloader} alt = "Loading..."></img>}
             </div>
         );
     }
-    return(
-        <div>
-            <img src = {preloader} alt = "Loading..."></img>
-        </div>
-    );
+    else{
+        
+        return(
+            <div className={classes.empty}>
+                <img src = {rack} alt = "Loading..."></img>
+                <p className={classes.head}>We couldn't find any matches!</p>
+                <p>Please check the spelling or try searching something else</p>
+            </div>
+        );
+    }
 }
 
-export default ShoeTypes;
+export default Search;

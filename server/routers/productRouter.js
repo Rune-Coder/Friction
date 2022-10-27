@@ -42,4 +42,28 @@ productRoute.get("/type/:key",
     })
 );
 
+//get single product by search
+productRoute.get("/category/:key", 
+    asyncHandler(async (req, res)=>{
+
+        const search = req.params.key[0].toUpperCase() + req.params.key.substring(1);
+        
+        const product = await Product.find(
+            {
+                "$or":[
+                    { "product": {$regex: search} },
+                    { "company": {$regex: search} }
+
+                ]
+            }
+        );
+        if (product) {
+            res.send(product);
+        } else {
+            res.status(404);
+            throw new Error("Product not found");
+        }
+    })
+);
+
 export default productRoute;

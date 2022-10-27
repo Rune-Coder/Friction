@@ -110,7 +110,7 @@ function SignIn(props){
                 </div>
 
                 {errMsg.verifyCredentials !== "ok" && <p className={classes.errmsg}>{errMsg.verifyCredentials}</p>}
-                <p className={classes.failLogIn}>Forgot Password?</p>
+                <p className={classes.failLogIn} onClick = {() => navigate(`/set-password`)}>Forgot Password?</p>
                 <button type = "submit" value="Submit" className={classes.contd}>CONTINUE</button>
                 <p className={classes.agree}> By continuing, I agree to the <span className={classes.bond}>Terms of Use</span> and&nbsp;
                 <span className={classes.bond}>Privacy Policy</span></p>

@@ -1,4 +1,4 @@
 const username = 'creationamyah@gmail.com';
-const pass = 'tavjdkhzexqizqbo';
+const pass = 'seafrvpsohrtcvdk';
 
 export {username, pass};

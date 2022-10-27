@@ -88,6 +88,29 @@ userRoute.post("/update-profile",
     })
 );
 
+// update password
+userRoute.post("/update-password",
+    asyncHandler(async (req, res)=>{
+
+        const { email, password } = req.body;
+        const user = await User.findOne({ email: email });
+
+        if(user){
+            await User.updateOne(
+                { email },
+                {
+                    $set: { password: bcrypt.hashSync(password, 10) }
+                }
+            );
+
+            res.status(202).json({ message: "User profile updated" });
+        }
+        else{
+            res.status(402).json({ error: "User Invalid" });
+        }
+    })
+);
+
 // profile
 userRoute.get("/profile", protect,
     asyncHandler(async (req, res)=>{
@@ -118,6 +141,15 @@ userRoute.post("/history-create",
         if(orders && orders.length > 0){
             const currOrder = orders.pop();
             currOrder.order_id = uuid();
+
+            var date = new Date();
+            var dd = String(date.getDate()).padStart(2, '0');
+            var mm = String(date.getMonth() + 1).padStart(2, '0');
+            var yyyy = date.getFullYear();
+
+            date = dd + '/' + mm + '/' + yyyy;
+            currOrder.date = date;
+
             orders.push(currOrder);
         }
 

@@ -1,19 +1,92 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import { useLocation, useNavigate } from 'react-router-dom';
+import NotificationCard from '../../card/notificationCard';
+import preloader from '../../image/sectionLoader.gif';
 import ToastCard from '../../card/toastCard';
 import classes from './otp.module.css';
 
 function Otp(props){
 
+    useEffect(() => {
+        document.title = 'Online Shopping site for shoes in India | Friction';
+    });
+
+    const location = useLocation();
+
+    let navigate = useNavigate();
+
+
     const [sec, setSec] = useState(60);
     const [otpLen, setOtpLen] = useState(0);
     const [showToast, setShowToast] = useState(false);
+    const [otp, setOtp] = useState(0);
+    const [updated, setUpdated] = useState(false);
+    const [loader, setLoader] = useState(false);
+
+
+    useEffect(() =>{
+        if(otp === 0)
+            getOtpEmail(location.state.email);
+    }, [otp, location.state.email]);
+
+
+    if(!location.state){
+        return(
+            <img src = {preloader} className={classes.load} alt = "Loading..."></img>
+        );
+    }
 
     function autoFocus(seq, final){
         const initial = document.getElementById(seq);
         if(initial.value.length)
             document.getElementById(final).focus();
         return;
+    }
+
+    async function getOtpEmail(email){
+        const res = await fetch("/api/user/send-otp", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email })
+        });
+    
+        const data = await res.json();
+            
+        if(res.ok && data)
+            setOtp(data);
+    }
+
+    function otpResend(event){
+        setSec(60);
+        setOtp(0);
+        if(otp === 0)
+            getOtpEmail(location.state.email);
+        return;
+    }
+
+    async function  changePassword(email, password){
+
+        setLoader(true);
+
+        const res = await fetch("/api/user/update-password", {
+            method: "POST",
+            headers:{
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, password })
+        });
+
+        await res.json();
+
+        setLoader(false);
+        if(res.ok){
+            setUpdated(true);
+            setTimeout(function(){ setUpdated(false);}, 3000);
+            setTimeout(function(){ navigate(`/`);}, 3500);
+        }
     }
 
     function getOtp(){
@@ -23,11 +96,16 @@ function Otp(props){
         document.getElementById("fourth").value+
         document.getElementById("fifth").value+
         document.getElementById("sixth").value;
-        if(finalOtp === "111111")
-            alert("ok");
+
+        if(Number(finalOtp) === otp){
+            
+            changePassword(location.state.email, location.state.password);
+            return;
+        }
         else{
             setShowToast(true);
             setTimeout(function(){ setShowToast(false); }, 3000);
+            return;
         }
     }
 
@@ -58,11 +136,12 @@ function Otp(props){
         setTimeout(timer, 1000);
 
     return(
+        <div className={classes.layout}>
         <div>
             {showToast && <div className={classes.toast}> <ToastCard close = {remToast} value = "Incorrect OTP" /> </div>}
             <form>
                 <p className={classes.head}>Verify with OTP</p>
-                <p className={classes.subHead}>Sent to {props.num}</p>
+                <p className={classes.subHead}>Sent to {location.state.email}</p>
                 <div className={classes.otpDetails}>
                     <input 
                         type= "text" 
@@ -125,8 +204,11 @@ function Otp(props){
                     </input>
                 </div>
                 {sec > 0 && <p className={classes.resendTimer}>Resend OTP in 00:{("0" + sec).slice(-2)}</p>}
-                {!sec && <p className={classes.resend}>RESEND OTP</p>}
+                {!sec && <p className={classes.resend} onClick = {otpResend}>RESEND OTP</p>}
             </form>
+            {updated && <NotificationCard value = {"Password Updated Successfully"} />}
+            {loader && <img src = {preloader} className={classes.load} alt = "Loading..."></img>}
+        </div>
         </div>
     );
 }

@@ -12,9 +12,11 @@ import PreLoader from './preLoader/preLoader';
 const Home = React.lazy(() => import('./pages/home'));
 const Profile = React.lazy(() => import('./pages/profile/myProfile'));
 const SignIn = React.lazy(() => import('./pages/signIn/signIn'));
+const Otp = React.lazy(() => import('./pages/signIn/otp'));
 const PasswordNew = React.lazy(() => import('./pages/passwordNew/passwordNew'));
 const SignUp = React.lazy(() => import('./pages/createAcc/signUp'));
 const ShoeTypes = React.lazy(() => import('./pages/shoeTypes/shoeTypes'));
+const Search = React.lazy(() => import('./pages/search/search'));
 const Orders = React.lazy(() => import('./pages/orders/orders'));
 const OrderView = React.lazy(() => import('./pages/orderView/orderView'));
 const WishList = React.lazy(() => import('./pages/wishList/wishList'));
@@ -45,10 +47,14 @@ function App() {
           {!loginSub && <Route path = "/login" element = {<SignIn />} />}
           {loginSub && <Route path = "/login" element={<Navigate replace to="/home" />} />}
 
+          {!loginSub && <Route path = "/otp" element = {<Otp />} />}
+          {loginSub && <Route path = "/otp" element={<Navigate replace to="/" />} />}
           <Route path = "/set-password" element = {<PasswordNew />} />
 
           {!loginSub && <Route path = "/register" element = {<SignUp />} />}
           {loginSub && <Route path = "/register" element={<Navigate replace to="/home" />} />}
+
+          <Route path = "/search/:prdct" element = {<Search />} />
 
           <Route path = "/types/:tname" element = {<ShoeTypes />} />
 

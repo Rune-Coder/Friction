@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import NotificationCard from '../../card/notificationCard';
-import preloader from '../../image/sectionLoader.gif';
+
 import classes from './passwordNew.module.css';
 
 function PasswordNew(props){
@@ -14,8 +13,6 @@ function PasswordNew(props){
     const [useEmail, setUseEmail] = useState(" ");
     const [useNewPassword, setUseNewPassword] = useState(" ");
     const [useConfirmPassword, setUseConfirmPassword] = useState(" ");
-    const [updated, setUpdated] = useState(false);
-    const [loader, setLoader] = useState(false);
     const [errMsg, setErrMsg] = useState({ pw: "ok", cpw: "ok" });
 
     let navigate = useNavigate();
@@ -25,9 +22,10 @@ function PasswordNew(props){
         if(useEmail.trim() === "" || useNewPassword.trim() === "" || useConfirmPassword.trim() === "")
             return;
 
-        setLoader(true);
-
-
+        if(errMsg.pw !== "ok" || errMsg.cpw !== "ok")
+            return;
+ 
+        navigate('/otp', {state: { email: useEmail, password: useNewPassword } });
         
     }
     function emailHandler(event){
@@ -76,7 +74,7 @@ function PasswordNew(props){
                 </div>
                 <div className={classes.details}>
                     <input 
-                        type= "text" 
+                        type= "password" 
                         placeholder=' '
                         maxlength="16"   
                         required 
@@ -90,7 +88,7 @@ function PasswordNew(props){
                 </div>
                 <div className={classes.details}>
                     <input 
-                        type= "text" 
+                        type= "password" 
                         placeholder=' ' 
                         maxlength="16"  
                         required 
@@ -106,8 +104,6 @@ function PasswordNew(props){
                 <button type= "submit" value="Submit" className={classes.save}>CONTINUE</button>
 
             </form>
-            {updated && <NotificationCard value = {"Password Updated Successfully"} />}
-            {loader && <img src = {preloader} className={classes.load} alt = "Loading..."></img>}
         </div>
     );
 }
