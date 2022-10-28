@@ -8,6 +8,17 @@ const products = [
         sp: 249,
         mrp: 300,
         discount: 17,
+        desc: {
+            details: "A pair of round-toe white sneakers, has regular styling, lace-up detail",
+            material: "Canvas material. Wipe with a clean, dry cloth to remove dust",
+            specsType: "Sneakers",
+            specsToe: "Round Toe",
+            specsPattern: "Solid",
+            specsFastening: "Lace Ups",
+            specsWidth: "Regular",
+            specsSole: "Rubber",
+            specsWarranty: "3 months",
+        }
     },
     {
         type: 'men-boots',
@@ -18,6 +29,17 @@ const products = [
         sp: 200,
         mrp: 400,
         discount: 50,
+        desc: {
+            details: "A pair of round-toe white sneakers, has regular styling, lace-up detail",
+            material: "Canvas material. Wipe with a clean, dry cloth to remove dust",
+            specsType: "Sneakers",
+            specsToe: "Round Toe",
+            specsPattern: "Solid",
+            specsFastening: "Lace Ups",
+            specsWidth: "Regular",
+            specsSole: "Rubber",
+            specsWarranty: "3 months",
+        }
     }
 ];
 

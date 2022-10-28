@@ -168,8 +168,9 @@ function ProductView(props) {
         setShowToast("false");
         return;
     } 
-    
+
     return(
+            <>
             <div className={classes.view}>
                 {showToast !== "false" && <div className={classes.toast}> <ToastCard close = {remToast} value = {"Item is added to "+ showToast} /> </div>}
 
@@ -210,7 +211,49 @@ function ProductView(props) {
                     </button>
                 
                 </div>
+                
             </div>
+            
+            
+            {products.desc && <div className={classes.productDetails}>
+                <p className={classes.productDetailsHead}>PRODUCT DETAILS</p>
+                <p>{products.desc.details}</p>
+                <p className={classes.productDetailsHead}>Material & Care</p>
+                <p>{products.desc.material}</p>
+                <p className={classes.productDetailsHead}>Specifications</p>
+                <ul className={classes.specs}>
+                    <li>
+                        <p className={classes.productSpecsHead}>Type</p>
+                        <p>{products.desc.specsType}</p>
+                    </li>
+                    <li>
+                        <p className={classes.productSpecsHead}>Toe</p>
+                        <p>{products.desc.specsToe}</p>
+                    </li>
+                    <li>
+                        <p className={classes.productSpecsHead}>Pattern</p>
+                        <p>{products.desc.specsPattern}</p>
+                    </li>
+                    <li>
+                        <p className={classes.productSpecsHead}>Fastening</p>
+                        <p>{products.desc.specsFastening}</p>
+                    </li>
+                    <li>
+                        <p className={classes.productSpecsHead}>Shoe Width</p>
+                        <p>{products.desc.specsWidth}</p>
+                    </li>
+                    <li>
+                        <p className={classes.productSpecsHead}>Sole Material</p>
+                        <p>{products.desc.specsSole}</p>
+                    </li>
+                    <li>
+                        <p className={classes.productSpecsHead}>Warranty</p>
+                        <p>{products.desc.specsWarranty}</p>
+                    </li>
+                </ul>
+            </div>}
+            </>
+
     );
     }
     return(

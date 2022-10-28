@@ -74,6 +74,21 @@
     color: #576F72;
     font-size: 1.5rem;
 }
+.productDetails{
+    color: black;
+    height: auto;
+    text-align: left;
+    padding: 1rem 2rem 2rem 5rem;
+    width: 100%;
+}
+.productDetailsHead{
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.productSpecsHead{
+    color: #576F72;
+    font-size: 0.9rem;
+}
 .rating{
     display: flex;
     flex-direction: row;
@@ -106,6 +121,16 @@
 }
 .sizeWarning{
     color: #EB1D36;
+}
+.specs{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+}
+.specs li{
+    padding-right: 2rem;
 }
 .tax{
     font-size: 0.9rem;
@@ -152,6 +177,9 @@
     .image{
         height: 25rem;
         width: 20rem;
+    }
+    .productDetails{
+        padding-left: 2rem;
     }
     .size li{
         margin-top: 1rem;

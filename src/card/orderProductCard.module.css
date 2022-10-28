@@ -31,4 +31,7 @@
     .layout{
         width: 100%;
     }
+    .img img{
+        padding-top: 100%;
+    }
 }
