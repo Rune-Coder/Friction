@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import ProductCard from '../../card/productCard';
 import preloader from '../../image/sectionLoader.gif';
 import rack from '../../image/shoe-rack.jpg';
+import Pagination from '../../pagination/pagination';
 import classes from './search.module.css';
 
 function Search(props){
     const {prdct} = useParams();
 
     const [products, setProducts] = useState([]);
+    const [currPage, setCurrPage] = useState(1);
+    const postPerPage = 10;
 
     const [loader, setLoader] = useState(false);
-
-    let navigate = useNavigate();
 
     useEffect(() => {
         document.title = 'Buy '+ prdct + ' Online in India | Friction';
@@ -36,7 +37,13 @@ function Search(props){
     }, []);
 
     if(products && products.length > 0){
-        const productList = products.map((shoe) => (
+
+        const lastPostIndex = currPage * postPerPage;
+        const firstPostIndex = lastPostIndex - postPerPage;
+
+        const currProducts = products.slice(firstPostIndex, lastPostIndex);
+
+        const productList = currProducts.map((shoe) => (
             <ProductCard 
                 key = {shoe._id} 
                 id = {shoe._id}
@@ -50,9 +57,12 @@ function Search(props){
             />
         ));
         return(
-            <div className={classes.catalogue}>
-                {productList}
-                {loader && <img src = {preloader} alt = "Loading..."></img>}
+            <div className={classes.layout}>
+                <div className={classes.catalogue}>
+                    {productList}
+                    {loader && <img src = {preloader} alt = "Loading..."></img>}                    
+                </div>
+                <Pagination totalPost = {products.length} postPerPage = {postPerPage} setCurrPage = {setCurrPage} currPage = {currPage}/>
             </div>
         );
     }

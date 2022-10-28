@@ -7,6 +7,18 @@
     font-size: 1rem;
     height: auto;
     justify-content: center;
+    padding-bottom: 2rem;
+    width: 100%;
+}
+.layout{
+    align-items: center;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    font-size: 1rem;
+    height: auto;
+    justify-content: center;
     padding: 10rem 2rem 2rem 2rem;
     width: 100%;
 }

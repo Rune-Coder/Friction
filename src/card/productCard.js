@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,6 +19,19 @@ function ProductCard(props) {
         navigate(path);
     }
 
+    const [addWish, setAddWish] = useState(false);
+
+    useEffect(() => {
+
+        const wish = localStorage.getItem("wishStore") ? JSON.parse(localStorage.getItem("wishStore")) : [];
+        if(wish.length > 0){
+            const existItem = wish.find(item => item.id === props.id);
+            if(existItem)
+                setAddWish(true);
+        }
+        
+    }, [props]);
+
     const dispatch = useDispatch();
 
     //post wish data mongodb
@@ -36,7 +49,6 @@ function ProductCard(props) {
 
     }
 
-    const [addWish, setAddWish] = useState(false);
     function wishHandler(event){
         event.stopPropagation();
 

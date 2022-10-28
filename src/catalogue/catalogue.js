@@ -3,10 +3,14 @@ import classes from './catalogue.module.css';
 import ProductCard from '../card/productCard';
 import axios from 'axios';
 import preloader from '../image/sectionLoader.gif';
+import Pagination from '../pagination/pagination';
 
 function Catalogue(props) {
 
     const [products, setProducts] = useState([]);
+    const [currPage, setCurrPage] = useState(1);
+    const postPerPage = 10;
+
     const [loader, setLoader] = useState(false);
 
 
@@ -21,7 +25,14 @@ function Catalogue(props) {
     }, []);
 
     if(products){
-        const productList = products.map((shoe) => (
+
+        const lastPostIndex = currPage * postPerPage;
+        const firstPostIndex = lastPostIndex - postPerPage;
+
+        const currProducts = products.slice(firstPostIndex, lastPostIndex);
+
+
+        const productList = currProducts.map((shoe) => (
             <ProductCard 
                 key = {shoe._id} 
                 id = {shoe._id}
@@ -35,9 +46,12 @@ function Catalogue(props) {
             />
         ));
         return(
-            <div className={classes.features}>
-            {productList}
-            {loader && <img src = {preloader} alt = "Loading..."></img>}
+            <div className={classes.layout}>
+                <div className={classes.features}>
+                    {productList}
+                    {loader && <img src = {preloader} alt = "Loading..."></img>}
+                </div>
+                <Pagination totalPost = {products.length} postPerPage = {postPerPage} setCurrPage = {setCurrPage} currPage = {currPage}/>
             </div>
         );
     }
