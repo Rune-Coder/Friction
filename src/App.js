@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import './App.css';
+import {Helmet} from "react-helmet";
 
 import { UserData } from './connect/userData';
 import { UserHistory } from './connect/userHistory';
@@ -28,6 +29,7 @@ const ProductView = React.lazy(() => import('./pages/productView/productView'));
 const NotFound = React.lazy(() => import('./pages/notFound/notFound'));
 
 function App() {
+  
 
   //get user data
   const loginSub = UserData(GetCookie("token")); 
@@ -36,7 +38,16 @@ function App() {
   UserHistory(GetCookie("token"));
 
   return (
+    <>
+      <Helmet>
+          <meta charSet="utf-8" />
+          <link rel="canonical" href="http://mysite.com/example" />
+          <meta name="description" content="E-commerce Application" />
+      </Helmet>
+    
     <Layout>
+       
+
       <Suspense fallback= {<PreLoader />}>
         <Routes>
           <Route path = "/" exact element={<Navigate replace to="/home" />}/>
@@ -84,7 +95,7 @@ function App() {
         </Routes>
       </Suspense>
     </Layout>
-
+    </>
   );
 }
 

@@ -100,7 +100,7 @@ function PaymentOptions(props){
             currency: "INR",
             name: "Friction",
             description: "Online Shopping site for Shoes in India",
-            image: "/images/product_p1.png",
+            image: "/images/icon.png",
             order_id: data.id, 
             callback_url: "/api/payment/verification",
             prefill: {

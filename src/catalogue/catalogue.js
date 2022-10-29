@@ -24,7 +24,7 @@ function Catalogue(props) {
         getData();
     }, []);
 
-    if(products){
+    if(products && products.length > 0){
 
         const lastPostIndex = currPage * postPerPage;
         const firstPostIndex = lastPostIndex - postPerPage;

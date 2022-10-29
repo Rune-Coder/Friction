@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classes from './shoeMenu.module.css';
-import {CasualsData, SportsData} from './shoeMenuData';
+import {CasualsData, DressData, BootsData, SportsData} from './shoeMenuData';
 
 function ShoeMenu(props) {
     const [addTypesMen, setAddTypesMen] = useState(false);
@@ -44,11 +44,16 @@ function ShoeMenu(props) {
                     <CasualsData />
                 </div>
                 <div>
-                    <span className={classes.typeHead}>Sports Wear</span>
-                    <SportsData />
+                    <span className={classes.typeHead}>Boots</span>
+                    <BootsData />
                 </div>
                 <div>
-                    <span className={classes.typeHead}>Formal Wear</span>
+                    <span className={classes.typeHead}>Dress Wear</span>
+                    <DressData />
+                </div>
+                <div>
+                    <span className={classes.typeHead}>Sports Wear</span>
+                    <SportsData />
                 </div>
             </div>
             <div className = {`${classes.types} ${addTypesWomen && classes.activeTypes}  ${!addTypesWomen && ''}`}>hello2</div>

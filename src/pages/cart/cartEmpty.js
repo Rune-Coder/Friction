@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import bagImage from '../../image/bag.webp';
+import bagImage from '../../image/bag.png';
 import classes from './cartEmpty.module.css';
 
 function CartEmpty(props){

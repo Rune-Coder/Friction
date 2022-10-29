@@ -13,6 +13,15 @@ body{
 .hideMenu{
     display: contents;
 }
+.logo{
+    cursor: pointer;
+    height: 2rem;
+    width: 9.3rem;
+}
+.logo img{
+    height: 100%;
+    width: 100%;
+}
 .menuIcons{
     fill: black;
     height: 1.2rem;

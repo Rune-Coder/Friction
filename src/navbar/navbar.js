@@ -13,6 +13,7 @@ import SearchBox from './searchBox';
 import ShoeMenu from '../shoeMenu/shoeMenu';
 import ShoeMenuSmall from './shoeMenuSmall';
 import ProfileAccordianSmall from './profileAccordianSmall';
+import logo from '../image/logo.png';
 
 
 function Navbar(props) {
@@ -82,7 +83,7 @@ function Navbar(props) {
     <div className= {classes.navbar}>
       <p className={classes.burger} onClick={menuOpenHandler}><span className={classes.menuIcons}><BurgerIcon /></span></p>
       
-      <div onClick={toHome}>Friction</div>
+      <div onClick={toHome} className={classes.logo}><img src ={logo} alt = "Friction"></img></div>
 
       <div className={classes.cart} onClick={toCart}>
         <span className={classes.navIcons}><CartIcon /></span>
