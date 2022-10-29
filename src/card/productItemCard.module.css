@@ -46,7 +46,7 @@
 .image{
     background-color: #cfd2cfaf;
     height: 100%;
-    width: 10rem;
+    width: 12rem;
 }
 .image img{
     height: 100%;
@@ -55,7 +55,7 @@
 .details{
     height: 100%;
     padding: 0 1rem 0 1rem;
-    width: 30rem;
+    width: 28rem;
 }
 .discount{
     color: #446A46;
@@ -79,6 +79,9 @@
 }
 .product{
     color: #576F72;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .sizeQty{
     font-weight: bold;
@@ -90,6 +93,9 @@
         width: 100%;
     }
     .details{
-        width: 100%;
+        width: 60%;
+    }
+    .image{
+        width: 40%;
     }
 }
