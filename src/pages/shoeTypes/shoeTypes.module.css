@@ -6,7 +6,7 @@
     flex-wrap: wrap;
     font-size: 1rem;
     height: auto;
-    justify-content: center;
+    justify-content: space-evenly;
     padding-bottom: 2rem;
     width: 100%;
 }
@@ -21,4 +21,9 @@
     justify-content: center;
     padding: 10rem 2rem 2rem 2rem;
     width: 100%;
+}
+@media screen and (max-width: 945px) {
+    .layout{
+        padding: 10rem 0 2rem 0;
+    }
 }

@@ -11,7 +11,7 @@ function Pagination(props){
     }
 
     return (
-        <div>
+        <div className= {classes.pages}>
             {pages.map((page, index) => {
                 return <button key = {index} onClick = {() =>  props.setCurrPage(page)} className={page === props.currPage ? classes.pageActive : classes.pageInactive}>{page}</button>
             })}

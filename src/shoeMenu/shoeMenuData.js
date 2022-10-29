@@ -12,36 +12,38 @@ function CasualsData(props){
     return(
         <ul className = {`${classes.shoeList} ${props.value && classes.shoeListSmall}  ${!props.value && ''}`} >
             <li onClick = {() => {navigate(`/types/men-sneakers`); window.location.reload();}}>Sneakers</li>
-            <li>Boats</li>
-            <li>Espadrilles</li>
-            <li>Sandals</li>
-            <li>Slip-ons</li>
+            <li onClick = {() => {navigate(`/types/men-boats`); window.location.reload();}}>Boats</li>
+            <li onClick = {() => {navigate(`/types/men-espadrilles`); window.location.reload();}}>Espadrilles</li>
+            <li onClick = {() => {navigate(`/types/men-sandals`); window.location.reload();}}>Sandals</li>
+            <li onClick = {() => {navigate(`/types/men-slip-ons`); window.location.reload();}}>Slip-ons</li>
         </ul>
     );
 }
 
 function DressData(props){
+    let navigate = useNavigate();
 
     return(
         <ul className = {`${classes.shoeList} ${props.value && classes.shoeListSmall}  ${!props.value && ''}`} >
-            <li >Derby</li>
-            <li >Oxfords</li>
-            <li>Brogues</li>
-            <li>Monks</li>
-            <li>Loafers</li>
+            <li onClick = {() => {navigate(`/types/men-derby`); window.location.reload();}}>Derby</li>
+            <li onClick = {() => {navigate(`/types/men-oxfords`); window.location.reload();}}>Oxfords</li>
+            <li onClick = {() => {navigate(`/types/men-brogues`); window.location.reload();}}>Brogues</li>
+            <li onClick = {() => {navigate(`/types/men-monks`); window.location.reload();}}>Monks</li>
+            <li onClick = {() => {navigate(`/types/men-loafers`); window.location.reload();}}>Loafers</li>
         </ul>
     );
 }
 
 function BootsData(props){
-
+    let navigate = useNavigate();
+    
     return(
         <ul className = {`${classes.shoeList} ${props.value && classes.shoeListSmall}  ${!props.value && ''}`} >
-            <li >Chelsea</li>
-            <li >Chukka</li>
-            <li>Brogues</li>
-            <li>Ankle</li>
-            <li>Hiking</li>
+            <li onClick = {() => {navigate(`/types/men-chelsea`); window.location.reload();}}>Chelsea</li>
+            <li onClick = {() => {navigate(`/types/men-chukka`); window.location.reload();}}>Chukka</li>
+            <li onClick = {() => {navigate(`/types/men-brogues`); window.location.reload();}}>Brogues</li>
+            <li onClick = {() => {navigate(`/types/men-ankle`); window.location.reload();}}>Ankle</li>
+            <li onClick = {() => {navigate(`/types/men-hiking`); window.location.reload();}}>Hiking</li>
         </ul>
     );
 }

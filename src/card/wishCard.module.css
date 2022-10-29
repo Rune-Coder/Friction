@@ -39,6 +39,8 @@
 }
 .desc{
     padding: 0 1rem 0 1rem;
+    overflow: hidden;
+    white-space: nowrap;
 }
 .image{
     background-color: #cfd2cfaf;
@@ -55,6 +57,9 @@
     font-size: 0.9rem;
     text-decoration: line-through;
 }
+.prdct{
+    text-overflow: ellipsis;
+}
 .price{
     font-weight: bold;
     font-size: 1.2rem;
@@ -69,5 +74,10 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 100;
+}
+@media screen and (max-width: 945px) {
+
+    .card{
+        margin: 1rem 0 0 0;
+    }
 }

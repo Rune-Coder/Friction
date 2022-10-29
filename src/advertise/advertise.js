@@ -10,9 +10,9 @@ function Advertise(props) {
     return(
         <div className={classes.advertise}>
             <div className={classes.characteristics}>
-                <div><span className={classes.services}><TruckIcon /></span>Super Fast Delivery</div>
-                <div><span className={classes.services}><HandLoveIcon /></span>100% Handpicked</div>
-                <div><span className={classes.services}><BadgeCheckIcon /></span>Assured Quality</div>
+                <div className={classes.singleCharacteristic}><span className={classes.services}><TruckIcon /></span>Super Fast Delivery&nbsp;&nbsp;</div>
+                <div><span className={classes.services}><HandLoveIcon /></span>100% Handpicked&nbsp;&nbsp;</div>
+                <div><span className={classes.services}><BadgeCheckIcon /></span>Assured Quality&nbsp;&nbsp;</div>
             </div>
             <div className={classes.app}>
                 <p>Experience the shoe mobile app</p>

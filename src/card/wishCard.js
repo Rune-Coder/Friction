@@ -108,7 +108,7 @@ function WishCard(props) {
                 <img src = {props.image} alt = "Shoe"></img>
            </div>
            <div className={classes.desc}>
-                <p>{props.product}</p>
+                <p className={classes.prdct}>{props.product}</p>
                 <p className={classes.price}>&#8377;{props.sp}&nbsp;
                     <span className={classes.mrp}>&#8377;{props.mrp}</span>&nbsp;
                     <span className={classes.discount}>({props.discount}% off)</span>
