@@ -7,7 +7,7 @@
     cursor: pointer;
     height: 25rem;
     margin-top: 1rem;
-    overflow-x: hidden;
+    text-overflow: ellipsis;
     user-select: none;
     width: 16rem;
 }
@@ -40,6 +40,9 @@
 }
 .pName{
     color: #576F72;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .price{
     font-weight: bold;

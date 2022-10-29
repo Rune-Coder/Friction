@@ -56,7 +56,7 @@ function Catalogue(props) {
         );
     }
     return(
-        <div>
+        <div className={classes.layout}>
             <img src = {preloader} alt = "Loading..."></img>
         </div>
     );
