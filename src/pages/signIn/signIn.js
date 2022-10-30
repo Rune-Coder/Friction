@@ -19,6 +19,7 @@ function SignIn(props){
 
     useEffect(() => {
         document.title = 'Online Shopping site for shoes in India | Friction';
+        window.scrollTo(0, 0);
     });
 
     function emailHandler(event){

@@ -30,6 +30,7 @@ function ProductView(props) {
 
     useEffect(() => {
         document.title = 'Buy '+ com +' '+ pname;
+        window.scrollTo(0, 0);
     });
     
     const [products, setProducts] = useState({});

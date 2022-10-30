@@ -9,6 +9,7 @@ function Payment(props){
 
     useEffect(() => {
         document.title = 'PAYMENT';
+        window.scrollTo(0, 0);
     });
 
     return(

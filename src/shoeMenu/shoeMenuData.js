@@ -15,7 +15,6 @@ function CasualsData(props){
             <li onClick = {() => {navigate(`/types/men-boats`); window.location.reload();}}>Boats</li>
             <li onClick = {() => {navigate(`/types/men-espadrilles`); window.location.reload();}}>Espadrilles</li>
             <li onClick = {() => {navigate(`/types/men-sandals`); window.location.reload();}}>Sandals</li>
-            <li onClick = {() => {navigate(`/types/men-slip-ons`); window.location.reload();}}>Slip-ons</li>
         </ul>
     );
 }
@@ -25,7 +24,7 @@ function DressData(props){
 
     return(
         <ul className = {`${classes.shoeList} ${props.value && classes.shoeListSmall}  ${!props.value && ''}`} >
-            <li onClick = {() => {navigate(`/types/men-derby`); window.location.reload();}}>Derby</li>
+            <li onClick = {() => {navigate(`/types/men-derbys`); window.location.reload();}}>Derby</li>
             <li onClick = {() => {navigate(`/types/men-oxfords`); window.location.reload();}}>Oxfords</li>
             <li onClick = {() => {navigate(`/types/men-brogues`); window.location.reload();}}>Brogues</li>
             <li onClick = {() => {navigate(`/types/men-monks`); window.location.reload();}}>Monks</li>

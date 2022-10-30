@@ -19,6 +19,7 @@ function Search(props){
 
     useEffect(() => {
         document.title = 'Buy '+ prdct + ' Online in India | Friction';
+        window.scrollTo(0, 0);
     });
 
     function getData(){

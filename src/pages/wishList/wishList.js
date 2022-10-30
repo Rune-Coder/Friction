@@ -21,6 +21,7 @@ function WishList(props) {
 
     useEffect(() => {
         document.title = 'Wishlist';
+        window.scrollTo(0, 0);
     });
 
     const [showToast, setShowToast] = useState("false");

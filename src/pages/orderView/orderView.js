@@ -17,6 +17,7 @@ function OrderView(props){
 
     useEffect(() => {
         document.title = 'Order Details';
+        window.scrollTo(0, 0);
     });
 
     useEffect(() =>{

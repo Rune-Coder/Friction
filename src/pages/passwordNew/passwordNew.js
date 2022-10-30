@@ -8,6 +8,7 @@ function PasswordNew(props){
 
     useEffect(() => {
         document.title = 'Change Password';
+        window.scrollTo(0, 0);
     });
 
     const [useEmail, setUseEmail] = useState(" ");

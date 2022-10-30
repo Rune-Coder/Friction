@@ -21,6 +21,7 @@ function RegisterForm(props){
 
     useEffect(() => {
         document.title = 'Create Account';
+        window.scrollTo(0, 0);
     });
 
     function nameHandler(event){

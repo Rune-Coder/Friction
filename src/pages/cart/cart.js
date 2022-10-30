@@ -13,6 +13,7 @@ function Cart(props){
 
     useEffect(() => {
         document.title = 'Shopping Bag';
+        window.scrollTo(0, 0);
     });
 
     var itemList = useSelector((state) => state.cart.items);

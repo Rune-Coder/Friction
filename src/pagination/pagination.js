@@ -13,7 +13,7 @@ function Pagination(props){
     return (
         <div className= {classes.pages}>
             {pages.map((page, index) => {
-                return <button key = {index} onClick = {() =>  props.setCurrPage(page)} className={page === props.currPage ? classes.pageActive : classes.pageInactive}>{page}</button>
+                return <button key = {index} onClick = {() =>  {props.setCurrPage(page); window.scrollTo(0, 0);}} className={page === props.currPage ? classes.pageActive : classes.pageInactive}>{page}</button>
             })}
         </div>
     );

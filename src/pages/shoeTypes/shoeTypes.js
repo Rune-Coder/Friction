@@ -21,6 +21,7 @@ function ShoeTypes(props){
 
     useEffect(() => {
         document.title = 'Buy '+ gen.charAt(0).toUpperCase() + gen.slice(1) +' '+ stype.charAt(0).toUpperCase() + stype.slice(1) + ' Online in India | Friction';
+        window.scrollTo(0, 0);
     });
 
     function getData(){

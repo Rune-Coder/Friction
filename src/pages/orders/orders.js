@@ -11,6 +11,11 @@ function Orders(props){
 
     const [orders, setOrders] = useState([]);
 
+    useEffect(() => {
+        document.title = 'Online Shopping site for Shoes in India | Friction';
+        window.scrollTo(0, 0);
+    });
+
     useEffect(() =>{
 
         //get orders data mongodb

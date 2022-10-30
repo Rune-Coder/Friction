@@ -5,7 +5,7 @@ import { Fragment } from 'react/cjs/react.production.min';
 
 function Home(props) {
     useEffect(() => {
-        document.title = 'Online Shopping site for Shoes in India- Friction';
+        document.title = 'Online Shopping site for Shoes in India | Friction';
     });
     return(
         <Fragment>

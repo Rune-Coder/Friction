@@ -17,6 +17,7 @@ function Address(props){
 
     useEffect(() => {
         document.title = 'ADDRESS';
+        window.scrollTo(0, 0);
     });
 
     var bill;

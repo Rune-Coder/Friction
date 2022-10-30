@@ -14,6 +14,7 @@ function MyProfile(props){
     
     useEffect(() => {
         document.title = 'Profile';
+        window.scrollTo(0, 0);
     });
 
     function toEdit(event){
