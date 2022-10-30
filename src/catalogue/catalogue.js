@@ -9,7 +9,7 @@ function Catalogue(props) {
 
     const [products, setProducts] = useState([]);
     const [currPage, setCurrPage] = useState(1);
-    const postPerPage = 10;
+    const postPerPage = 20;
 
     const [loader, setLoader] = useState(false);
 

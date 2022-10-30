@@ -44,7 +44,7 @@
     background-color: #cfd2cfaf;
     height: 30rem;
     padding: 0;
-    width: 25rem;
+    width: 30rem;
 }
 .image img{
     height: 100%;
@@ -181,7 +181,7 @@
     }
     .image{
         height: 25rem;
-        width: 20rem;
+        max-width: 25rem;
     }
     .productDetails{
         padding-left: 2rem;
