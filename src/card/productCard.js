@@ -88,7 +88,7 @@ function ProductCard(props) {
                 <img src = {props.image} alt = "Shoe"></img>
            </div>
            <div className={classes.desc}>
-                <span>{props.company}</span>
+                <span  className={classes.comName}>{props.company}</span>
                 <p className={classes.pName}>{props.product}</p>
                 <p className={classes.rating}>
                     <StarRating stars={props.rating}/>{props.rating}

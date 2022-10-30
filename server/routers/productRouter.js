@@ -30,7 +30,7 @@ productRoute.get("/type/:key",
     asyncHandler(async (req, res)=>{
         const product = await Product.find(
             {
-                "$or":[{ "type": {$regex: req.params.key} }]
+                "$or":[{ "type": {$in: req.params.key} }]
             }
         );
         if (product) {

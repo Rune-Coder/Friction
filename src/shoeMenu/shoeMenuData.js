@@ -48,15 +48,14 @@ function BootsData(props){
 }
 
 function SportsData(props){
+    let navigate = useNavigate();
+
     return(
         <ul className = {`${classes.shoeList} ${props.value && classes.shoeListSmall}  ${!props.value && ''}`} >
-            <li>Walking</li>
-            <li>Running</li>
-            <li>Tennis</li>
-            <li>Foootball</li>
-            <li>Trainer</li>
-            <li>Golf</li>
-            <li>Cycling</li>
+            <li onClick = {() => {navigate(`/types/men-walking`); window.location.reload();}}>Walking</li>
+            <li onClick = {() => {navigate(`/types/men-football`); window.location.reload();}}>Foootball</li>
+            <li onClick = {() => {navigate(`/types/men-golf`); window.location.reload();}}>Golf</li>
+            <li onClick = {() => {navigate(`/types/men-cycling`); window.location.reload();}}>Cycling</li>
         </ul>
     );
 }
