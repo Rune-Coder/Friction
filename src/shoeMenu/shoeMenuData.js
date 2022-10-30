@@ -60,6 +60,58 @@ function SportsData(props){
     );
 }
 
-export {CasualsData, DressData, BootsData, SportsData};
-
 //WOMEN SHOES
+
+function WomenCasualsData(props){
+    let navigate = useNavigate();
+
+    return(
+        <ul className = {`${classes.shoeList} ${props.value && classes.shoeListSmall}  ${!props.value && ''}`} >
+            <li onClick = {() => {navigate(`/types/women-sneakers`); window.location.reload();}}>Sneakers</li>
+            <li onClick = {() => {navigate(`/types/women-heels`); window.location.reload();}}>Heels</li>
+            <li onClick = {() => {navigate(`/types/women-espadrilles`); window.location.reload();}}>Espadrilles</li>
+            <li onClick = {() => {navigate(`/types/women-sandals`); window.location.reload();}}>Sandals</li>
+        </ul>
+    );
+}
+
+function WomenBootsData(props){
+    let navigate = useNavigate();
+    
+    return(
+        <ul className = {`${classes.shoeList} ${props.value && classes.shoeListSmall}  ${!props.value && ''}`} >
+            <li onClick = {() => {navigate(`/types/women-chelsea`); window.location.reload();}}>Chelsea</li>
+            <li onClick = {() => {navigate(`/types/women-thigh-high`); window.location.reload();}}>Thigh High</li>
+            <li onClick = {() => {navigate(`/types/women-wellington`); window.location.reload();}}>Wellington</li>
+            <li onClick = {() => {navigate(`/types/women-ankle`); window.location.reload();}}>Ankle</li>
+        </ul>
+    );
+}
+
+function WomenDressData(props){
+    let navigate = useNavigate();
+    
+    return(
+        <ul className = {`${classes.shoeList} ${props.value && classes.shoeListSmall}  ${!props.value && ''}`} >
+            <li onClick = {() => {navigate(`/types/women-derbys`); window.location.reload();}}>Derby</li>
+            <li onClick = {() => {navigate(`/types/women-mary-janes `); window.location.reload();}}>Mary Janes</li>
+            <li onClick = {() => {navigate(`/types/women-moccasins `); window.location.reload();}}>Moccasins</li>
+            <li onClick = {() => {navigate(`/types/women-loafers`); window.location.reload();}}>Loafers</li>
+        </ul>
+    );
+}
+
+function WomenIndianData(props){
+    let navigate = useNavigate();
+    
+    return(
+        <ul className = {`${classes.shoeList} ${props.value && classes.shoeListSmall}  ${!props.value && ''}`} >
+            <li onClick = {() => {navigate(`/types/women-juttis`); window.location.reload();}}>Juttis</li>
+            <li onClick = {() => {navigate(`/types/women-kolhapuris`); window.location.reload();}}>Kolhapuris</li>
+            <li onClick = {() => {navigate(`/types/women-padukas`); window.location.reload();}}>Padukas</li>
+        </ul>
+    );
+}
+
+export {CasualsData, DressData, BootsData, SportsData, WomenCasualsData, WomenBootsData, WomenIndianData, WomenDressData};
+

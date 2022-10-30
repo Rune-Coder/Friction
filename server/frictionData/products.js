@@ -22,6 +22,27 @@ const products = [
     },
     {
         type: 'men-sneakers',
+        image: '/images/product_p55.jpg',
+        company: 'Trendigo',
+        product: 'Classic Sneakers For Men ( Green )',
+        rating: 4.5,
+        sp: 699,
+        mrp: 1699,
+        discount: 59,
+        desc: {
+            details: "A pair of round-toe green sneakers, has regular styling, lace-up detail",
+            material: "Canvas material. Wipe with a clean, dry cloth to remove dust",
+            specsType: "Sneakers",
+            specsToe: "Round Toe",
+            specsPattern: "Mesh",
+            specsFastening: "Lace Ups",
+            specsWidth: "Regular",
+            specsSole: "EVA",
+            specsWarranty: "3 months",
+        }
+    },
+    {
+        type: 'men-sneakers',
         image: '/images/product_p2.png',
         company: 'U.S. Polo Assn.',
         product: 'Men Grey Clarkin Sneakers',
@@ -60,6 +81,48 @@ const products = [
             specsWidth: "Regular",
             specsSole: "TPR",
             specsWarranty: "3 months",
+        }
+    },
+    {
+        type: 'women-sneakers',
+        image: '/images/product_p12.jpg',
+        company: 'Nike',
+        product: 'Women Black Walking Non-Marking Shoes',
+        rating: 4.5,
+        sp: 3599,
+        mrp: 3999,
+        discount: 10,
+        desc: {
+            details: "A pair of black walking shoes, has regular Styling, lace-ups detail",
+            material: "Upper material: PU. Wipe with a clean, dry cloth to remove the dust",
+            specsType: "Walking Shoes",
+            specsToe: "Round Toe",
+            specsPattern: "Mesh",
+            specsFastening: "Lace-Ups",
+            specsWidth: "Regular",
+            specsSole: "Rubber",
+            specsWarranty: "1 month",
+        }
+    },
+    {
+        type: 'women-sneakers',
+        image: '/images/product_p45.jpg',
+        company: 'Red Tape',
+        product: 'Women Black Walking Shoes',
+        rating: 4.2,
+        sp: 1199,
+        mrp: 1999,
+        discount: 60,
+        desc: {
+            details: "A pair of black walking shoes, has regular Styling, lace-ups detail",
+            material: "Textile Upper. Wipe with a clean, dry cloth to remove the dust",
+            specsType: "Walking Shoes",
+            specsToe: "Round Toe",
+            specsPattern: "Mesh",
+            specsFastening: "Lace-Ups",
+            specsWidth: "Regular",
+            specsSole: "TPR",
+            specsWarranty: "2 months"
         }
     },
     {
@@ -231,27 +294,6 @@ const products = [
         }
     },
     {
-        type: 'women-walking',
-        image: '/images/product_p12.jpg',
-        company: 'Nike',
-        product: 'Women Black Walking Non-Marking Shoes',
-        rating: 4.5,
-        sp: 3599,
-        mrp: 3999,
-        discount: 10,
-        desc: {
-            details: "A pair of black walking shoes, has regular Styling, lace-ups detail",
-            material: "Upper material: PU. Wipe with a clean, dry cloth to remove the dust",
-            specsType: "Walking Shoes",
-            specsToe: "Round Toe",
-            specsPattern: "Mesh",
-            specsFastening: "Lace-Ups",
-            specsWidth: "Regular",
-            specsSole: "Rubber",
-            specsWarranty: "1 month",
-        }
-    },
-    {
         type: 'men-walking',
         image: '/images/product_p44.jpg',
         company: 'Puma',
@@ -272,27 +314,7 @@ const products = [
             specsWarranty: "3 months"
         }
     },
-    {
-        type: 'women-walking',
-        image: '/images/product_p45.jpg',
-        company: 'Red Tape',
-        product: 'Women Black Walking Shoes',
-        rating: 4.2,
-        sp: 1199,
-        mrp: 1999,
-        discount: 60,
-        desc: {
-            details: "A pair of black walking shoes, has regular Styling, lace-ups detail",
-            material: "Textile Upper. Wipe with a clean, dry cloth to remove the dust",
-            specsType: "Walking Shoes",
-            specsToe: "Round Toe",
-            specsPattern: "Mesh",
-            specsFastening: "Lace-Ups",
-            specsWidth: "Regular",
-            specsSole: "TPR",
-            specsWarranty: "2 months"
-        }
-    },
+    
     {
         type: 'men-walking',
         image: '/images/product_p47.jpg',

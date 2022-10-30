@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import classes from './shoeMenu.module.css';
-import {CasualsData, DressData, BootsData, SportsData} from './shoeMenuData';
+import {CasualsData, DressData, BootsData, SportsData, WomenCasualsData, WomenBootsData, WomenIndianData, WomenDressData} from './shoeMenuData';
 
 function ShoeMenu(props) {
     const [addTypesMen, setAddTypesMen] = useState(false);
     const [addTypesWomen, setAddTypesWomen] = useState(false);
-    const [addTypesKids, setAddTypesKids] = useState(false);
 
     function typesHandlerMen(event){
         if(addTypesMen === true)
@@ -21,13 +20,6 @@ function ShoeMenu(props) {
             setAddTypesWomen(true);
         return;
     }
-    function typesHandlerKids(event){
-        if(addTypesKids === true)
-            setAddTypesKids(false);
-        else
-            setAddTypesKids(true);
-        return;
-    }
 
     return(
         <div className={classes.shoeAccordian}>
@@ -35,7 +27,6 @@ function ShoeMenu(props) {
                 <ul>
                     <li onMouseOver = {typesHandlerMen} onMouseOut = {typesHandlerMen}>Men</li>
                     <li onMouseOver = {typesHandlerWomen} onMouseOut = {typesHandlerWomen}>Women</li>
-                    <li onMouseOver = {typesHandlerKids} onMouseOut = {typesHandlerKids}>Kids</li>
                 </ul>
             </div>
             <div className = {`${classes.types} ${addTypesMen && classes.activeTypes}  ${!addTypesMen && ''}`}>
@@ -56,8 +47,24 @@ function ShoeMenu(props) {
                     <SportsData />
                 </div>
             </div>
-            <div className = {`${classes.types} ${addTypesWomen && classes.activeTypes}  ${!addTypesWomen && ''}`}>hello2</div>
-            <div className = {`${classes.types} ${addTypesKids && classes.activeTypes}  ${!addTypesKids && ''}`}>hello3</div>
+            <div className = {`${classes.types} ${addTypesWomen && classes.activeTypes}  ${!addTypesWomen && ''}`}>
+                <div>
+                    <span className={classes.typeHead}>Casual Wear</span>
+                    <WomenCasualsData />
+                </div>
+                <div>
+                    <span className={classes.typeHead}>Boots</span>
+                    <WomenBootsData />
+                </div>
+                <div>
+                    <span className={classes.typeHead}>Dress Wear</span>
+                    <WomenDressData />
+                </div>
+                <div>
+                    <span className={classes.typeHead}>Indian Wear</span>
+                    <WomenIndianData />
+                </div>
+            </div>
         </div>
     );
 }
