@@ -1,13 +1,13 @@
 const products = [
     {
         type: 'men-sneakers',
-        image: '/images/product_p1.png',
-        company: 'Adidas',
-        product: 'Sneakers',
-        rating: 4.5,
-        sp: 249,
-        mrp: 300,
-        discount: 17,
+        image: '/images/product_p1.jpg',
+        company: 'Roadster',
+        product: 'The Lifestyle Co Men White Sneakers',
+        rating: 3.5,
+        sp: 872,
+        mrp: 3795,
+        discount: 77,
         desc: {
             details: "A pair of round-toe white sneakers, has regular styling, lace-up detail",
             material: "Canvas material. Wipe with a clean, dry cloth to remove dust",
@@ -16,7 +16,7 @@ const products = [
             specsPattern: "Solid",
             specsFastening: "Lace Ups",
             specsWidth: "Regular",
-            specsSole: "Rubber",
+            specsSole: "EVA",
             specsWarranty: "3 months",
         }
     },
