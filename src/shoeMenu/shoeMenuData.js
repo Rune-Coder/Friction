@@ -81,7 +81,7 @@ function WomenBootsData(props){
     return(
         <ul className = {`${classes.shoeList} ${props.value && classes.shoeListSmall}  ${!props.value && ''}`} >
             <li onClick = {() => {navigate(`/types/women-chelsea`); window.location.reload();}}>Chelsea</li>
-            <li onClick = {() => {navigate(`/types/women-thigh-high`); window.location.reload();}}>Thigh High</li>
+            <li onClick = {() => {navigate(`/types/women-knee`); window.location.reload();}}>Knee</li>
             <li onClick = {() => {navigate(`/types/women-wellington`); window.location.reload();}}>Wellington</li>
             <li onClick = {() => {navigate(`/types/women-ankle`); window.location.reload();}}>Ankle</li>
         </ul>
@@ -114,4 +114,3 @@ function WomenIndianData(props){
 }
 
 export {CasualsData, DressData, BootsData, SportsData, WomenCasualsData, WomenBootsData, WomenIndianData, WomenDressData};
-
