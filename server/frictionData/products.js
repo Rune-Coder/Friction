@@ -1385,6 +1385,174 @@ const products = [
             specsSole: "TPR",
             specsWarranty: "3 months"
         }
+    },
+    {
+        type: 'women-knee',
+        image: '/images/product_p67.png',
+        company: 'Roadster',
+        product: 'Women Tan Brown High Top Knee Boots',
+        rating: 4.3,
+        sp: 3599,
+        mrp: 5599,
+        discount: 36,
+        desc: {
+            details: "A pair of tan brown solid round toe boots, has high-top styling and lace-ups detail",
+            material: "Suede. Wipe with a clean, dry cloth to remove the dust",
+            specsType: "Over The Knee Boots",
+            specsToe: "Pointed Toe",
+            specsPattern: "Solid",
+            specsFastening: "Lace-Ups",
+            specsWidth: "Regular",
+            specsSole: "TPR",
+            specsWarranty: "4 months"
+        }
+    },
+    {
+        type: 'women-knee',
+        image: '/images/product_p68.jpg',
+        company: 'H&M',
+        product: 'Women Solid Black Mid Top Knee Boots',
+        rating: 4.1,
+        sp: 1599,
+        mrp: 2599,
+        discount: 38,
+        desc: {
+            details: "A pair of black solid round toe boots, has high-top styling and lace-ups detail",
+            material: "Leather. Wipe with a clean, dry cloth to remove the dust",
+            specsType: "Over The Knee Boots",
+            specsToe: "Pointed Toe",
+            specsPattern: "Solid",
+            specsFastening: "Lace-Ups",
+            specsWidth: "Regular",
+            specsSole: "TPR",
+            specsWarranty: "7 months"
+        }
+    },
+    {
+        type: 'women-juttis',
+        image: '/images/product_p69.jpg',
+        company: 'Natty Feet',
+        product: 'Women Naveli Punjabi Juttis',
+        rating: 4.4,
+        sp: 796,
+        mrp: 2490,
+        discount: 68,
+        desc: {
+            details: "A pair of brown coffee naveli punjabi jutti, has regular styling and slip-on details",
+            material: "Synthetic. Wipe with a clean, dry cloth to remove the dust",
+            specsType: "Juttis",
+            specsToe: "Open Toe",
+            specsPattern: "Solid",
+            specsFastening: "Slip-On",
+            specsWidth: "Regular",
+            specsSole: "TPR",
+            specsWarranty: "1 month"
+        }
+    },
+    {
+        type: 'women-juttis',
+        image: '/images/product_p70.jpeg',
+        company: 'Handicrafts',
+        product: 'Women Ethnic Blue Embroidered Juttis',
+        rating: 4.1,
+        sp: 899,
+        mrp: 1999,
+        discount: 55,
+        desc: {
+            details: "A pair of blue embroidered juttis, has regular styling and slip-on details",
+            material: "Synthetic. Wipe with a clean, dry cloth to remove the dust",
+            specsType: "Juttis",
+            specsToe: "Open Toe",
+            specsPattern: "Embroidered",
+            specsFastening: "Slip-On",
+            specsWidth: "Regular",
+            specsSole: "TPR",
+            specsWarranty: "2 months"
+        }
+    },
+    {
+        type: 'women-juttis',
+        image: '/images/product_p71.jpg',
+        company: 'Krafto Jodhpur',
+        product: 'Women Pink Thread Flowers Handcrafted Rajasthani Leather Juttis',
+        rating: 3.7,
+        sp: 699,
+        mrp: 3495,
+        discount: 80,
+        desc: {
+            details: "A pair of pink thread flowers handcrafted rajasthani leather juttis, has regular styling and slip-on details",
+            material: "Leather. Wipe with a clean, dry cloth to remove the dust",
+            specsType: "Juttis",
+            specsToe: "Open Toe",
+            specsPattern: "Thread Flowers",
+            specsFastening: "Slip-On",
+            specsWidth: "Regular",
+            specsSole: "TPR",
+            specsWarranty: "3 months"
+        }
+    },
+    {
+        type: 'women-juttis',
+        image: '/images/product_p72.jpg',
+        company: 'Purely Lush',
+        product: 'Women Tan Brown Leather Juttis',
+        rating: 3.9,
+        sp: 799,
+        mrp: 1299,
+        discount: 38,
+        desc: {
+            details: "A pair of tan brown leather juttis, has regular styling and slip-on details",
+            material: "Leather. Wipe with a clean, dry cloth to remove the dust",
+            specsType: "Juttis",
+            specsToe: "Open Toe",
+            specsPattern: "Waves",
+            specsFastening: "Slip-On",
+            specsWidth: "Regular",
+            specsSole: "TPR",
+            specsWarranty: "1 month"
+        }
+    },
+    {
+        type: 'women-wellington',
+        image: '/images/product_p73.jpg',
+        company: 'MadM Direct',
+        product: 'Hunter Womens Original Classic Tall Matt Wellington Boots Black Grape',
+        rating: 4.2,
+        sp: 899,
+        mrp: 4499,
+        discount: 80,
+        desc: {
+            details: "A pair of classic tall matt black grape wellington boots, has regular styling and slip-on details",
+            material: "Rubber. Wipe with a clean, dry cloth to remove the dust",
+            specsType: "Wellington Boots",
+            specsToe: "Round Toe",
+            specsPattern: "Solid",
+            specsFastening: "Slip-On",
+            specsWidth: "Regular",
+            specsSole: "Rubber",
+            specsWarranty: "6 months"
+        }
+    },
+    {
+        type: 'women-wellington',
+        image: '/images/product_p74.jpg',
+        company: 'Hunter',
+        product: 'Womens Tall Matt Wellington Boots Red',
+        rating: 4.1,
+        sp: 999,
+        mrp: 1999,
+        discount: 50,
+        desc: {
+            details: "A pair of classic tall red matt wellington boots, has regular styling and slip-on details",
+            material: "Rubber. Wipe with a clean, dry cloth to remove the dust",
+            specsType: "Wellington Boots",
+            specsToe: "Round Toe",
+            specsPattern: "Solid",
+            specsFastening: "Slip-On",
+            specsWidth: "Regular",
+            specsSole: "Rubber",
+            specsWarranty: "4 months"
+        }
     }
 ];
 
