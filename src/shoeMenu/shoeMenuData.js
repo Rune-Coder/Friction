@@ -93,7 +93,6 @@ function WomenDressData(props){
     
     return(
         <ul className = {`${classes.shoeList} ${props.value && classes.shoeListSmall}  ${!props.value && ''}`} >
-            <li onClick = {() => {navigate(`/types/women-derbys`); window.location.reload();}}>Derby</li>
             <li onClick = {() => {navigate(`/types/women-mary-janes `); window.location.reload();}}>Mary Janes</li>
             <li onClick = {() => {navigate(`/types/women-moccasins `); window.location.reload();}}>Moccasins</li>
             <li onClick = {() => {navigate(`/types/women-loafers`); window.location.reload();}}>Loafers</li>
@@ -108,7 +107,6 @@ function WomenIndianData(props){
         <ul className = {`${classes.shoeList} ${props.value && classes.shoeListSmall}  ${!props.value && ''}`} >
             <li onClick = {() => {navigate(`/types/women-juttis`); window.location.reload();}}>Juttis</li>
             <li onClick = {() => {navigate(`/types/women-kolhapuris`); window.location.reload();}}>Kolhapuris</li>
-            <li onClick = {() => {navigate(`/types/women-padukas`); window.location.reload();}}>Padukas</li>
         </ul>
     );
 }
