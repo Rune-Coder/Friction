@@ -193,6 +193,7 @@
     .view{
         align-items: center;
         flex-direction: column;
+        margin-top: 11.6rem;
         padding: 0;
     }
     

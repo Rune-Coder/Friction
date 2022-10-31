@@ -12,3 +12,8 @@
 .head{
     font-size: 2rem;
 }
+@media screen and (max-width: 1000px){
+    .empty{
+        padding-top: 12.6rem;
+    }
+}

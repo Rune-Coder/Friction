@@ -30,6 +30,9 @@
     .accDetails{
         grid-template-columns: 20ch 20ch;
     }
+    .profile{
+        margin-top: 10.1rem;
+    }
     .save{
         width: 100%;
     }

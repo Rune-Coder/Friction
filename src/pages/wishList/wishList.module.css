@@ -31,7 +31,9 @@
     padding: 0 5rem 0 4rem;
 }
 @media screen and (max-width: 945px) {
-
+    .wish{
+        margin-top: 10.1rem;
+    }
     .wishCatalogue{
         padding: 0;
     }

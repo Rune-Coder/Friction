@@ -43,6 +43,7 @@
     .offer{
         display: flex;
         flex-direction: column-reverse;
+        margin-top: 10.1rem;
     }
     .headTitle, .headImg{
         width: 100%;

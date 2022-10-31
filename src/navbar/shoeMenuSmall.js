@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import classes from './shoeMenuSmall.module.css';
-import {CasualsData, SportsData} from '../shoeMenu/shoeMenuData';
+import {BootsData, CasualsData, DressData, SportsData, WomenBootsData, WomenCasualsData, WomenDressData, WomenIndianData} from '../shoeMenu/shoeMenuData';
 import AngleRight from '../icons/angleRight';
 import AngleDown from '../icons/angleDown';
 
@@ -9,16 +9,16 @@ function ShoeMenuSmall(props){
 
     const [dropMenuMen, setDropMenuMen] = useState(false);
     const [dropMenuWomen, setDropMenuWomen] = useState(false);
-    const [dropMenuKids, setDropMenuKids] = useState(false);
 
     const [dropMenuMenTypes1, setDropMenuMenTypes1] = useState(false);
     const [dropMenuMenTypes2, setDropMenuMenTypes2] = useState(false);
+    const [dropMenuMenTypes3, setDropMenuMenTypes3] = useState(false);
+    const [dropMenuMenTypes4, setDropMenuMenTypes4] = useState(false);
 
     const [dropMenuWomenTypes1, setDropMenuWomenTypes1] = useState(false);
     const [dropMenuWomenTypes2, setDropMenuWomenTypes2] = useState(false);
-
-    const [dropMenuKidsTypes1, setDropMenuKidsTypes1] = useState(false);
-    const [dropMenuKidsTypes2, setDropMenuKidsTypes2] = useState(false);
+    const [dropMenuWomenTypes3, setDropMenuWomenTypes3] = useState(false);
+    const [dropMenuWomenTypes4, setDropMenuWomenTypes4] = useState(false);
 
     function dropMen(event){
         if(dropMenuMen)
@@ -32,13 +32,6 @@ function ShoeMenuSmall(props){
             setDropMenuWomen(false);
         else
             setDropMenuWomen(true);
-    }
-
-    function dropKids(event){
-        if(dropMenuKids)
-            setDropMenuKids(false);
-        else
-            setDropMenuKids(true);
     }
 
     function dropMenTypes1(event){
@@ -55,6 +48,20 @@ function ShoeMenuSmall(props){
             setDropMenuMenTypes2(true);
     }
 
+    function dropMenTypes3(event){
+        if(dropMenuMenTypes3)
+            setDropMenuMenTypes3(false);
+        else
+            setDropMenuMenTypes3(true);
+    }
+
+    function dropMenTypes4(event){
+        if(dropMenuMenTypes4)
+            setDropMenuMenTypes4(false);
+        else
+            setDropMenuMenTypes4(true);
+    }
+
     function dropWomenTypes1(event){
         if(dropMenuWomenTypes1)
             setDropMenuWomenTypes1(false);
@@ -69,18 +76,18 @@ function ShoeMenuSmall(props){
             setDropMenuWomenTypes2(true);
     }
 
-    function dropKidsTypes1(event){
-        if(dropMenuKidsTypes1)
-            setDropMenuKidsTypes1(false);
+    function dropWomenTypes3(event){
+        if(dropMenuWomenTypes3)
+            setDropMenuWomenTypes3(false);
         else
-            setDropMenuKidsTypes1(true);
+            setDropMenuWomenTypes3(true);
     }
 
-    function dropKidsTypes2(event){
-        if(dropMenuKidsTypes2)
-            setDropMenuKidsTypes2(false);
+    function dropWomenTypes4(event){
+        if(dropMenuWomenTypes4)
+            setDropMenuWomenTypes4(false);
         else
-            setDropMenuKidsTypes2(true);
+            setDropMenuWomenTypes4(true);
     }
 
     return(
@@ -114,14 +121,40 @@ function ShoeMenuSmall(props){
                         <li className={classes.subHeadItem}>
                             
                             <div className={classes.headItem} onClick={dropMenTypes2}>
-                                <div>Sports Wear</div>
+                                <div>Boots</div>
                                 <div>
                                     {!dropMenuMenTypes2 && <span className={classes.angleRight}><AngleRight /></span>}
                                     {dropMenuMenTypes2 && <span className={classes.angleDown}><AngleDown /></span>}
                                 </div>
                             </div>
 
-                            {dropMenuMenTypes2 && <div className={classes.subList}><SportsData value= {true} /></div>}
+                            {dropMenuMenTypes2 && <div className={classes.subList}><BootsData value= {true} /></div>}
+
+                        </li>
+                        <li className={classes.subHeadItem}>
+                            
+                            <div className={classes.headItem} onClick={dropMenTypes3}>
+                                <div>Dress Wear</div>
+                                <div>
+                                    {!dropMenuMenTypes3 && <span className={classes.angleRight}><AngleRight /></span>}
+                                    {dropMenuMenTypes3 && <span className={classes.angleDown}><AngleDown /></span>}
+                                </div>
+                            </div>
+
+                            {dropMenuMenTypes3 && <div className={classes.subList}><DressData value= {true} /></div>}
+
+                        </li>
+                        <li className={classes.subHeadItem}>
+                            
+                            <div className={classes.headItem} onClick={dropMenTypes4}>
+                                <div>Sports Wear</div>
+                                <div>
+                                    {!dropMenuMenTypes4 && <span className={classes.angleRight}><AngleRight /></span>}
+                                    {dropMenuMenTypes4 && <span className={classes.angleDown}><AngleDown /></span>}
+                                </div>
+                            </div>
+
+                            {dropMenuMenTypes4 && <div className={classes.subList}><SportsData value= {true} /></div>}
 
                         </li>
                     </ul>
@@ -133,7 +166,10 @@ function ShoeMenuSmall(props){
 
                 <div className={classes.headItem} onClick={dropWomen}>
                     <div>Women</div>
-                    <div>></div>
+                    <div>
+                        {!dropMenuWomen && <span className={classes.angleRight}><AngleRight /></span>}
+                        {dropMenuWomen && <span className={classes.angleDown}><AngleDown /></span>}
+                    </div>
                 </div>
 
                 {dropMenuWomen && 
@@ -142,68 +178,53 @@ function ShoeMenuSmall(props){
                         <li className={classes.subHeadItem}>
                             
                             <div className={classes.headItem} onClick={dropWomenTypes1}>
-                                <div>Men</div>
-                                <div>></div>
+                                <div>Casual Wear</div>
+                                <div>
+                                    {!dropMenuWomenTypes1 && <span className={classes.angleRight}><AngleRight /></span>}
+                                    {dropMenuWomenTypes1 && <span className={classes.angleDown}><AngleDown /></span>}
+                                </div>
                             </div>
 
-                            {dropMenuWomenTypes1 && <ul className={classes.subList}>
-                                <li>Boots</li>
-                                <li>Boots</li>
-                            </ul>}
+                            {dropMenuWomenTypes1 && <div className={classes.subList}><WomenCasualsData value= {true} /></div>}
 
                         </li>
                         <li className={classes.subHeadItem}>
                             
                             <div className={classes.headItem} onClick={dropWomenTypes2}>
-                                <div>Men</div>
-                                <div>></div>
+                                <div>Boots</div>
+                                <div>
+                                    {!dropMenuWomenTypes2 && <span className={classes.angleRight}><AngleRight /></span>}
+                                    {dropMenuWomenTypes2 && <span className={classes.angleDown}><AngleDown /></span>}
+                                </div>
                             </div>
 
-                            {dropMenuWomenTypes2 && <ul className={classes.subList}>
-                                <li>Boots</li>
-                                <li>Boots</li>
-                            </ul>}
-
-                        </li>
-                    </ul>
-                </div>}
-
-            </li>
-
-            <li className={classes.smallMenu}>
-
-                <div className={classes.headItem} onClick={dropKids}>
-                    <div>Kids</div>
-                    <div>></div>
-                </div>
-
-                {dropMenuKids && 
-                <div className={classes.subHead}>
-                    <ul className={classes.subList}>
-                        <li className={classes.subHeadItem}>
-                           
-                            <div className={classes.headItem} onClick={dropKidsTypes1}>
-                                <div>Men</div>
-                                <div>></div>
-                            </div>
-
-                            {dropMenuKidsTypes1 && <ul className={classes.subList}>
-                                <li>Boots</li>
-                                <li>Boots</li>
-                            </ul>}
+                            {dropMenuWomenTypes2 && <div className={classes.subList}><WomenBootsData value= {true} /></div>}
 
                         </li>
                         <li className={classes.subHeadItem}>
                             
-                            <div className={classes.headItem} onClick={dropKidsTypes2}>
-                                <div>Men</div>
-                                <div>></div>
+                            <div className={classes.headItem} onClick={dropWomenTypes3}>
+                                <div>Dress Wear</div>
+                                <div>
+                                    {!dropMenuWomenTypes3 && <span className={classes.angleRight}><AngleRight /></span>}
+                                    {dropMenuWomenTypes3 && <span className={classes.angleDown}><AngleDown /></span>}
+                                </div>
                             </div>
 
-                            {dropMenuKidsTypes2 && <ul className={classes.subList}>
-                                <li>Boots</li>
-                                <li>Boots</li>
-                            </ul>}
+                            {dropMenuWomenTypes3 && <div className={classes.subList}><WomenDressData value= {true} /></div>}
+
+                        </li>
+                        <li className={classes.subHeadItem}>
+                            
+                            <div className={classes.headItem} onClick={dropWomenTypes4}>
+                                <div>Indian Wear</div>
+                                <div>
+                                    {!dropMenuWomenTypes4 && <span className={classes.angleRight}><AngleRight /></span>}
+                                    {dropMenuWomenTypes4 && <span className={classes.angleDown}><AngleDown /></span>}
+                                </div>
+                            </div>
+
+                            {dropMenuWomenTypes4 && <div className={classes.subList}><WomenIndianData value= {true} /></div>}
 
                         </li>
                     </ul>

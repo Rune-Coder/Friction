@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import rack from '../../image/shoe-rack.jpg';
 import classes from './notFound.module.css';
 
 function NotFound(props){
+    
+    useEffect(() => {
+        document.title = 'Online Shopping site for Shoes in India | Friction';
+        window.scrollTo(0, 0);
+    });
+
     return (
         <div className={classes.empty}>
             <img src = {rack} alt = "Loading..."></img>

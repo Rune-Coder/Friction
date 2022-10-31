@@ -28,6 +28,9 @@
     
 }
 @media screen and (max-width: 800px){
+    .bg{
+        margin-top: 10.1rem;
+    }
     .createAcc{
         width: 100%;
     }
