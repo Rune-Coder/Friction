@@ -5,7 +5,7 @@
     left: 0;
     top: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 100;
 }
 .bag{
     width: 100%;
@@ -74,10 +74,13 @@
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 200;
 }
 @media screen and (max-width: 945px) {
 
     .card{
         margin: 1rem 0 0 0;
+        height: 20rem;
+        width: 12rem;
     }
 }
