@@ -59,6 +59,7 @@
 }
 .prdct{
     text-overflow: ellipsis;
+    overflow: hidden;
 }
 .price{
     font-weight: bold;
@@ -78,9 +79,18 @@
 }
 @media screen and (max-width: 945px) {
 
+    .bag{
+        height: 2.5rem;
+    }
     .card{
         margin: 1rem 0 0 0;
         height: 20rem;
         width: 12rem;
+    }
+    .mrp{
+        font-size: 0.8rem;
+    }
+    .price{
+        font-size: 1rem;
     }
 }
